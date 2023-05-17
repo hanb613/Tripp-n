@@ -12,13 +12,6 @@ import com.ssafy.enjoytrip.location.model.LocationDto;
 @Service
 public class LocationServiceImpl implements LocationService {
 
-	private LocationMapper locationMapper;
-	
-	
-	public LocationServiceImpl(LocationMapper locationMapper) {
-		super();
-		this.locationMapper = locationMapper;
-	}
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -30,11 +23,11 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public List<LocationDto> gugunList(int sidoNo) throws Exception {
-		return locationMapper.listGugun(sidoNo);
+		return sqlSession.getMapper(LocationMapper.class).listGugun(sidoNo);
 	}
 
 	@Override
 	public LocationDto retLocNo(int sidoNo, int gugunNo) throws Exception {
-		return locationMapper.retLocNo(sidoNo, gugunNo);
+		return sqlSession.getMapper(LocationMapper.class).retLocNo(sidoNo, gugunNo);
 	}
 }

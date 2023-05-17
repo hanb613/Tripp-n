@@ -12,13 +12,13 @@ const attractionStore = {
   getters: {},
   mutations: {
     SET_SIDO_LIST(state, sidos) {
-      sidos.forEach((sido) => {
-        state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
+      sidos.forEach((sidoNo) => {
+        state.sidos.push({ value: sidoNo.sidoNo, text: sidoNo.sidoName });
       });
     },
     SET_GUGUN_LIST(state, guguns) {
       guguns.forEach((gugun) => {
-        state.guguns.push({ value: gugun.gugunCode, text: gugun.gugunName });
+        state.guguns.push({ value: gugun.gugunNo, text: gugun.gugunName });
       });
     },
     SET_CONTENTS_ID(state, contents) {
@@ -46,8 +46,8 @@ const attractionStore = {
         }
       );
     },
-    getGugun({ commit }, sidoCode) {
-      const params = { sido: sidoCode };
+    getGugun({ commit }, sidoNo) {
+      const params = { sidoNo: sidoNo };
       gugunList(
         params,
         ({ data }) => {
