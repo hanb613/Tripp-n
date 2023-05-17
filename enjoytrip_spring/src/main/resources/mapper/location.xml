@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.location.mapper.LocationMapper">
+
+	<resultMap type="locationDto" id="sido">
+		<result column="sido_no" property="sidoNo" />
+		<result column="sido_name" property="sidoName" />
+	</resultMap>
+
+	<resultMap type="locationDto" id="gugun">
+		<result column="loc_no" property="locNo" />
+		<result column="gugun_no" property="gugunNo" />
+		<result column="gugun_name" property="gugunName" />
+		<result column="sido_no" property="sidoNo" />
+	</resultMap>
+	
+	<select id="listSido" parameterType="int" resultMap="sido">
+		select *
+		from sido
+		order by sido_no
+	</select>
+	
+	<select id="listGugun" parameterType="int" resultMap="gugun">
+		select *
+		from gugun
+		where sido_no=#{sidoNo}
+		order by gugun_no
+	</select>
+	
+	<select id="retLocNo" parameterType="int" resultMap="gugun">
+		select loc_no
+		from gugun
+		where sido_no=#{sidoNo} and gugun_no=#{gugunNo}
+	</select>
+	
+	
+</mapper>

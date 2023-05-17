@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.enjoytrip.board.mapper.BoardMapper">
+
+	<resultMap type="boardDto" id="board">
+		<result column="board_no" property="boardNo" />
+		<result column="user_no" property="userNo" />
+		<result column="name" property="userName" />
+		<result column="article_no" property="articleNo" />
+		<result column="board_type" property="boardType" />
+		<result column="subject" property="subject" />
+		<result column="content" property="content" />
+		<result column="createtime" property="createTime" />
+	</resultMap>
+	
+	<insert id="writeArticle" parameterType="boardDto">
+		insert into board (user_no, article_no, board_type, subject, content, createtime)
+		values (#{userNo}, #{articleNo}, #{boardType}, #{subject}, #{content}, now())
+	</insert>
+	
+	<select id="listArticle" parameterType="map" resultMap="board">
+		SELECT b.board_no, u.name, b.subject, b.content,
+			(
+			  CASE WHEN DATE_FORMAT(b.createtime, '%Y%m%d') = DATE_FORMAT(NOW(), '%Y%m%d')
+			  THEN DATE_FORMAT(b.createtime, '%H:%i:%s')
+			  ELSE DATE_FORMAT(b.createtime, '%y.%m.%d')
+			  END
+			) AS createtime
+		from board b join user u
+		using (user_no)
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where b.subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where ${key} = #{word}
+			</if>
+		</if>
+		order by b.board_no desc
+		limit #{start}, #{spp}
+	</select>
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(board_no)
+		from board
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				where ${key} = #{word}
+			</if>
+		</if>
+	</select>
+	
+	<select id="getArticle" parameterType="int" resultType="boardDto">
+		select b.board_no, u.name, b.subject, b.content, b.createtime
+		from board b, user u
+		where b.board_no = #{boardNo}
+	</select>
+	
+	<update id="modifyArticle" parameterType="boardDto">
+		update board
+		set subject = #{subject}, content = #{content}
+		where board_no = #{boardNo}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from board_comment
+		where board_no = #{boardNo}
+	</delete>
+	
+	<delete id="deleteArticle" parameterType="int">
+		delete from board
+		where board_no = #{boardNo}
+	</delete>
+
+</mapper>
+
