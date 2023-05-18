@@ -18,8 +18,8 @@
     </b-row>
   </b-container>
 </template>
-  
-  <script>
+
+<script>
 import { getAttraction } from "@/api/attraction";
 export default {
   name: "AttractionDetail",
@@ -45,5 +45,5 @@ export default {
   methods: {},
 };
 </script>
-  
-  <style scoped></style>
+
+<style scoped></style>

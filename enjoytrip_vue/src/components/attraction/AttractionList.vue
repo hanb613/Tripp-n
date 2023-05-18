@@ -12,9 +12,9 @@
     </b-row>
   </b-container>
 </template>
-  
-  <script>
-import AttractionListItem from "@/components/attraction/AttractionListItem";
+
+<script>
+import AttractionListItem from "@/components/attraction/AttractionListItem.vue";
 import { mapState } from "vuex";
 
 const attractionStore = "attractionStore";
@@ -32,6 +32,5 @@ export default {
   },
 };
 </script>
-  
-  <style></style>
-  
+
+<style></style>

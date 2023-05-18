@@ -58,8 +58,8 @@
     </router-link>
   </b-container>
 </template>
-  
-  <script>
+
+<script>
 import { mapActions } from "vuex";
 
 const attractionStore = "attractionStore";
@@ -85,8 +85,8 @@ export default {
   },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .mouse-over-bgcolor {
   background-color: lightblue;
 }
@@ -94,4 +94,3 @@ a {
   text-decoration-line: none;
 }
 </style>
-  
