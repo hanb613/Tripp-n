@@ -11,17 +11,28 @@
       </b-col>
       <b-col cols="10" class="align-self-center"> [{{ attr.일련번호 }}] {{ attr.아파트 }} </b-col>
     </b-row> -->
-  <b-container class="bv-example-row mt-3">
+  <b-container
+    class="bv-example-row mt-3"
+    @mouseover="colorChange(true)"
+    @mouseout="colorChange(false)"
+    :class="{ 'mouse-over-bgcolor': isColor }"
+  >
     <router-link
       :to="{
         name: 'AttractionDetail',
         params: { contentNo: attr.contentNo },
       }"
     >
-      <div class="col-xl-4 col-md-6" v-if="!attr.firstImage">
+      <div class="col-xl-4 col-md-6">
         <article>
           <div class="post-img">
-            <img src="@/assets/img/noimg.jpg" alt="" class="img-fluid" />
+            <img
+              src="@/assets/img/noimg.jpg"
+              alt=""
+              class="img-fluid"
+              v-if="!attr.firstImage"
+            />
+            <img :src="attr.firstImage" alt="" class="img-fluid" v-else />
             <h2 class="title text-dark">{{ attr.title }}</h2>
             <div class="d-flex align-items-center">
               <div class="post-meta">
@@ -32,7 +43,7 @@
           </div>
         </article>
       </div>
-      <div class="col-xl-4 col-md-6" v-else>
+      <!-- <div class="col-xl-4 col-md-6" v-else>
         <div class="post-img">
           <img :src="attr.firstImage" alt="" class="img-fluid" />
           <h2 class="title text-dark">{{ attr.title }}</h2>
@@ -43,7 +54,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </router-link>
   </b-container>
 </template>
@@ -76,11 +87,11 @@ export default {
 </script>
   
   <style scoped>
-.apt {
-  width: 50px;
-}
 .mouse-over-bgcolor {
   background-color: lightblue;
+}
+a {
+  text-decoration-line: none;
 }
 </style>
   
