@@ -23,7 +23,6 @@
 import AttractionSearchItem from "@/components/attraction/item/AttractionSearchItem.vue";
 import AttractionMap from "@/components/attraction/AttractionMap.vue";
 import AttractionListItem from "@/components/attraction/AttractionListItem.vue";
-//import AttractionList from "./AttractionList.vue";
 
 import { mapState } from "vuex";
 
@@ -35,7 +34,6 @@ export default {
     AttractionSearchItem,
     AttractionMap,
     AttractionListItem,
-    // AttractionList,
   },
   data() {
     return {
