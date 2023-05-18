@@ -73,13 +73,13 @@ const attractionStore = {
     getAttrList: ({ commit }, [sidoNo, gugunNo, contentTypeId]) => {
       // const SERVICE_KEY = process.env.VUE_APP_ATTR_API_KEY;
       //console.log(sidoNo, gugunNo, contentTypeId)
-      
+
       const params = {
-        SIDO_NO: sidoNo, 
+        SIDO_NO: sidoNo,
         GUGUN_NO: gugunNo,
-        CONTENT_ID : contentTypeId,
+        CONTENT_ID: contentTypeId,
       };
-      
+
       //console.log(params)
       attrList(
         params,
