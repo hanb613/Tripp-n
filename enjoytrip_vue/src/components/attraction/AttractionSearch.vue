@@ -3,7 +3,7 @@
     <attraction-search-item></attraction-search-item>
     <attraction-map :attrList="attrs"></attraction-map>
 
-    <!-- <attraction-list></attraction-list> -->
+    <!-- Attraction List -->
     <b-container v-if="attrs && attrs.length != 0" class="bv-example-row mt-3">
       <attraction-list-item
         v-for="(attr, index) in attrs"
