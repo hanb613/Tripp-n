@@ -9,4 +9,5 @@ public interface AttractionService {
 	
 	List<AttractionDto> attrList(int locNo) throws Exception;
 	List<AttractionDto> attrListAll(int locNo, int contentTypeId) throws Exception;
+	AttractionDto getAttraction(int contentNo) throws Exception;
 }

@@ -10,10 +10,14 @@ function gugunList(params, success, fail) {
   api.get(`/attraction/gugun`, { params: params }).then(success).catch(fail);
 }
 
-// function attrList(params, success, fail) {
-//   attr.get(``, { params: params }).then(success).catch(fail);
-// }
+function attrList(params, success, fail) {
+  api.get(`/attraction/search`, { params: params }).then(success).catch(fail);
+}
 
-// export { sidoList, gugunList, attrList };
+function getAttraction(contentNo, success, fail) {
+  console.log(contentNo + "번 관광지 호출");
+  api.get(`/attraction/${contentNo}`).then(success).catch(fail);
+}
 
-export { sidoList, gugunList };
+export { sidoList, gugunList, attrList, getAttraction };
+

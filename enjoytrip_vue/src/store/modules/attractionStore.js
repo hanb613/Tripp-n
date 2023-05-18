@@ -1,4 +1,4 @@
-import { sidoList, gugunList } from "@/api/attraction.js";
+import { sidoList, gugunList, attrList } from "@/api/attraction.js";
 
 const attractionStore = {
   namespaced: true,
@@ -22,8 +22,15 @@ const attractionStore = {
       });
     },
     SET_CONTENTS_ID(state, contents) {
-      state.contents = contents;
+      state.contents.value = contents;
     },
+    SET_ATTR_LIST(state, attrs) {
+      state.attrs = attrs;
+    },
+    SET_DETAIL_ATTR(state, attr) {
+      state.attr = attr;
+    },
+
     CLEAR_SIDO_LIST(state) {
       state.sidos = [{ value: 0, text: "지역" }];
     },
@@ -35,7 +42,7 @@ const attractionStore = {
     },
     CLEAR_ATTR_LIST(state) {
       state.attrs = [];
-      state.attrs = null;
+      state.attr = null;
     },
   },
   actions: {
@@ -62,6 +69,31 @@ const attractionStore = {
           }
         );
       }
+    },
+    getAttrList: ({ commit }, [sidoNo, gugunNo, contentTypeId]) => {
+      // const SERVICE_KEY = process.env.VUE_APP_ATTR_API_KEY;
+      //console.log(sidoNo, gugunNo, contentTypeId)
+      
+      const params = {
+        SIDO_NO: sidoNo, 
+        GUGUN_NO: gugunNo,
+        CONTENT_ID : contentTypeId,
+      };
+      
+      //console.log(params)
+      attrList(
+        params,
+        ({ data }) => {
+          commit("SET_ATTR_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    detailAttr: ({ commit }, attr) => {
+      // 나중에 house.일련번호를 이용하여 API 호출
+      commit("SET_DETAIL_ATTR", attr);
     },
   },
 };

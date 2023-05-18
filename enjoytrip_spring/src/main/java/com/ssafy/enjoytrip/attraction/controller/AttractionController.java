@@ -1,5 +1,11 @@
 package com.ssafy.enjoytrip.attraction.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -15,13 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.service.AttractionService;
 import com.ssafy.enjoytrip.location.model.LocationDto;
 import com.ssafy.enjoytrip.location.service.LocationService;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attraction")
@@ -48,20 +51,23 @@ public class AttractionController {
 		return new ResponseEntity<List<LocationDto>>(locationService.gugunList(sidoNo), HttpStatus.OK);
 	}
 	
-//	@GetMapping("/search")
-//	@ResponseBody
-//	public List<AttractionDto> getAttrList(@RequestHeader int sidoNo, 
-//								@RequestHeader int gugunNo, 
-//								@RequestHeader int contentTypeId, 
-//								Model model) throws Exception {
-//		
-//		List<AttractionDto> result;
-//		if(contentTypeId==0) { // 관광지 유형 선택 안 했으면 ? 해당 지역 관광지 전체보기
-//			result = attractionService.attrList(locationService.retLocNo(sidoNo, gugunNo).getLocNo());			
-//		} else { // 관광지 유형 선택 했으면 ? 해당 관광지 유형 보기 
-//			result = attractionService.attrListAll(locationService.retLocNo(sidoNo, gugunNo).getLocNo(), contentTypeId);						
-//		}
-//		return result;
-//	}
+	@GetMapping("/search")
+	public ResponseEntity<List<AttractionDto>> getAttrList(@RequestParam("SIDO_NO") int sidoNo, @RequestParam("GUGUN_NO") int gugunNo, @RequestParam("CONTENT_ID") String contentTypeId) throws Exception {
+		
+		logger.info("관광지 조회 - 호출");
+		System.out.println(sidoNo + " " + gugunNo + " "+contentTypeId);
+		if(Integer.parseInt(contentTypeId)==0) { // 관광지 유형 선택 안 했으면 ? 해당 지역 관광지 전체보기
+			return new ResponseEntity<List<AttractionDto>>(attractionService.attrList(locationService.retLocNo(sidoNo, gugunNo).getLocNo()), HttpStatus.OK);	
+		} else { // 관광지 유형 선택 했으면 ? 해당 관광지 유형 보기 
+			return new ResponseEntity<List<AttractionDto>>(attractionService.attrListAll(locationService.retLocNo(sidoNo, gugunNo).getLocNo(), Integer.parseInt(contentTypeId)), HttpStatus.OK);					
+		}
+	}
+	
+    //@ApiOperation(value = "관광지 상세보기", notes = "contentNo에 해당하는 관광지 상세정보 반환", response = AttractionDto.class)
+    @GetMapping("/{contentNo}")
+    public ResponseEntity<AttractionDto> getAttraction(@PathVariable("contentNo") int contentNo) throws Exception {
+        logger.info("getAttr. - 호출 : " + contentNo);
+        return new ResponseEntity<AttractionDto>(attractionService.getAttraction(contentNo), HttpStatus.OK);
+    }
 	
 }

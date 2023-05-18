@@ -25,4 +25,10 @@
 		from attraction_info 
 		where loc_no = #{locNo} and content_type_id=#{contentTypeId}
 	</select>
+	
+    <select id="getAttraction" resultMap="attraction">
+       select *
+       from attraction_info
+       where content_no = #{contentNo}
+    </select>
 </mapper>

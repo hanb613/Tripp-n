@@ -12,4 +12,5 @@ public interface AttractionMapper {
 	
 	List<AttractionDto> listAttr(int locNo) throws SQLException;
 	List<AttractionDto> listAttrAll(int locNo, int contentTypeId) throws SQLException;
+	AttractionDto getAttraction(int contentNo) throws SQLException;
 }

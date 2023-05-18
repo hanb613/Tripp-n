@@ -27,8 +27,7 @@ export default {
   mounted() {
     if (!window.kakao || !window.kakao.maps) {
       const script = document.createElement("script");
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=c5aea05dba04c8446448c63fff995b63&autoload=false";
+      script.src ="//dapi.kakao.com/v2/maps/sdk.js?appkey="+process.env.VUE_APP_KAKAO_MAP_API_KEY+"&autoload=false";
       /* global kakao */
       script.addEventListener("load", () => {
         kakao.maps.load(this.initMap);

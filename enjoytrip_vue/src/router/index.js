@@ -14,6 +14,25 @@ const routes = [
     path: "/attraction",
     name: "attraction",
     component: () => import("@/views/AppAttraction"),
+    redirect: "/attraction/search",
+    children: [
+      {
+        path: "search",
+        name: "AppAttraction",
+        component: () =>
+          import(
+          /* webpackChunkName: "attraction" */ "@/views/AppAttraction"
+          ),
+      },
+      {
+        path: "detail/:contentNo",
+        name: "AttractionDetail",
+        component: () =>
+          import(
+          /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionView"
+          ),
+      }
+    ]
   },
   {
     path: "/board",
