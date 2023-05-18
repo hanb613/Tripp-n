@@ -48,9 +48,9 @@ export default {
   name: "AttractionSearchBar",
   data() {
     return {
-      sidoNo: null,
-      gugunNo: null,
-      contentTypeId: null,
+      sidoNo: 0,
+      gugunNo: 0,
+      contentTypeId: 0,
     };
   },
   computed: {
@@ -58,6 +58,8 @@ export default {
   },
   created() {
     this.CLEAR_SIDO_LIST();
+    this.CLEAR_GUGUN_LIST();
+    this.CLEAR_CONTENTS_LIST();
     this.CLEAR_ATTR_LIST();
     this.getSido();
   },
@@ -66,16 +68,19 @@ export default {
     ...mapMutations(attractionStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
+      "CLEAR_CONTENTS_LIST",
       "CLEAR_ATTR_LIST",
     ]),
     gugunList() {
       this.CLEAR_GUGUN_LIST();
-      this.gugunNo = null;
+      this.CLEAR_CONTENTS_LIST();
+      this.gugunNo = 0;
+      this.contentTypeId = 0;
       if (this.sidoNo) this.getGugun(this.sidoNo);
     },
     searchAttr() {
-      if (this.gugunNo && this.contentTypeId)
-        this.getAttrList(this.gugunNo, this.contentTypeId);
+      if (this.sidoNo && this.gugunNo && this.contentTypeId)
+        this.getAttrList(this.sidoNo, this.gugunNo, this.contentTypeId);
     },
   },
 };

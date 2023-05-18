@@ -3,9 +3,9 @@ import { sidoList, gugunList } from "@/api/attraction.js";
 const attractionStore = {
   namespaced: true,
   state: {
-    sidos: [{ value: null, text: "지역" }],
-    guguns: [{ value: null, text: "시/군/구" }],
-    contents: [{ value: null, text: "관광지 유형" }],
+    sidos: [{ value: 0, text: "지역" }],
+    guguns: [{ value: 0, text: "시/군/구" }],
+    contents: [{ value: 0, text: "관광지 유형" }],
     attrs: [],
     attr: null,
   },
@@ -25,10 +25,13 @@ const attractionStore = {
       state.contents = contents;
     },
     CLEAR_SIDO_LIST(state) {
-      state.sidos = [{ value: null, text: "지역" }];
+      state.sidos = [{ value: 0, text: "지역" }];
     },
     CLEAR_GUGUN_LIST(state) {
-      state.guguns = [{ value: null, text: "시/군/구" }];
+      state.guguns = [{ value: 0, text: "시/군/구" }];
+    },
+    CLEAR_CONTENTS_LIST(state) {
+      state.contents = [{ value: 0, text: "관광지 유형" }];
     },
     CLEAR_ATTR_LIST(state) {
       state.attrs = [];
@@ -48,15 +51,17 @@ const attractionStore = {
     },
     getGugun({ commit }, sidoNo) {
       const params = { sidoNo: sidoNo };
-      gugunList(
-        params,
-        ({ data }) => {
-          commit("SET_GUGUN_LIST", data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      if (sidoNo !== 0) { // 특정 지역을 선택했으면 
+        gugunList(
+          params,
+          ({ data }) => {
+            commit("SET_GUGUN_LIST", data);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     },
   },
 };

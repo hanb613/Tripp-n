@@ -55,7 +55,7 @@
 		</if>
 	</select>
 	
-	<select id="getArticle" parameterType="int" resultType="boardDto">
+	<select id="getArticle" parameterType="int" resultMap="board">
 		select b.board_no, u.name, b.subject, b.content, b.createtime
 		from board b, user u
 		where b.board_no = #{boardNo}
