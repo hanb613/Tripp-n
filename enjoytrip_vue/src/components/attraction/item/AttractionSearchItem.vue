@@ -40,6 +40,7 @@
     </b-row>
   </template>
   
+
   <script>
   import { mapState, mapActions, mapMutations } from "vuex";
   const attractionStore = "attractionStore";

@@ -18,10 +18,10 @@ const routes = [
     children: [
       {
         path: "search",
-        name: "AppAttraction",
+        name: "AttractionSearch",
         component: () =>
           import(
-          /* webpackChunkName: "attraction" */ "@/views/AppAttraction"
+          /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionSearch"
           ),
       },
       {
