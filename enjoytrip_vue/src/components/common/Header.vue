@@ -3,8 +3,23 @@
     <div
       class="container-fluid container-xl d-flex align-items-center justify-content-between"
     >
-      <a href="/" class="logo d-flex align-items-center">
-        <h1>Enjoy Trip<span>.</span></h1>
+      <a href="/" class="d-flex align-items-center">
+        <!-- <div id="imgDiv" style="height: 90px"> -->
+        <!-- <h1>Enjoy Trip<span>.</span></h1> -->
+        <!-- <b-img
+          :src="require('@/assets/trippin-logo-shadow.png')"
+          id="logo"
+          class="d-inline-block align-top"
+          alt="logo"
+          height="90px"
+          style="height: 90px !important"
+        ></b-img> -->
+        <img
+          src="@/assets/trippin-logo-shadow.png"
+          alt=""
+          style="height: 70px"
+        />
+        <!-- </div> -->
       </a>
       <nav id="navbar" class="navbar">
         <b-nav-item href="#">
@@ -41,6 +56,14 @@ export default {
 <style>
 .navbar .nav-item {
   list-style: none;
+}
+#imgDiv {
+  /* width: 200%; */
+  /* height: 100%; */
+}
+#logo {
+  width: 100%;
+  /* height: 100%; */
 }
 @import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 @import "../../assets/vendor/bootstrap-icons/bootstrap-icons.css";
