@@ -10,7 +10,7 @@
           style="height: 70px"
         />
       </a>
-      <nav id="navbar" class="navbar">
+      <b-nav id="navbar" class="navbar">
         <b-nav-item href="#">
           <router-link :to="{ name: 'attraction' }" class="link">
             <b-icon icon="map" font-scale="2"></b-icon>
@@ -29,7 +29,7 @@
             관심 목록
           </router-link>
         </b-nav-item>
-      </nav>
+      </b-nav>
       <!-- after login -->
       <b-navbar-nav class="ml-auto" v-if="userInfo">
         <b-nav-item class="align-self-center">
@@ -83,10 +83,6 @@ export default {
 <style>
 .navbar .nav-item {
   list-style: none;
-}
-#imgDiv {
-  /* width: 200%; */
-  /* height: 100%; */
 }
 #logo {
   width: 100%;
