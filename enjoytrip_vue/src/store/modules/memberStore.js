@@ -1,4 +1,4 @@
-import { login, logout } from "@/api/member.js";
+import { login, logout, modify } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -13,8 +13,9 @@ const memberStore = {
       email: null,
       locNo: 0,
       age: 0,
-      gender: '',
+      gender: "",
       joinDate: null,
+      changeData: false,
     },
   },
   getters: {
@@ -35,6 +36,9 @@ const memberStore = {
       console.log(userInfo);
       state.userInfo = userInfo;
     },
+    SET_CHANGE_DATA: (state, changeData) => {
+      state.userInfo.changeData = changeData;
+    },
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -54,6 +58,22 @@ const memberStore = {
         },
         (error) => {
           console.log(error);
+        }
+      );
+    },
+    async modifyUser({ commit }, user) {
+      await modify(
+        user,
+        ({ data }) => {
+          console.log("data", data);
+          if (data.message === "success") {
+            commit("SET_USER_INFO", data.userInfo);
+            commit("SET_CHANGE_DATA", true);
+          }
+        },
+        (error) => {
+          console.log(error);
+          commit("SET_CHANGE_DATA", false);
         }
       );
     },

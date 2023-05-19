@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 		String email = userDto.getEmail();
 		// String domain = ;
 		//if(domain=="null") throw new Exception();
-		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null || userDto.getAge()<0 || (userDto.getGender()!='F' && userDto.getGender()!='M')) {
+		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null || userDto.getAge()<0 ||  (userDto.getGender()!='F' && userDto.getGender()!='M')) {
 			throw new Exception();
 		}
 		return sqlSession.getMapper(UserMapper.class).joinUser(userDto) == 1;
@@ -44,6 +44,17 @@ public class UserServiceImpl implements UserService {
 		if (userDto.getId() == null || userDto.getPassword() == null)
 			return null;
 		return sqlSession.getMapper(UserMapper.class).loginUser(userDto);
+	}
+	
+	@Override
+	public boolean modifyUser(UserDto userDto) throws Exception {
+		String email = userDto.getEmail();
+		// String domain = ;
+		//if(domain=="null") throw new Exception();
+		if(userDto.getPassword() == null || userDto.getAge()<0 || (userDto.getGender()!='F' && userDto.getGender()!='M')) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(UserMapper.class).modifyUser(userDto) == 1;
 	}
 
 }

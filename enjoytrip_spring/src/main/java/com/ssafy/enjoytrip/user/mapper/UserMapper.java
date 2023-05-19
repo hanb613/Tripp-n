@@ -13,6 +13,7 @@ public interface UserMapper {
 	public int idCheck(String userId) throws SQLException;
 	public int joinUser(UserDto userDto) throws SQLException;
 	public UserDto loginUser(UserDto userDto) throws SQLException;
+	public int modifyUser(UserDto userDto) throws SQLException;
 	
 	//관리자기능-보류
 }

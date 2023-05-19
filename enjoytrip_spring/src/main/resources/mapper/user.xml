@@ -34,5 +34,11 @@
 		VALUES
 		(#{id}, #{name}, #{password}, #{email}, #{locNo}, #{age}, #{gender}, now())
 	</insert>
+	
+	<update id="modifyUser" parameterType="userDto">
+		update user
+		set password = #{password}, email = #{email}, loc_no = #{locNo}, age = #{age}, gender = #{gender}
+		where id = #{id}
+	</update>
 
 </mapper>
