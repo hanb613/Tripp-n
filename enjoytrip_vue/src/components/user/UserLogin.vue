@@ -32,6 +32,12 @@
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
+            
+            <span style="font-size:13px; float:right">
+              <span @click="movePage('findId')" style="color:blue; cursor:pointer">아이디 찾기 </span>
+              &nbsp;|&nbsp;&nbsp;
+              <span @click="movePage('findPw')" style="color:blue; cursor:pointer">비밀번호 찾기</span>
+            </span><br><br>
             <b-button
               type="button"
               variant="primary"
@@ -43,7 +49,7 @@
               type="button"
               variant="success"
               class="m-1"
-              @click="movePage"
+              @click="movePage('register')"
               >회원가입</b-button
             >
           </b-form>
@@ -83,8 +89,15 @@ export default {
         this.$router.push("/");
       }
     },
-    movePage() {
-      this.$router.push({ name: "UserRegister" });
+    movePage(data) {
+      if (data === "register") {
+        this.$router.push({ name: "UserRegister" });        
+      } else if (data === "findId") {
+        this.$router.push({ name: "UserFindPw" });      
+      } else if (data === "findPw") {
+        this.$router.push({ name: "UserFindPw" });      
+      }
+
     },
   },
 };

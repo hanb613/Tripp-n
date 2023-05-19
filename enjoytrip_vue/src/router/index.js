@@ -61,6 +61,13 @@ const routes = [
         // beforeEnter: onlyAuthUser,
         component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserModify"),
       },
+      
+      {
+        path: "findPw",
+        name: "UserFindPw",
+        // beforeEnter: onlyAuthUser,
+        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserFindPw"),
+      },
     ],
   },
   {
