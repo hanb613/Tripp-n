@@ -11,7 +11,11 @@
           <b-card-text>
             <h2>{{ attraction.title }}</h2>
             {{ attraction.addr1 }}<br />
-            설명<br />{{ attraction.overview }}
+            <b-button pill variant="primary">
+              <b-icon icon="suit-heart" font-scale="1"></b-icon>
+              좋아요</b-button
+            >
+            <br />{{ attraction.overview }}
           </b-card-text>
         </b-card>
       </b-col>
