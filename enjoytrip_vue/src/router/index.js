@@ -35,6 +35,29 @@ const routes = [
     ]
   },
   {
+    path: "/user",
+    name: "user",
+    component: () => import(/* webpackChunkName: "user" */ "@/views/AppUser"),
+    children: [
+      {
+        path: "join",
+        name: "UserRegister",
+        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
+      },
+      {
+        path: "login",
+        name: "UserLogin",
+        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
+      },
+      {
+        path: "mypage",
+        name: "UserMyPage",
+        // beforeEnter: onlyAuthUser,
+        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserMyPage"),
+      },
+    ],
+  },
+  {
     path: "/board",
     name: "board",
     component: () => import(/* webpackChunkName: "board" */ "@/views/AppBoard"),
