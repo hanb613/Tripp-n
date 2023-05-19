@@ -57,24 +57,6 @@ const memberStore = {
         }
       );
     },
-    // async getUserInfo({ commit }, user) {
-    //   console.log("누가 로그인?");
-    //   console.log(user)
-    //   commit("SET_USER_INFO", user);
-    //   //   await findById(
-    //   //     user,
-    //   //     ({ data }) => {
-    //   //       if (data.message === "success") {
-    //   //         commit("SET_USER_INFO", data.userInfo);
-    //   //       } else {
-    //   //         console.log("유저 정보 없음!!!!");
-    //   //       }
-    //   //     },
-    //   //     (error) => {
-    //   //         console.log(error);
-    //   //     }
-    //   //   );
-    // },
     async userLogout({ commit }, userid) {
       await logout(
         userid,
