@@ -64,12 +64,13 @@ export default {
         async confirm() {
         await this.userConfirm(this.user);
           if (this.isLogin) {
+            alert("멋진 여행 계획을 세워보세요 ! 😎")
             await this.getUserInfo(this.user);
             this.$router.push('/');
           }
         },
         movePage() {
-        this.$router.push({ name: "UserRegister" });
+          this.$router.push({ name: "UserRegister" });
         },
     },
 };

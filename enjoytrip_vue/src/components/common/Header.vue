@@ -89,8 +89,8 @@ export default {
     ...mapActions(memberStore, ["userLogout"]),
     // ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClickLogout() {
-      console.log(this.userInfo.id);
       this.userLogout(this.userInfo.id);
+      alert("Logout! 🙌")
       if (this.$route.path != "/") this.$router.push('/');
     },
   },
