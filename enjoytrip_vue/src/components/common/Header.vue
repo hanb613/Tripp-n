@@ -13,19 +13,19 @@
       <b-nav id="navbar" class="navbar">
         <b-nav-item href="#">
           <router-link :to="{ name: 'attraction' }" class="link">
-            <b-icon icon="map" font-scale="2"></b-icon>
+            <b-icon icon="map" font-scale="2"  class="m-1"></b-icon>
             관광지 조회
           </router-link>
           <router-link :to="{ name: 'board' }" class="m-2 link">
-            <b-icon icon="megaphone" font-scale="2"></b-icon>
+            <b-icon icon="megaphone" font-scale="2" class="m-1"></b-icon>
             공지사항
           </router-link>
           <router-link :to="{ name: 'board' }" class="m-2 link">
-            <b-icon icon="clipboard" font-scale="2"></b-icon>
+            <b-icon icon="clipboard" font-scale="2"  class="m-1"></b-icon>
             게시판
           </router-link>
           <router-link :to="{ name: 'house' }" class="m-2 link">
-            <b-icon icon="bookmark-star" font-scale="2"></b-icon>
+            <b-icon icon="bookmark-star" font-scale="2"  class="m-1"></b-icon>
             관심 목록
           </router-link>
         </b-nav-item>
@@ -101,6 +101,7 @@ export default {
 .navbar .nav-item {
   list-style: none;
 }
+
 
 @import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 @import "../../assets/vendor/bootstrap-icons/bootstrap-icons.css";

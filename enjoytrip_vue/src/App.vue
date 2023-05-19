@@ -28,7 +28,8 @@ export default {
 
 <style scoped>
 #app {
-  min-height: calc(100%-9vw);
+  /* min-height: calc(100%-9vw); */
+  min-height: 100vh;
   position: absolute;
   /* padding-bottom: 160px; */
 }
