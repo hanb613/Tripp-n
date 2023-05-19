@@ -30,7 +30,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean joinUser(UserDto userDto) throws Exception {
-		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null) {
+		String email = userDto.getEmail();
+		// String domain = ;
+		//if(domain=="null") throw new Exception();
+		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null || userDto.getAge()<0 || (userDto.getGender()!='F' && userDto.getGender()!='M')) {
 			throw new Exception();
 		}
 		return sqlSession.getMapper(UserMapper.class).joinUser(userDto) == 1;

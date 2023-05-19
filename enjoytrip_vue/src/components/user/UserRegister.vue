@@ -155,18 +155,19 @@ export default {
         age: this.user.age,
         gender: this.user.gender,
       };
-
+      
+      let msg = "회원 정보를 정확히 입력해주세요! 😭";
       register(
         param,
-        ({ data }) => {
-          let msg = "회원 등록 처리시 문제가 발생했습니다.";
+        ({ data }) => {    
           if (data === "success") {
-            msg = "회원 등록이 완료되었습니다.";
+            msg = "회원 등록 완료! 😍";
           }
           alert(msg);
           this.moveLogin();
         },
         (error) => {
+          alert(msg);
           console.log(error);
         }
       );
