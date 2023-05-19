@@ -5,8 +5,15 @@
 <mapper namespace="com.ssafy.enjoytrip.user.mapper.UserMapper">
 
 	<resultMap type="userDto" id="user">
+		<result column="user_no" property="userNo" />
 		<result column="id" property="id" />
 		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="loc_no" property="locNo" />
+		<result column="age" property="age" />
+		<result column="gender" property="gender" />
+		<result column="join_date" property="joinDate" />
 	</resultMap>
 
 	<select id="idCheck" parameterType="String" resultType="int">
@@ -16,7 +23,7 @@
 	</select>
 
 	<select id="loginUser" parameterType="map" resultMap="user">
-		SELECT id, name
+		SELECT *
 		FROM user
 		WHERE id = #{id} AND password = #{password}
 	</select>

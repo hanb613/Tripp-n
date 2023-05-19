@@ -77,7 +77,9 @@ public class UserController {
 		try {
 			UserDto loginUser = userService.loginUser(userDto);
 			if (loginUser != null) {
+				System.out.println(loginUser);
 				resultMap.put("message", "success");
+				resultMap.put("userInfo", loginUser);
 				status = HttpStatus.ACCEPTED;
 			} else {
 				resultMap.put("message", "fail");
