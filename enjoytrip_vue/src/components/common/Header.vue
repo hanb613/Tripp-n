@@ -40,7 +40,9 @@
           {{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.
         </b-nav-item>
         <b-nav-item class="align-self-center">
-          <router-link :to="{ name: 'mypage' }" class="link align-self-center"
+          <router-link
+            :to="{ name: 'UserMyPage' }"
+            class="link align-self-center"
             >마이페이지</router-link
           >
         </b-nav-item>
@@ -57,12 +59,12 @@
             <b-icon icon="people" font-scale="2"></b-icon>
           </template>
           <b-dropdown-item href="#">
-            <router-link :to="{ name: 'join' }" class="link">
+            <router-link :to="{ name: 'UserRegister' }" class="link">
               <b-icon icon="person-circle"></b-icon> 회원가입
             </router-link>
           </b-dropdown-item>
           <b-dropdown-item href="#">
-            <router-link :to="{ name: 'login' }" class="link">
+            <router-link :to="{ name: 'UserLogin' }" class="link">
               <b-icon icon="key"></b-icon> 로그인
             </router-link>
           </b-dropdown-item>

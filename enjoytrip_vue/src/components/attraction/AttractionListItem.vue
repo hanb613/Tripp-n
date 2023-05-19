@@ -1,18 +1,6 @@
 <template>
-  <!-- <b-row
-      class="m-2"
-      @click="selectHouse"
-      @mouseover="colorChange(true)"
-      @mouseout="colorChange(false)"
-      :class="{ 'mouse-over-bgcolor': isColor }"
-    >
-      <b-col cols="2" class="text-center align-self-center">
-        <b-img thumbnail src="https://picsum.photos/250/250/?image=58" alt="Image 1"></b-img>
-      </b-col>
-      <b-col cols="10" class="align-self-center"> [{{ attr.일련번호 }}] {{ attr.아파트 }} </b-col>
-    </b-row> -->
-  <b-container
-    class="bv-example-row mt-3"
+  <b-col
+    cols="3"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
@@ -23,17 +11,17 @@
         params: { contentNo: attr.contentNo },
       }"
     >
-      <div class="col-xl-4 col-md-6">
+      <div>
         <article>
           <div class="post-img">
             <img
               src="@/assets/img/noimg.jpg"
-              alt=""
+              alt="noimg"
               class="img-fluid"
               v-if="!attr.firstImage"
             />
-            <img :src="attr.firstImage" alt="" class="img-fluid" v-else />
-            <h2 class="title text-dark">{{ attr.title }}</h2>
+            <img :src="attr.firstImage" alt="사진" class="img-fluid" v-else />
+            <h4 class="title text-dark">{{ attr.title }}</h4>
             <div class="d-flex align-items-center">
               <div class="post-meta">
                 <p class="post-author-list">{{ attr.addr1 }}</p>
@@ -43,20 +31,8 @@
           </div>
         </article>
       </div>
-      <!-- <div class="col-xl-4 col-md-6" v-else>
-        <div class="post-img">
-          <img :src="attr.firstImage" alt="" class="img-fluid" />
-          <h2 class="title text-dark">{{ attr.title }}</h2>
-          <div class="d-flex align-items-center">
-            <div class="post-meta">
-              <p class="post-author-list">{{ attr.addr1 }}</p>
-              <p class="post-author-list"></p>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </router-link>
-  </b-container>
+  </b-col>
 </template>
 
 <script>

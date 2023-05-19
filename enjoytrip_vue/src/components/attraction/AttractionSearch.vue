@@ -4,13 +4,16 @@
     <attraction-map :attrList="attrs"></attraction-map>
 
     <!-- Attraction List -->
-    <b-container v-if="attrs && attrs.length != 0" class="bv-example-row mt-3">
-      <attraction-list-item
-        v-for="(attr, index) in attrs"
-        :key="index"
-        :attr="attr"
-      />
+    <b-container v-if="attrs && attrs.length != 0" class="bv-example-row" fluid>
+      <b-row offset="1">
+        <attraction-list-item
+          v-for="(attr, index) in attrs"
+          :key="index"
+          :attr="attr"
+        />
+      </b-row>
     </b-container>
+    <!-- 결과 없을때 -->
     <b-container v-else class="bv-example-row mt-3">
       <b-row>
         <b-col><b-alert show>관광지 목록이 없습니다.</b-alert></b-col>
