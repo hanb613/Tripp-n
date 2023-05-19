@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.user.service;
 
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,11 @@ import com.ssafy.enjoytrip.user.model.UserDto;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
+	private SqlSession sqlSession;
+	
+	@Autowired
 	private UserMapper userMapper;
+	
 	public UserServiceImpl(UserMapper userMapper) {
 		super();
 		this.userMapper = userMapper;
@@ -24,8 +29,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void joinUser(UserDto userDto) throws Exception {
-		userMapper.joinUser(userDto);
+	public boolean joinUser(UserDto userDto) throws Exception {
+		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(UserMapper.class).joinUser(userDto) == 1;
 	}
 
 	@Override

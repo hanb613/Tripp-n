@@ -11,7 +11,7 @@ import com.ssafy.enjoytrip.user.model.UserDto;
 public interface UserMapper {
 	
 	int idCheck(String userId) throws SQLException;
-	void joinUser(UserDto userDto) throws SQLException;
+	int joinUser(UserDto userDto) throws SQLException;
 	UserDto loginUser(Map<String, String> map) throws SQLException;
 	
 	//관리자기능-보류

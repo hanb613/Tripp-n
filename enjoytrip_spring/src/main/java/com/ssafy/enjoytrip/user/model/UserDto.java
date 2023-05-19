@@ -10,6 +10,7 @@ public class UserDto {
 	private int age;
 	private char gender;
 	private String joinDate;
+	
 	public int getUserNo() {
 		return userNo;
 	}
