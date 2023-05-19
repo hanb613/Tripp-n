@@ -31,7 +31,9 @@ export default {
       this.loadMaker();
     },
   },
-  created() {},
+  created() {
+    this.loadScript();
+  },
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.loadMap();
