@@ -57,12 +57,12 @@
             </template>
             <b-dropdown-item>
               <router-link :to="{ name: 'UserRegister' }" class="link">
-                <b-icon icon="person-circle"></b-icon>&nbsp; 회원가입
+                <b-icon icon="person-circle" class="me-2"></b-icon>회원가입
               </router-link>
             </b-dropdown-item>
             <b-dropdown-item>
               <router-link :to="{ name: 'UserLogin' }" class="link">
-                <b-icon icon="key"></b-icon>&nbsp;&nbsp; 로그인
+                <b-icon icon="key" class="me-2"></b-icon>로그인
               </router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
