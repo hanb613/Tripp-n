@@ -4,22 +4,11 @@
       class="container-fluid container-xl d-flex align-items-center justify-content-between"
     >
       <a href="/" class="d-flex align-items-center">
-        <!-- <div id="imgDiv" style="height: 90px"> -->
-        <!-- <h1>Enjoy Trip<span>.</span></h1> -->
-        <!-- <b-img
-          :src="require('@/assets/trippin-logo-shadow.png')"
-          id="logo"
-          class="d-inline-block align-top"
-          alt="logo"
-          height="90px"
-          style="height: 90px !important"
-        ></b-img> -->
         <img
           src="@/assets/trippin-logo-shadow.png"
           alt=""
           style="height: 70px"
         />
-        <!-- </div> -->
       </a>
       <nav id="navbar" class="navbar">
         <b-nav-item href="#">
@@ -41,8 +30,44 @@
           </router-link>
         </b-nav-item>
       </nav>
-      <!-- <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i> -->
+      <!-- after login -->
+      <b-navbar-nav class="ml-auto" v-if="userInfo">
+        <b-nav-item class="align-self-center">
+          <!-- <b-avatar
+            variant="primary"
+            v-text="userInfo.userid.charAt(0).toUpperCase()"
+          ></b-avatar> -->
+          {{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.
+        </b-nav-item>
+        <b-nav-item class="align-self-center">
+          <router-link :to="{ name: 'mypage' }" class="link align-self-center"
+            >마이페이지</router-link
+          >
+        </b-nav-item>
+        <b-nav-item
+          class="align-self-center link"
+          @click.prevent="onClickLogout"
+          >로그아웃</b-nav-item
+        >
+      </b-navbar-nav>
+      <!-- before login -->
+      <b-navbar-nav class="ml-auto" v-else>
+        <b-nav-item-dropdown right>
+          <template #button-content>
+            <b-icon icon="people" font-scale="2"></b-icon>
+          </template>
+          <b-dropdown-item href="#">
+            <router-link :to="{ name: 'join' }" class="link">
+              <b-icon icon="person-circle"></b-icon> 회원가입
+            </router-link>
+          </b-dropdown-item>
+          <b-dropdown-item href="#">
+            <router-link :to="{ name: 'login' }" class="link">
+              <b-icon icon="key"></b-icon> 로그인
+            </router-link>
+          </b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
     </div>
   </header>
 </template>
