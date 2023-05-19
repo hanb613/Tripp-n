@@ -57,7 +57,8 @@
 	
 	<select id="getArticle" parameterType="int" resultMap="board">
 		select b.board_no, u.name, b.subject, b.content, b.createtime
-		from board b, user u
+		from board b join user u
+		on b.user_no = u.user_no
 		where b.board_no = #{boardNo}
 	</select>
 	
