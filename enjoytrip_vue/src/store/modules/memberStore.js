@@ -1,4 +1,4 @@
-import { login, findById, logout } from "@/api/member.js";
+import { login, logout } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
@@ -20,7 +20,8 @@ const memberStore = {
       state.isLoginError = isLoginError;
     },
     SET_USER_INFO: (state, userInfo) => {
-      state.isLogin = true;
+        state.isLogin = true;
+        console.log("userInfo"+userInfo)
       state.userInfo = userInfo;
     },
   },
@@ -42,20 +43,22 @@ const memberStore = {
         }
       );
     },
-    async getUserInfo({ commit }, user) {
-      await findById(
-        user,
-        ({ data }) => {
-          if (data.message === "success") {
-            commit("SET_USER_INFO", data.userInfo);
-          } else {
-            console.log("유저 정보 없음!!!!");
-          }
-        },
-        (error) => {
-            console.log(error);
-        }
-      );
+      async getUserInfo({ commit }, user) {
+          console.log(user)
+          commit("SET_USER_INFO", user);
+    //   await findById(
+    //     user,
+    //     ({ data }) => {
+    //       if (data.message === "success") {
+    //         commit("SET_USER_INFO", data.userInfo);
+    //       } else {
+    //         console.log("유저 정보 없음!!!!");
+    //       }
+    //     },
+    //     (error) => {
+    //         console.log(error);
+    //     }
+    //   );
     },
     async userLogout({ commit }, userid) {
       await logout(

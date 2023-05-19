@@ -113,11 +113,25 @@ public class UserController {
 //		}
 //	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
+	@GetMapping("/logout/{userid}")
+	public ResponseEntity<?> logout(@PathVariable("userid") String userid) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			resultMap.put("message", "success");
+			status = HttpStatus.ACCEPTED;
+		} catch (Exception e) {
+			logger.error("로그아웃 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+
 	}
+//	public String logout(HttpSession session) {
+//		session.invalidate();
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("/info")
 	public String info() {

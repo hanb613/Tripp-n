@@ -59,14 +59,14 @@ export default {
         ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
     },
     methods: {
-        ...mapActions(memberStore, ["userConfirm"]),
+        ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
     
         async confirm() {
         await this.userConfirm(this.user);
           if (this.isLogin) {
-              console.log("성공")
-                this.$router.push('/');
-            }
+            await this.getUserInfo(this.user);
+            this.$router.push('/');
+          }
         },
         movePage() {
         this.$router.push({ name: "UserRegister" });
