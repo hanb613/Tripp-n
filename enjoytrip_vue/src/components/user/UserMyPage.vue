@@ -9,13 +9,16 @@
       <b-col></b-col>
       <b-col cols="8">
         <b-jumbotron>
-          <template #header>My Page</template>
+          <h1 class="display-5 font">My Page</h1>
+          <br />
 
-          <template #lead> 내 정보 확인페이지입니다. </template>
+          <span class="font" style="font-size: 18px"
+            >내 정보 확인페이지입니다.
+          </span>
 
           <hr class="my-4" />
 
-          <b-container class="mt-4">
+          <b-container class="mt-4 font">
             <b-row>
               <b-col cols="2"></b-col>
               <b-col cols="2" align-self="end">아이디</b-col
@@ -90,4 +93,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.font {
+  font-family: "Noto Sans KR", sans-serif;
+}
+</style>
