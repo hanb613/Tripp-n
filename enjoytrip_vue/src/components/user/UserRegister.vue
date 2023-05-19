@@ -119,7 +119,7 @@
           id: this.user.id,
           name: this.user.name,
           password: this.user.password,
-          email: this.user.email + this.user.domain,
+          email: this.user.email + '@'+ this.user.domain,
           locNo: this.user.locNo,
           age: this.user.age,
           gender: this.user.gender,
