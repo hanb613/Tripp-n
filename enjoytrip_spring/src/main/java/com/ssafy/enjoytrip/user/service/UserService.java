@@ -6,7 +6,9 @@ import java.util.Map;
 import com.ssafy.enjoytrip.user.model.UserDto;
 
 public interface UserService {
-	int idCheck(String userId) throws Exception;
-	boolean joinUser(UserDto userDto) throws Exception;
-	UserDto loginUser(Map<String, String> map) throws Exception;
+	
+	public int idCheck(String userId) throws Exception;
+	public boolean joinUser(UserDto userDto) throws Exception;
+	public UserDto loginUser(UserDto userDto) throws Exception;
+
 }

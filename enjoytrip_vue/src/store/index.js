@@ -4,12 +4,14 @@ import createPersistedState from "vuex-persistedstate";
 
 // module import
 import attractionStore from "@/store/modules/attractionStore";
+import memberStore from "@/store/modules/memberStore";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     attractionStore,
+    memberStore,
   },
   plugins: [
     createPersistedState({

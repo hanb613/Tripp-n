@@ -18,7 +18,7 @@
 	<select id="loginUser" parameterType="map" resultMap="user">
 		SELECT id, name
 		FROM user
-		WHERE id = #{userid} AND password = #{userpwd}
+		WHERE id = #{id} AND password = #{password}
 	</select>
 
 	<insert id="joinUser" parameterType="userDto">

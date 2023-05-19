@@ -74,9 +74,29 @@
   </header>
 </template>
   
-  <script>
+<script>
+  import { mapState, mapGetters, mapActions } from "vuex";
+
+const memberStore = "memberStore";
+
 export default {
   name: "HeaderView",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+    ...mapGetters(["checkUserInfo"]),
+  },
+  methods: {
+    ...mapActions(memberStore, ["userLogout"]),
+    // ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    onClickLogout() {
+      console.log(this.userInfo.userid);
+      this.userLogout(this.userInfo.userid);
+      if (this.$route.path != "/") this.$router.push({ name: "AppMain" });
+    },
+  },
 };
 </script>
   
@@ -84,10 +104,7 @@ export default {
 .navbar .nav-item {
   list-style: none;
 }
-#logo {
-  width: 100%;
-  /* height: 100%; */
-}
+
 @import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 @import "../../assets/vendor/bootstrap-icons/bootstrap-icons.css";
 @import "../../assets/vendor/aos/aos.css";
@@ -95,4 +112,3 @@ export default {
 @import "../../assets/vendor/swiper/swiper-bundle.min.css";
 @import "../../assets/css/main.css";
 </style>
-  
