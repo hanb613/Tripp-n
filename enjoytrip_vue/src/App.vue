@@ -28,8 +28,8 @@ export default {
 
 <style scoped>
 #app {
-  min-height: 100%;
-  position: relative;
-  padding-bottom: 160px;
+  min-height: calc(100%-9vw);
+  position: absolute;
+  /* padding-bottom: 160px; */
 }
 </style>
