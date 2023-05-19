@@ -39,10 +39,8 @@
             class="m-md-2"
             variant="outline-light"
           >
-            <b-dropdown-item>
-              <router-link :to="{ name: 'UserMyPage' }" class="link">
-                마이페이지
-              </router-link>
+            <b-dropdown-item class="link" @click="movePage">
+              마이페이지
             </b-dropdown-item>
             <b-dropdown-item class="link" @click.prevent="onClickLogout"
               >로그아웃</b-dropdown-item
@@ -95,6 +93,9 @@ export default {
       this.userLogout(this.userInfo.id);
       alert("Logout! 🙌");
       if (this.$route.path != "/") this.$router.push("/");
+    },
+    movePage() {
+      this.$router.push({ name: "UserMyPage" });
     },
   },
 };
