@@ -83,4 +83,9 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return sqlSession.getMapper(BoardMapper.class).writeComment(boardCommentDto) == 1;
 	}
+	
+	@Override
+	public List<BoardCommentDto> listComment() throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).listComment();
+	}
 }

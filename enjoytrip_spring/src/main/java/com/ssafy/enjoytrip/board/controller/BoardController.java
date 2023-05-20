@@ -95,4 +95,11 @@ public class BoardController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
+	
+	@GetMapping("/comment")
+	public ResponseEntity<List<BoardCommentDto>> listComment() throws Exception {
+		logger.info("listComment - 호출");
+		System.out.println(boardService.listComment());
+		return new ResponseEntity<List<BoardCommentDto>>(boardService.listComment(), HttpStatus.OK);
+	}
 }

@@ -37,8 +37,15 @@
         </b-card>
       </b-col>
     </b-row>
-    <br />
+    <br /><br />
+    <!-- <b-row>
+      <b-col>
+        <b-alert show><h4>댓글</h4></b-alert>
+      </b-col>
+    </b-row> -->
+    <h4><b-icon icon="list"></b-icon> 댓글</h4>
     <comment-write :boardNo="this.article.boardNo"></comment-write>
+    <comment-list></comment-list>
   </b-container>
 </template>
 
@@ -46,6 +53,7 @@
 // import moment from "moment";
 import { getArticle } from "@/api/board";
 import CommentWrite from "@/components/board/comment/CommentWrite.vue";
+import CommentList from "@/components/board/comment/CommentList.vue";
 //import { mapState } from "vuex";
 
 // const memberStore = "memberStore";
@@ -59,6 +67,7 @@ export default {
   },
   components: {
     CommentWrite,
+    CommentList,
   },
   computed: {
     //...mapState(memberStore, ["userInfo"]),

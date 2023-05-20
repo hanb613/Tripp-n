@@ -19,6 +19,7 @@
 		<result column="comment_no" property="commentNo" />
 		<result column="board_no" property="boardNo" />
 		<result column="content" property="content" />
+		<result column="name" property="userName" />
 		<result column="createtime" property="createTime" />
 		<result column="user_no" property="userNo" />
 	</resultMap>
@@ -86,6 +87,13 @@
 		insert into board_comment (board_no, content, createtime, user_no)
 		values (#{boardNo}, #{content}, now(), #{userNo})
 	</insert>
+	
+	<select id="listComment" parameterType="map" resultMap="boardComment">
+		SELECT u.name, b.content
+		from board_comment b join user u
+		using (user_no)
+		order by b.comment_no desc
+	</select>
 	
 	<delete id="deleteComment" parameterType="int">
 		delete from board_comment

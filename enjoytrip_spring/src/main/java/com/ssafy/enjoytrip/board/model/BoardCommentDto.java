@@ -7,6 +7,7 @@ public class BoardCommentDto {
 	private int userNo;
 	private String content;
 	private String createTime;
+	private String userName;
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -46,6 +47,14 @@ public class BoardCommentDto {
 	
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	@Override
