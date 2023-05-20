@@ -25,6 +25,7 @@
               variant="outline-info"
               size="sm"
               type="submit"
+              v-show="false"
               @click="modifyComment"
               class="mr-2"
               >수정</b-button
@@ -33,6 +34,7 @@
               variant="outline-danger"
               type="submit"
               size="sm"
+              v-show="false"
               @click="deleteComment"
               >삭제</b-button
             >
@@ -92,6 +94,7 @@ export default {
             }
             alert(msg);
             this.comment.content = "";
+            this.$router.go(0);
           },
           (error) => {
             console.log(error);

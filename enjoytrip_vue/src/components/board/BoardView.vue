@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <b-row class="mb-1">
       <!-- <b-col class="text-right" v-if="userInfo.userName === article.userName"> -->
-      <b-col class="text-right">
+      <b-col class="text-right font">
         <b-button
           variant="outline-primary"
           size="sm"
@@ -22,16 +22,16 @@
         >
       </b-col>
     </b-row>
-    <b-row class="mb-1">
+    <b-row class="mb-1 font">
       <b-col>
         <b-card
-          :header-html="`<h3>
-          ${article.subject}</h3><div><h6>${article.userName}</div><div><h6>[좋아요 : ${article.like}]</div><div>${article.createTime}</h6></div>`"
-          class="mb-2"
+          :header-html="`<span style='font-size:30px;'>
+          ${article.subject}</span><div><span style='font-size:17px;'>${article.userName}</span></div><div class='font'><span style='font-size:17px;'>[좋아요 : ${article.like}]</span><div>${article.createTime}</div>`"
+          class="mb-2 font"
           border-variant="dark"
           no-body
         >
-          <b-card-body class="text-left">
+          <b-card-body class="text-left font">
             <div v-html="message"></div>
           </b-card-body>
         </b-card>
@@ -43,7 +43,7 @@
         <b-alert show><h4>댓글</h4></b-alert>
       </b-col>
     </b-row> -->
-    <h4><b-icon icon="list"></b-icon> 댓글</h4>
+    <h4><b-icon icon="list"></b-icon> <span class="font">댓글</span></h4>
     <comment-write :boardNo="this.article.boardNo"></comment-write>
     <comment-list :boardNo="this.article.boardNo"></comment-list>
   </b-container>
@@ -112,4 +112,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.font {
+  font-family: "Noto Sans KR", sans-serif;
+}
+</style>

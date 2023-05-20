@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-table :items="comments" :fields="fields">
+        <b-table :items="comments" :fields="fields" class="font">
           <!-- <template #cell(subject)="data">
             <router-link
               :to="{
@@ -61,5 +61,11 @@ export default {
 }
 .th {
   text-align: center;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.font {
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
