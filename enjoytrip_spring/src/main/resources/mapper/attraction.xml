@@ -5,7 +5,7 @@
 <mapper namespace="com.ssafy.enjoytrip.attraction.mapper.AttractionMapper">
 
 	<resultMap type="attractionDto" id="attraction">
-	<result column="content_no" property="contentNo" />
+		<result column="content_no" property="contentNo" />
 		<result column="content_type_id" property="contentTypeId" />
 		<result column="title" property="title" />
 		<result column="addr1" property="addr1" />
@@ -13,6 +13,13 @@
 		<result column="zipcode" property="zipcode" />
 		<result column="first_image" property="firstImage" />
 		<result column="loc_no" property="locNo" />
+	</resultMap>
+	
+	<resultMap type="attractionLikeDto" id="attractionLike">
+		<result column="favorite_no" property="favoriteNo" />
+		<result column="content_no" property="contentNo" />
+		<result column="user_no" property="userNo" />
+		<result column="registration_date" property="registDate" />
 	</resultMap>
 	
 	<select id="listAttr" resultMap="attraction">
@@ -32,4 +39,22 @@
        from attraction_info
        where content_no = #{contentNo}
     </select>
+
+	<select id="getLikeCount" parameterType="int" resultType="int">
+		select count(favorite_no)
+		from favorite_place
+		where content_no = #{contentNo}
+	</select>
+	
+	<select id="getLikeList" parameterType="int" resultMap = "attractionLike">
+		select *
+		from favorite_place
+		where content_no = #{contentNo}
+	</select>
+	
+	<insert id="likeAttraction" parameterType="attractionLikeDto">
+		insert into favorite_place (content_no, user_no, registration_date)
+		values (#{contentNo}, #{userNo}, now())
+	</insert>
+    
 </mapper>

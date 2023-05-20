@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.json.XML;
@@ -65,9 +67,15 @@ public class AttractionController {
 	
     //@ApiOperation(value = "관광지 상세보기", notes = "contentNo에 해당하는 관광지 상세정보 반환", response = AttractionDto.class)
     @GetMapping("/{contentNo}")
-    public ResponseEntity<AttractionDto> getAttraction(@PathVariable("contentNo") int contentNo) throws Exception {
+    public ResponseEntity<Map<String, Object>> getAttraction(@PathVariable("contentNo") int contentNo) throws Exception {
+    	Map<String, Object> resultMap = new HashMap<>();
         logger.info("getAttr. - 호출 : " + contentNo);
-        return new ResponseEntity<AttractionDto>(attractionService.getAttraction(contentNo), HttpStatus.OK);
+        
+        resultMap.put("attraction", attractionService.getAttraction(contentNo));
+        resultMap.put("likedUsers", attractionService.getLikeList(contentNo));
+        
+        //return new ResponseEntity<AttractionDto>(attractionService.getAttraction(contentNo), HttpStatus.OK);
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
     }
 	
 }
