@@ -2,7 +2,7 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
+        <!-- <b-form-group
           id="userName-group"
           label="작성자:"
           label-for="userName"
@@ -14,9 +14,9 @@
             v-model="article.userName"
             type="text"
             required
-            placeholder="작성자 입력..."
+            :placeholder="userInfo.name"
           ></b-form-input>
-        </b-form-group>
+        </b-form-group> -->
 
         <b-form-group
           id="subject-group"
@@ -61,6 +61,9 @@
 
 <script>
 import { writeArticle, modifyArticle, getArticle } from "@/api/board";
+import { mapState, mapGetters } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "BoardInputItem",
@@ -95,24 +98,23 @@ export default {
       this.isUserid = true;
     }
   },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+    ...mapGetters(["checkUserInfo"]),
+  },
   methods: {
     onSubmit(event) {
       event.preventDefault();
 
       let err = true;
       let msg = "";
-      !this.article.userName &&
-        ((msg = "작성자 입력해주세요"),
-        (err = false),
-        this.$refs.userName.focus());
-      err &&
-        !this.article.subject &&
-        ((msg = "제목 입력해주세요"),
+      !this.article.subject &&
+        ((msg = "제목을 입력해주세요"),
         (err = false),
         this.$refs.subject.focus());
       err &&
         !this.article.content &&
-        ((msg = "내용 입력해주세요"),
+        ((msg = "내용을 입력해주세요"),
         (err = false),
         this.$refs.content.focus());
 
@@ -129,9 +131,9 @@ export default {
     },
     registArticle() {
       let param = {
-        //임시: 작성자 인풋 상관없이 관리자로 들어가게
-        userNo: 9,
-        userName: "관리자",
+        //로그인유저의 정보
+        userNo: this.userInfo.userNo,
+        userName: this.userInfo.name,
         articleNo: 1,
         boardType: 1,
         subject: this.article.subject,
