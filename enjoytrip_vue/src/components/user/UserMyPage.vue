@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { removeUser } from "@/api/member";
 
 const memberStore = "memberStore";
@@ -77,6 +77,8 @@ export default {
   },
   created() {},
   methods: {
+    ...mapActions(memberStore, ["userLogout"]),
+
     remove() {
       let param = this.userInfo.id;
 
@@ -86,6 +88,7 @@ export default {
           let msg = "회원 탈퇴시 문제가 발생했습니다 😢";
           if (data === "success") {
             msg = "다음에도 저희 Tripp'n을 이용해주세요 🙌";
+            this.userLogout(param);
           }
           alert(msg);
           this.$router.push("/");
