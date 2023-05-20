@@ -5,7 +5,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ssafy.enjoytrip.board.mapper.BoardMapper;
 import com.ssafy.enjoytrip.user.mapper.UserMapper;
 import com.ssafy.enjoytrip.user.model.UserDto;
 
@@ -57,4 +59,8 @@ public class UserServiceImpl implements UserService {
 		return sqlSession.getMapper(UserMapper.class).modifyUser(userDto) == 1;
 	}
 
+	@Override
+	public boolean deleteUser(String id) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).deleteUser(id) == 1;
+	}
 }

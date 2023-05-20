@@ -51,7 +51,9 @@
           <b-button variant="primary" href="#" class="mr-1" @click="movePage"
             >정보수정</b-button
           >
-          <b-button variant="danger" href="#">회원탈퇴</b-button>
+          <b-button variant="danger" href="#" @click="remove"
+            >회원탈퇴</b-button
+          >
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -61,8 +63,10 @@
 
 <script>
 import { mapState } from "vuex";
+import { removeUser } from "@/api/member";
 
 const memberStore = "memberStore";
+
 export default {
   name: "UserMyPage",
   components: {},
@@ -73,6 +77,24 @@ export default {
   },
   created() {},
   methods: {
+    remove() {
+      let param = this.userInfo.id;
+
+      removeUser(
+        param,
+        ({ data }) => {
+          let msg = "회원 탈퇴시 문제가 발생했습니다 😢";
+          if (data === "success") {
+            msg = "다음에도 저희 Tripp'n을 이용해주세요 🙌";
+          }
+          alert(msg);
+          this.$router.push("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
     movePage() {
       this.$router.push({
         name: "UserModify",

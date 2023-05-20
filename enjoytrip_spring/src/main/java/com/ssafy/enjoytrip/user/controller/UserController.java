@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ssafy.enjoytrip.user.model.UserDto;
 import com.ssafy.enjoytrip.user.service.UserService;
+
+import io.swagger.annotations.ApiParam;
 
 @Controller
 @RequestMapping("/user")
@@ -136,7 +139,15 @@ public class UserController {
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
-
+	}
+	
+	@DeleteMapping("/{userid}")
+	public ResponseEntity<String> deleteUser(@PathVariable("userid") String id) throws Exception {
+		logger.info("deleteUser - 호출");
+		if (userService.deleteUser(id)) {
+			return new ResponseEntity<String>("success", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
 	}
 	
 	@GetMapping("/info")
