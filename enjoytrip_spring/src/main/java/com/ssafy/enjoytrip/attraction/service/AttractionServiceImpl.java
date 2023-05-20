@@ -42,6 +42,11 @@ public class AttractionServiceImpl implements AttractionService{
 	public List<AttractionLikeDto> getLikeList(int contentNo) throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).getLikeList(contentNo);
 	}
+
+	@Override
+	public boolean likeAttraction(AttractionLikeDto attrLikeDto) throws Exception {
+		return sqlSession.getMapper(AttractionMapper.class).likeAttraction(attrLikeDto);
+	}
 	
 	
 }

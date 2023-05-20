@@ -19,20 +19,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
+import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 import com.ssafy.enjoytrip.attraction.service.AttractionService;
+import com.ssafy.enjoytrip.board.model.BoardDto;
 import com.ssafy.enjoytrip.location.model.LocationDto;
 import com.ssafy.enjoytrip.location.service.LocationService;
+
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attraction")
 public class AttractionController {
 
 	private final Logger logger = LoggerFactory.getLogger(AttractionController.class);
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
 	
 	@Autowired
 	private LocationService locationService;
@@ -78,4 +86,12 @@ public class AttractionController {
         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
     }
 	
+    @PostMapping("/like")
+    public ResponseEntity<String> likeAttraction(@RequestBody AttractionLikeDto attrLikeDto) throws Exception {
+		logger.info("likeAttraction - 호출: "+attrLikeDto.getUserNo()+" liked "+ attrLikeDto.getContentNo());
+		if (attractionService.likeAttraction(attrLikeDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+    }
 }
