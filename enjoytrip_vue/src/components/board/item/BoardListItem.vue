@@ -2,7 +2,9 @@
   <b-tr>
     <b-td>{{ boardNo }}</b-td>
     <b-th class="text-left">
-      <router-link :to="{ name: 'boardview', params: { boardNo: boardNo } }">{{ subject }}</router-link>
+      <router-link :to="{ name: 'boardview', params: { boardNo: boardNo } }">{{
+        subject
+      }}</router-link>
     </b-th>
     <b-td>{{ hit }}</b-td>
     <b-td>{{ userName }}</b-td>

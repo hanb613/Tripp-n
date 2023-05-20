@@ -25,14 +25,14 @@ public interface BoardMapper {
 //	List<FileInfoBoardDto> fileInfoBoardDto(int boardNo) throws Exception;
 //	void deleteFile(int boardNo) throws Exception;
 //	void registerFile(BoardDto boardDto) throws Exception;
-//
+
 //	// 게시물 댓글
 	void deleteComment(int commentNo) throws SQLException;
-//	void writeComment(BoardCommentDto boardCommentDto) throws SQLException;
+	int writeComment(BoardCommentDto boardCommentDto) throws SQLException;
 //	void modifyComment(BoardDto boardDto) throws SQLException;
 //	BoardCommentDto getComment(int commentNo) throws SQLException;
 //	List<BoardCommentDto> listComment(Map<String, Object> param) throws SQLException;
-//	
+	
 //	// 게시물 좋아요
 //	int getLikeCount(int boardNo) throws SQLException;
 //	void updateLike(int boardNo) throws SQLException;

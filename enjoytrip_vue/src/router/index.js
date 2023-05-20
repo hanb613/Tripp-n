@@ -21,7 +21,7 @@ const routes = [
         name: "AttractionSearch",
         component: () =>
           import(
-          /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionSearch"
+            /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionSearch"
           ),
       },
       {
@@ -29,10 +29,10 @@ const routes = [
         name: "AttractionDetail",
         component: () =>
           import(
-          /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionView"
+            /* webpackChunkName: "attraction" */ "@/components/attraction/AttractionView"
           ),
-      }
-    ]
+      },
+    ],
   },
   {
     path: "/user",
@@ -42,31 +42,38 @@ const routes = [
       {
         path: "join",
         name: "UserRegister",
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserRegister"),
+        component: () =>
+          import(
+            /* webpackChunkName: "user" */ "@/components/user/UserRegister"
+          ),
       },
       {
         path: "login",
         name: "UserLogin",
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/UserLogin"),
       },
       {
         path: "mypage",
         name: "UserMyPage",
         // beforeEnter: onlyAuthUser,
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserMyPage"),
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/UserMyPage"),
       },
       {
         path: "modify",
         name: "UserModify",
         // beforeEnter: onlyAuthUser,
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserModify"),
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/UserModify"),
       },
-      
+
       {
         path: "findPw",
         name: "UserFindPw",
         // beforeEnter: onlyAuthUser,
-        component: () => import(/* webpackChunkName: "user" */ "@/components/user/UserFindPw"),
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/UserFindPw"),
       },
     ],
   },

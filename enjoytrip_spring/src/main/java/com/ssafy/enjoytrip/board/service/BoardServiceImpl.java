@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.enjoytrip.board.mapper.BoardMapper;
+import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.board.model.BoardDto;
 import com.ssafy.enjoytrip.board.model.BoardParameterDto;
 import com.ssafy.enjoytrip.util.PageNavigation;
@@ -72,5 +73,14 @@ public class BoardServiceImpl implements BoardService {
 	public boolean deleteArticle(int boardNo) throws Exception {
 		sqlSession.getMapper(BoardMapper.class).deleteComment(boardNo);
 		return sqlSession.getMapper(BoardMapper.class).deleteArticle(boardNo) == 1;
+	}
+	
+	/* 게시물 댓글 */
+	@Override
+	public boolean writeComment(BoardCommentDto boardCommentDto) throws Exception {
+		if(boardCommentDto.getContent() == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(BoardMapper.class).writeComment(boardCommentDto) == 1;
 	}
 }

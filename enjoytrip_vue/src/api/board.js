@@ -2,6 +2,7 @@ import { apiInstance } from "./index.js";
 
 const api = apiInstance();
 
+// 게시물
 function listArticle(param, success, fail) {
   api.get(`/board`, { params: param }).then(success).catch(fail);
 }

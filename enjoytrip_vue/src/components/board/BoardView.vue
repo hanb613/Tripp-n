@@ -1,12 +1,25 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    
     <b-row class="mb-1">
       <!-- <b-col class="text-right" v-if="userInfo.userName === article.userName"> -->
       <b-col class="text-right">
-        <b-button variant="outline-primary" size="sm" @click="moveList"  class="mr-2">목록</b-button>
-        <b-button variant="outline-info" size="sm" @click="moveModifyArticle" class="mr-2">수정</b-button>
-        <b-button variant="outline-danger" size="sm" @click="deleteArticle">삭제</b-button>
+        <b-button
+          variant="outline-primary"
+          size="sm"
+          @click="moveList"
+          class="mr-2"
+          >목록</b-button
+        >
+        <b-button
+          variant="outline-info"
+          size="sm"
+          @click="moveModifyArticle"
+          class="mr-2"
+          >수정</b-button
+        >
+        <b-button variant="outline-danger" size="sm" @click="deleteArticle"
+          >삭제</b-button
+        >
       </b-col>
     </b-row>
     <b-row class="mb-1">
@@ -24,12 +37,15 @@
         </b-card>
       </b-col>
     </b-row>
+    <br />
+    <comment-write :boardNo="this.article.boardNo"></comment-write>
   </b-container>
 </template>
 
 <script>
 // import moment from "moment";
 import { getArticle } from "@/api/board";
+import CommentWrite from "@/components/board/comment/CommentWrite.vue";
 //import { mapState } from "vuex";
 
 // const memberStore = "memberStore";
@@ -41,10 +57,14 @@ export default {
       article: {},
     };
   },
+  components: {
+    CommentWrite,
+  },
   computed: {
     //...mapState(memberStore, ["userInfo"]),
     message() {
-      if (this.article.content) return this.article.content.split("\n").join("<br>");
+      if (this.article.content)
+        return this.article.content.split("\n").join("<br>");
       return "";
     },
   },
@@ -53,7 +73,7 @@ export default {
     getArticle(
       param,
       ({ data }) => {
-        console.log(data)
+        console.log(data);
         this.article = data;
       },
       (error) => {

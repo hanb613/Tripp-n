@@ -15,6 +15,14 @@
 		<result column="createtime" property="createTime" />
 	</resultMap>
 	
+	<resultMap type="boardCommentDto" id="boardComment">
+		<result column="comment_no" property="commentNo" />
+		<result column="board_no" property="boardNo" />
+		<result column="content" property="content" />
+		<result column="createtime" property="createTime" />
+		<result column="user_no" property="userNo" />
+	</resultMap>
+	
 	<insert id="writeArticle" parameterType="boardDto">
 		insert into board (user_no, article_no, board_type, subject, content, createtime)
 		values (#{userNo}, #{articleNo}, #{boardType}, #{subject}, #{content}, now())
@@ -67,14 +75,20 @@
 		set subject = #{subject}, content = #{content}
 		where board_no = #{boardNo}
 	</update>
+		
+	<delete id="deleteArticle" parameterType="int">
+		delete from board
+		where board_no = #{boardNo}
+	</delete>
+
+	<!-- 게시물 댓글 -->
+	<insert id="writeComment" parameterType="boardCommentDto">
+		insert into board_comment (board_no, content, createtime, user_no)
+		values (#{boardNo}, #{content}, now(), #{userNo})
+	</insert>
 	
 	<delete id="deleteComment" parameterType="int">
 		delete from board_comment
-		where board_no = #{boardNo}
-	</delete>
-	
-	<delete id="deleteArticle" parameterType="int">
-		delete from board
 		where board_no = #{boardNo}
 	</delete>
 
