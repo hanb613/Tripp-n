@@ -25,7 +25,7 @@
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${article.boardNo}.
+          :header-html="`<h3>
           ${article.subject}</h3><div><h6>${article.userName}</div><div><h6>[좋아요 : ${article.like}]</div><div>${article.createTime}</h6></div>`"
           class="mb-2"
           border-variant="dark"
@@ -45,7 +45,7 @@
     </b-row> -->
     <h4><b-icon icon="list"></b-icon> 댓글</h4>
     <comment-write :boardNo="this.article.boardNo"></comment-write>
-    <comment-list></comment-list>
+    <comment-list :boardNo="this.article.boardNo"></comment-list>
   </b-container>
 </template>
 

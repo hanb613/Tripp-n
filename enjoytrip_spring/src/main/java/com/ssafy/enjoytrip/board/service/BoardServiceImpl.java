@@ -85,7 +85,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardCommentDto> listComment() throws Exception {
-		return sqlSession.getMapper(BoardMapper.class).listComment();
+	public List<BoardCommentDto> listComment(int boardNo) throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).listComment(boardNo);
 	}
 }

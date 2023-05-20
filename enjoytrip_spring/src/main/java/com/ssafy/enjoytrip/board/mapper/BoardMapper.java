@@ -29,7 +29,7 @@ public interface BoardMapper {
 //	// 게시물 댓글
 	void deleteComment(int commentNo) throws SQLException;
 	int writeComment(BoardCommentDto boardCommentDto) throws SQLException;
-	List<BoardCommentDto> listComment() throws SQLException;
+	List<BoardCommentDto> listComment(int boardNo) throws SQLException;
 //	void modifyComment(BoardDto boardDto) throws SQLException;
 //	BoardCommentDto getComment(int commentNo) throws SQLException;
 	

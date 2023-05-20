@@ -41,11 +41,16 @@ export default {
     return {
       articles: [],
       fields: [
-        { key: "boardNo", label: "글번호", tdClass: "tdClass" },
+        { key: "boardNo", label: "글번호", tdClass: "tdClass", thClass: "th" },
         { key: "subject", label: "제목", tdClass: "tdSubject" },
-        { key: "userName", label: "작성자", tdClass: "tdClass" },
-        { key: "createTime", label: "작성일", tdClass: "tdClass" },
-        { key: "like", label: "좋아요", tdClass: "tdClass" },
+        { key: "userName", label: "작성자", tdClass: "tdClass", thClass: "th" },
+        {
+          key: "createTime",
+          label: "작성일",
+          tdClass: "tdClass",
+          thClass: "th",
+        },
+        { key: "like", label: "좋아요", tdClass: "tdClass", thClass: "th" },
       ],
     };
   },
@@ -59,7 +64,7 @@ export default {
     listArticle(
       param,
       ({ data }) => {
-        console.log(data)
+        console.log(data);
         this.articles = data;
       },
       (error) => {
@@ -89,5 +94,8 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+.th {
+  text-align: center;
 }
 </style>

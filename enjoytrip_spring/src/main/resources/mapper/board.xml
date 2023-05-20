@@ -88,10 +88,11 @@
 		values (#{boardNo}, #{content}, now(), #{userNo})
 	</insert>
 	
-	<select id="listComment" parameterType="map" resultMap="boardComment">
+	<select id="listComment" parameterType="int" resultMap="boardComment">
 		SELECT u.name, b.content
 		from board_comment b join user u
 		using (user_no)
+		where board_no = #{boardNo}
 		order by b.comment_no desc
 	</select>
 	

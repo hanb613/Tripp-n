@@ -20,7 +20,7 @@ public interface BoardService {
 	
 	/* 게시물 댓글 */
 	public boolean writeComment(BoardCommentDto boardCommentDto) throws Exception;
-	public List<BoardCommentDto> listComment() throws Exception;
+	public List<BoardCommentDto> listComment(int boardNo) throws Exception;
 	
 
 }
