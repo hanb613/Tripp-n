@@ -43,13 +43,13 @@
           </b-button>
           <b-button pill class="me-2 float-right" variant="primary" id="likebtn" @click="toggleLike" v-if="userInfo">
             <b-icon
-              icon="suit-heart"
+              icon="suit-heart-fill"
               font-scale="1"
               style="margin-right: 5px"
-              v-if="checkLiked() == false"
+              v-if="checkLiked()"
             ></b-icon>
             <b-icon
-              icon="suit-heart-fill"
+              icon="suit-heart"
               font-scale="1"
               style="margin-right: 5px"
               v-else
@@ -116,7 +116,7 @@ export default {
               msg = "좋아요 완료";
             }
             alert(msg);
-            // this.moveList();
+            this.$router.go(0);
           },
           (error) => {
             console.log(error);
@@ -125,10 +125,7 @@ export default {
       }
     },
     checkLiked(){
-      this.likedUsers.forEach((item)=>{
-        if(item.userNo == this.userInfo.userNo)return true;
-      });
-      return false;
+      return this.likedUsers.some(item => item.userNo === this.userInfo.userNo);
     },
   },
 };
