@@ -8,10 +8,6 @@ const attractionStore = {
     contents: [{ value: 0, text: "관광지 유형" }],
     attrs: [],
     attr: null,
-    //searchParams
-    sidoNo: 0,
-    gugunNo: 0,
-    contentTypeId: 0,
   },
   getters: {},
   mutations: {
@@ -48,16 +44,6 @@ const attractionStore = {
       state.attrs = [];
       state.attr = null;
     },
-    //searchParams
-    SET_SIDO_NO(state, sidoNo) {
-      state.sidoNo = sidoNo;
-    },
-    SET_GUGUN_NO(state, gugunNo) {
-      state.gugunNo = gugunNo;
-    },
-    SET_CONTENT_TYPE_ID(state, contentTypeId) {
-      state.contentTypeId = contentTypeId;
-    }
   },
   actions: {
     getSido({ commit }) {
@@ -86,11 +72,6 @@ const attractionStore = {
     },
     getAttrList: ({ commit }, [sidoNo, gugunNo, contentTypeId]) => {
       // const SERVICE_KEY = process.env.VUE_APP_ATTR_API_KEY;
-
-      //리스트 불러올 때 searchParams 유지되도록
-      commit('SET_SIDO_NO', sidoNo);
-      commit('SET_GUGUN_NO', gugunNo);
-      commit('SET_CONTENT_TYPE_ID', contentTypeId);
 
       const params = {
         SIDO_NO: sidoNo,
