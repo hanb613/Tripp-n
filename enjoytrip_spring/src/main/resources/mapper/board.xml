@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="listArticle" parameterType="map" resultMap="board">
-		SELECT b.board_no, u.name, b.subject, b.content,
+		SELECT b.board_no, b.user_no, u.name, b.subject, b.content,
 			(
 			  CASE WHEN DATE_FORMAT(b.createtime, '%Y%m%d') = DATE_FORMAT(NOW(), '%Y%m%d')
 			  THEN DATE_FORMAT(b.createtime, '%H:%i:%s')
@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="getArticle" parameterType="int" resultMap="board">
-		select b.board_no, u.name, b.subject, b.content, b.createtime
+		select b.board_no, b.user_no, u.name, b.subject, b.content, b.createtime
 		from board b join user u
 		on b.user_no = u.user_no
 		where b.board_no = #{boardNo}

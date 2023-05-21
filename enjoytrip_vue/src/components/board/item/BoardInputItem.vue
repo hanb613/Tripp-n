@@ -71,6 +71,7 @@ export default {
     return {
       article: {
         boardNo: "",
+        userNo: "",
         articleno: 0,
         boardtype: 1,
         userName: "",
@@ -161,6 +162,10 @@ export default {
         subject: this.article.subject,
         content: this.article.content,
       };
+      console.log("로그인", this.article.userNo);
+      console.log("로그인", this.userInfo.userNo);
+
+      // if(this.userInfo.userNo === )
       modifyArticle(
         param,
         ({ data }) => {

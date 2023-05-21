@@ -10,14 +10,20 @@
           class="mr-2"
           >목록</b-button
         >
+
         <b-button
+          v-if="this.article.userNo === this.userInfo.userNo"
           variant="outline-info"
           size="sm"
           @click="moveModifyArticle"
           class="mr-2"
           >수정</b-button
         >
-        <b-button variant="outline-danger" size="sm" @click="deleteArticle"
+        <b-button
+          v-if="this.article.userNo === this.userInfo.userNo"
+          variant="outline-danger"
+          size="sm"
+          @click="deleteArticle"
           >삭제</b-button
         >
       </b-col>
@@ -54,9 +60,9 @@
 import { getArticle } from "@/api/board";
 import CommentWrite from "@/components/board/comment/CommentWrite.vue";
 import CommentList from "@/components/board/comment/CommentList.vue";
-//import { mapState } from "vuex";
+import { mapState } from "vuex";
 
-// const memberStore = "memberStore";
+const memberStore = "memberStore";
 
 export default {
   name: "BoardDetail",
@@ -70,7 +76,7 @@ export default {
     CommentList,
   },
   computed: {
-    //...mapState(memberStore, ["userInfo"]),
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");
@@ -79,6 +85,7 @@ export default {
   },
   created() {
     let param = this.$route.params.boardNo;
+
     getArticle(
       param,
       ({ data }) => {

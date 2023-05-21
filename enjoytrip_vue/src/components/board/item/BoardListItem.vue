@@ -19,6 +19,7 @@ export default {
   name: "BoardListItem",
   props: {
     boardNo: Number,
+    userNo: Number,
     userName: String,
     subject: String,
     like: Number,

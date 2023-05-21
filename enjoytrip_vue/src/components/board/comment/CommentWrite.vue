@@ -72,34 +72,42 @@ export default {
     registComment(event) {
       event.preventDefault();
 
-      let msg = "";
-      let err = true;
-      let param = {
-        //로그인유저의 정보
-        boardNo: this.$route.params.boardNo,
-        userNo: this.userInfo.userNo,
-        content: this.comment.content,
-      };
+      if (this.userInfo !== null) {
+        // 로그인 했으면 작성 가능
+        let msg = "";
+        let err = true;
+        let param = {
+          //로그인유저의 정보
+          boardNo: this.$route.params.boardNo,
+          userNo: this.userInfo.userNo,
+          content: this.comment.content,
+        };
 
-      !this.comment.content && ((msg = "내용을 입력해주세요"), (err = false));
+        !this.comment.content && ((msg = "내용을 입력해주세요"), (err = false));
 
-      if (!err) alert(msg);
-      else {
-        writeComment(
-          param,
-          ({ data }) => {
-            msg = "다시 써주세요! 😢";
-            if (data === "success") {
-              msg = "댓글 작성 완료!";
+        if (!err) alert(msg);
+        else {
+          writeComment(
+            param,
+            ({ data }) => {
+              msg = "다시 써주세요! 😢";
+              if (data === "success") {
+                msg = "댓글 작성 완료!";
+              }
+              alert(msg);
+              this.comment.content = "";
+              this.$router.go(0);
+            },
+            (error) => {
+              console.log(error);
             }
-            alert(msg);
-            this.comment.content = "";
-            this.$router.go(0);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+          );
+        }
+      }
+      // 로그인 안 했을 때 댓글 작성 X
+      else {
+        alert("로그인 후 이용해주세요!");
+        this.$router.push({ name: "UserLogin" });
       }
     },
     modifyComment(event) {

@@ -20,7 +20,10 @@
             <router-link
               :to="{
                 name: 'boardview',
-                params: { boardNo: data.item.boardNo },
+                params: {
+                  boardNo: data.item.boardNo,
+                  userNo: data.item.userNo,
+                },
               }"
             >
               {{ data.item.subject }}
@@ -90,7 +93,7 @@ export default {
     viewArticle(article) {
       this.$router.push({
         name: "boardview",
-        params: { boardNo: article.boardNo },
+        params: { boardNo: article.boardNo, userNo: article.userNo },
       });
     },
   },
