@@ -8,7 +8,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
+      <b-col style="cursor: pointer">
         <b-table
           striped
           hover
@@ -16,19 +16,6 @@
           :fields="fields"
           @row-clicked="viewArticle"
         >
-          <template #cell(subject)="data">
-            <router-link
-              :to="{
-                name: 'boardview',
-                params: {
-                  boardNo: data.item.boardNo,
-                  userNo: data.item.userNo,
-                },
-              }"
-            >
-              {{ data.item.subject }}
-            </router-link>
-          </template>
         </b-table>
       </b-col>
     </b-row>
@@ -91,10 +78,15 @@ export default {
       }
     },
     viewArticle(article) {
-      this.$router.push({
-        name: "boardview",
-        params: { boardNo: article.boardNo, userNo: article.userNo },
-      });
+      if (this.userInfo !== null) {
+        this.$router.push({
+          name: "boardview",
+          params: { boardNo: article.boardNo, userNo: article.userNo },
+        });
+      } else {
+        alert("로그인 후 이용해주세요!");
+        this.$router.push({ name: "UserLogin" });
+      }
     },
   },
 };

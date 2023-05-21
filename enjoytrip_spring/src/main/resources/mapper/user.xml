@@ -40,9 +40,10 @@
 		set password = #{password}, email = #{email}, loc_no = #{locNo}, age = #{age}, gender = #{gender}
 		where id = #{id}
 	</update>
-
-	<delete id="deleteUser" parameterType="String">
-		delete from user
-		where id = #{id}
-	</delete>
+	
+	<update id="deleteUser" parameterType="int">
+		update user
+		set password = "", email = "", age = 0, gender = ''
+		where user_no = #{userNo}
+	</update>
 </mapper>

@@ -31,8 +31,8 @@ async function findById(userid, success, fail) {
 }
 
 // 회원탈퇴
-function removeUser(userid, success, fail) {
-  api.delete(`/user/${userid}`).then(success).catch(fail);
+function removeUser(userNo, success, fail) {
+  api.put(`/user/${userNo}`).then(success).catch(fail);
 }
 
 export { register, login, findById, logout, modify, removeUser };

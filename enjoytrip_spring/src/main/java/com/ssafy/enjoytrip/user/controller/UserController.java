@@ -141,10 +141,10 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
-	@DeleteMapping("/{userid}")
-	public ResponseEntity<String> deleteUser(@PathVariable("userid") String id) throws Exception {
+	@PutMapping("/{userNo}")
+	public ResponseEntity<String> deleteUser(@PathVariable("userNo") int userNo) throws Exception {
 		logger.info("deleteUser - 호출");
-		if (userService.deleteUser(id)) {
+		if (userService.deleteUser(userNo)) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);

@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUser(String id) throws Exception {
-		return sqlSession.getMapper(UserMapper.class).deleteUser(id) == 1;
+	public boolean deleteUser(int userNo) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).deleteUser(userNo) == 1;
 	}
 }

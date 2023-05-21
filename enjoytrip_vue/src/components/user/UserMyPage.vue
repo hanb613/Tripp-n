@@ -80,7 +80,7 @@ export default {
     ...mapActions(memberStore, ["userLogout"]),
 
     remove() {
-      let param = this.userInfo.id;
+      let param = this.userInfo.userNo;
 
       removeUser(
         param,

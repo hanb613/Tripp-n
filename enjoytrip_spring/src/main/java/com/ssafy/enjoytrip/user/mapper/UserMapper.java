@@ -14,7 +14,7 @@ public interface UserMapper {
 	public int joinUser(UserDto userDto) throws SQLException;
 	public UserDto loginUser(UserDto userDto) throws SQLException;
 	public int modifyUser(UserDto userDto) throws SQLException;
-	public int deleteUser(String id) throws SQLException;
+	public int deleteUser(int userNo) throws SQLException;
 	
 	//관리자기능-보류
 }
