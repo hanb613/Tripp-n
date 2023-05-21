@@ -67,6 +67,7 @@ import { getAttraction, likeAttraction } from "@/api/attraction";
 import { mapState } from "vuex";
 
 const memberStore = "memberStore";
+const attractionStore = "attractionStore";
 
 export default {
   name: "AttractionDetail",
@@ -79,6 +80,7 @@ export default {
   },
   computed:{
     ...mapState(memberStore, ["userInfo"]),
+    ...mapState(attractionStore, ["attrs"]),
   },
   created() {
     let param = this.$route.params.contentNo;

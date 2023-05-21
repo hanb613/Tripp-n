@@ -60,7 +60,8 @@ export default {
     this.CLEAR_SIDO_LIST();
     this.CLEAR_GUGUN_LIST();
     this.CLEAR_CONTENTS_LIST();
-    this.CLEAR_ATTR_LIST();
+    // state에 attrs 유지할거면 clear안해도 되나...?
+    // this.CLEAR_ATTR_LIST();
     this.getSido();
   },
   methods: {

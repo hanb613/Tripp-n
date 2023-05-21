@@ -52,7 +52,7 @@ export default {
     attr: Object,
   },
   methods: {
-    ...mapActions(attractionStore, ["detailAttr"]),
+    ...mapActions(attractionStore, ["attrs", "detailAttr"]),
     selectAttr() {
       this.detailAttr(this.attr);
     },
