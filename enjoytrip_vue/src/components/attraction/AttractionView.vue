@@ -41,11 +41,18 @@
             ></b-icon>
             <span class="font">목록</span>
           </b-button>
-          <b-button pill class="me-2 float-right" variant="primary">
+          <b-button pill class="me-2 float-right" variant="primary" id="likebtn" @click="toggleLike" v-if="userInfo">
             <b-icon
               icon="suit-heart"
               font-scale="1"
               style="margin-right: 5px"
+              v-if="checkLiked() == false"
+            ></b-icon>
+            <b-icon
+              icon="suit-heart-fill"
+              font-scale="1"
+              style="margin-right: 5px"
+              v-else
             ></b-icon>
             <span class="font">좋아요</span>
           </b-button>
@@ -56,14 +63,22 @@
 </template>
 
 <script>
-import { getAttraction } from "@/api/attraction";
+import { getAttraction, likeAttraction } from "@/api/attraction";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
+
 export default {
   name: "AttractionDetail",
   components: {},
   data() {
     return {
       attraction: {},
+      likedUsers: [],
     };
+  },
+  computed:{
+    ...mapState(memberStore, ["userInfo"]),
   },
   created() {
     let param = this.$route.params.contentNo;
@@ -71,7 +86,8 @@ export default {
       param,
       ({ data }) => {
         console.log(data);
-        this.attraction = data;
+        this.attraction = data.attraction;
+        this.likedUsers = data.likedUsers;
       },
       (error) => {
         console.log(error);
@@ -81,6 +97,38 @@ export default {
   methods: {
     moveList() {
       this.$router.push({ name: "AttractionSearch" });
+    },
+    toggleLike(event){
+      event.preventDefault();
+      //임시: 좋아요 등록/삭제 중 등록만 구현
+      if(this.checkLiked())alert("이미 좋아요를 누른 관광지입니다.");
+      else{
+        let param = {
+          contentNo: this.attraction.contentNo,
+          userNo: this.userInfo.userNo,
+        }
+        console.log(param.contentNo+" is liked by "+ param.userNo);
+        likeAttraction(
+          param,
+          ({ data }) => {
+            let msg = "등록 처리시 문제가 발생했습니다.";
+            if (data === "success") {
+              msg = "좋아요 완료";
+            }
+            alert(msg);
+            // this.moveList();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    },
+    checkLiked(){
+      this.likedUsers.forEach((item)=>{
+        if(item.userNo == this.userInfo.userNo)return true;
+      });
+      return false;
     },
   },
 };

@@ -19,5 +19,9 @@ function getAttraction(contentNo, success, fail) {
   api.get(`/attraction/${contentNo}`).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, attrList, getAttraction };
+function likeAttraction(params, success, fail) {
+  api.post(`/attraction/like`, params).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, attrList, getAttraction, likeAttraction };
 

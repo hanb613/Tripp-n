@@ -13,4 +13,5 @@ public interface AttractionService {
 	AttractionDto getAttraction(int contentNo) throws Exception;
 	int getLikeCount(int contentNo) throws Exception;
 	List<AttractionLikeDto> getLikeList(int contentNo) throws Exception;
+	boolean likeAttraction(AttractionLikeDto attrLikeDto) throws Exception;
 }

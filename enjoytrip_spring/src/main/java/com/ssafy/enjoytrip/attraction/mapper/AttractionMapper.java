@@ -16,4 +16,5 @@ public interface AttractionMapper {
 	AttractionDto getAttraction(int contentNo) throws SQLException;
 	int getLikeCount(int contentNo) throws SQLException;
 	List<AttractionLikeDto> getLikeList(int contentNo) throws SQLException;
+	boolean likeAttraction(AttractionLikeDto attrLikeDto) throws SQLException;
 }
