@@ -43,7 +43,7 @@
 	
 	<update id="deleteUser" parameterType="int">
 		update user
-		set password = "", email = "", age = 0, gender = ''
+		set name="", password = "", email = "", loc_no=1001, age = 0, gender = ''
 		where user_no = #{userNo}
 	</update>
 </mapper>
