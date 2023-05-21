@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.board.model.BoardDto;
+import com.ssafy.enjoytrip.board.model.BoardLikeDto;
 import com.ssafy.enjoytrip.board.model.BoardParameterDto;
 import com.ssafy.enjoytrip.util.PageNavigation;
 
@@ -21,6 +22,8 @@ public interface BoardService {
 	/* 게시물 댓글 */
 	public boolean writeComment(BoardCommentDto boardCommentDto) throws Exception;
 	public List<BoardCommentDto> listComment(int boardNo) throws Exception;
+	/* 게시물 좋아요 */
+	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception;
 	
 
 }

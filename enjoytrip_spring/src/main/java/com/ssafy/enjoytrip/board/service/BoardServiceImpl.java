@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssafy.enjoytrip.board.mapper.BoardMapper;
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.board.model.BoardDto;
+import com.ssafy.enjoytrip.board.model.BoardLikeDto;
 import com.ssafy.enjoytrip.board.model.BoardParameterDto;
 import com.ssafy.enjoytrip.util.PageNavigation;
 
@@ -87,5 +88,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardCommentDto> listComment(int boardNo) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).listComment(boardNo);
+	}
+
+	@Override
+	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).getLikeList(boardNo);
 	}
 }

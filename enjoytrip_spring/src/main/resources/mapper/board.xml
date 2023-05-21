@@ -23,6 +23,13 @@
 		<result column="createtime" property="createTime" />
 		<result column="user_no" property="userNo" />
 	</resultMap>
+
+	<resultMap type="boardLikeDto" id="boardLike">
+		<result column="like_no" property="likeNo" />
+		<result column="user_no" property="userNo" />
+		<result column="user_no" property="userNo" />
+		<result column="like_time" property="likeTime" />
+	</resultMap>
 	
 	<insert id="writeArticle" parameterType="boardDto">
 		insert into board (user_no, article_no, board_type, subject, content, createtime)
@@ -100,6 +107,21 @@
 		delete from board_comment
 		where board_no = #{boardNo}
 	</delete>
+
+	<!-- 게시물 좋아요 -->
+	<select id="getLikeList" parameterType="int"
+		resultMap="boardLike">
+		select *
+		from board_like
+		where board_no = #{boardNo}
+	</select>
+
+	<insert id="likeBoard" parameterType="boardLikeDto">
+		insert into
+		board_like (user_no, board_no, like_time)
+		values
+		(#{userNo}, #{boardNo}, now())
+	</insert>
 
 </mapper>
 

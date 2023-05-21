@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       article: {},
+      likedUsers: [],
     };
   },
   components: {
@@ -90,7 +91,8 @@ export default {
       param,
       ({ data }) => {
         console.log(data);
-        this.article = data;
+        this.article = data.article;
+        this.likedUsers = data.likedUsers;
       },
       (error) => {
         console.log(error);

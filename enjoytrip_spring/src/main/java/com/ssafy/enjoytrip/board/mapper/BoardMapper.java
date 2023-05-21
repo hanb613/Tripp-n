@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.board.model.BoardDto;
+import com.ssafy.enjoytrip.board.model.BoardLikeDto;
 import com.ssafy.enjoytrip.board.model.BoardParameterDto;
 import com.ssafy.enjoytrip.board.model.FileInfoBoardDto;
 
@@ -34,6 +35,7 @@ public interface BoardMapper {
 //	BoardCommentDto getComment(int commentNo) throws SQLException;
 	
 //	// 게시물 좋아요
+	public List<BoardLikeDto> getLikeList(int boardNo) throws SQLException;
 //	int getLikeCount(int boardNo) throws SQLException;
 //	void updateLike(int boardNo) throws SQLException;
 }
