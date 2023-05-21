@@ -33,7 +33,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import { listArticle } from "@/api/board";
+const memberStore = "memberStore";
 
 export default {
   name: "BoardList",
@@ -53,6 +56,9 @@ export default {
         { key: "like", label: "좋아요", tdClass: "tdClass", thClass: "th" },
       ],
     };
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   created() {
     let param = {
@@ -74,7 +80,12 @@ export default {
   },
   methods: {
     moveWrite() {
-      this.$router.push({ name: "boardwrite" });
+      if (this.userInfo !== null) {
+        this.$router.push({ name: "boardwrite" });
+      } else {
+        alert("로그인 후 이용해주세요!");
+        this.$router.push({ name: "UserLogin" });
+      }
     },
     viewArticle(article) {
       this.$router.push({
