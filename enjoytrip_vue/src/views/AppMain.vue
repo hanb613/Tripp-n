@@ -46,6 +46,7 @@ export default {
       msg: null,
     };
   },
+  created: {},
   methods: {},
   mounted() {
     if (this.msg !== null) {

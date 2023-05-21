@@ -10,6 +10,10 @@
 import HeaderView from "./components/common/Header.vue";
 import FooterView from "./components/common/Footer.vue";
 
+import { mapActions } from "vuex";
+
+const memberStore = "memberStore";
+
 export default {
   name: "App",
   components: {
@@ -21,8 +25,17 @@ export default {
       message: "",
     };
   },
-  created() {},
-  methods: {},
+  created() {
+    mapActions(memberStore, ["userLogout"]);
+  },
+  methods: {
+    initializeLogin() {
+      this.userLogout();
+    },
+  },
+  mounted() {
+    this.initializeLogin();
+  },
 };
 </script>
 
