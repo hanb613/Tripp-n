@@ -63,4 +63,11 @@ public class UserServiceImpl implements UserService {
 	public boolean deleteUser(int userNo) throws Exception {
 		return sqlSession.getMapper(UserMapper.class).deleteUser(userNo) == 1;
 	}
+	
+	@Override
+	public UserDto findById(UserDto userDto) throws Exception {
+		if (userDto.getName() == null || userDto.getEmail() == null)
+			return null;
+		return sqlSession.getMapper(UserMapper.class).findById(userDto);
+	}
 }

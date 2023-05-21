@@ -102,7 +102,7 @@ export default {
       if (data === "register") {
         this.$router.push({ name: "UserRegister" });
       } else if (data === "findId") {
-        this.$router.push({ name: "UserFindPw" });
+        this.$router.push({ name: "UserFindId" });
       } else if (data === "findPw") {
         this.$router.push({ name: "UserFindPw" });
       }

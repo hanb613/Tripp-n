@@ -76,11 +76,6 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
-//	@GetMapping("/login")
-//	public String login() {
-//		return "common/usermodal";
-//	}
-	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody  UserDto userDto) {
 		Map<String, Object> resultMap = new HashMap<>();
@@ -103,28 +98,6 @@ public class UserController {
 		}
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
-	
-//	public String login(@RequestParam Map<String, String> map, 
-//			Model model, HttpSession session, HttpServletResponse response) {
-//		try {
-//			UserDto userDto = userService.loginUser(map);
-//			if(userDto != null) {
-//				session.setAttribute("userinfo", userDto);
-//				Cookie cookie = new Cookie("ssafy_id", map.get("userid"));
-//				cookie.setPath("/board");
-//				response.addCookie(cookie);
-//				return "redirect:/";
-//			}else {
-//				//로그인 실패
-//				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 다시 로그인하세요!");
-//				return "/";
-//			}
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			model.addAttribute("msg", "로그인 중 문제 발생!!!");
-//			return "error/error";
-//		}
-//	}
 	
 	@GetMapping("/logout/{userid}")
 	public ResponseEntity<?> logout(@PathVariable("userid") String userid) {
@@ -151,7 +124,24 @@ public class UserController {
 	}
 	
 	@GetMapping("/info")
-	public String info() {
-		return "userInfo";
+	public ResponseEntity<Map<String, Object>> findById(@RequestBody UserDto userDto) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = null;
+		try {
+			UserDto findUser = userService.findById(userDto);
+			if (findUser != null) {
+				resultMap.put("message", "success");
+				resultMap.put("userInfo", findUser);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				resultMap.put("message", "fail");
+				status = HttpStatus.ACCEPTED;
+			}
+		} catch (Exception e) {
+			logger.error("아이디 찾기 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 }

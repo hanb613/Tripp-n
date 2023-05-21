@@ -12,5 +12,6 @@ public interface UserService {
 	public UserDto loginUser(UserDto userDto) throws Exception;
 	public boolean modifyUser(UserDto userDto) throws Exception;
 	public boolean deleteUser(int userNo) throws Exception;
+	public UserDto findById(UserDto userDto) throws Exception;
 	
 }

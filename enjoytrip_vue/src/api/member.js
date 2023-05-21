@@ -25,9 +25,9 @@ async function logout(userid, success, fail) {
   await api.get(`/user/logout/${userid}`).then(success).catch(fail);
 }
 
-// 해당 유저정보 찾기
-async function findById(userid, success, fail) {
-  await api.get(`/user/info/${userid}`).then(success).catch(fail);
+// 해당 유저 아이디 찾기
+async function findById(param, success, fail) {
+  await api.get(`/user/info`, JSON.stringify(param)).then(success).catch(fail);
 }
 
 // 회원탈퇴

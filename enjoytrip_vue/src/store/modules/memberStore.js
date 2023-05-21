@@ -1,10 +1,12 @@
-import { login, logout, modify } from "@/api/member.js";
+import { login, logout, modify, findById } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
   state: {
     isLogin: false,
     isLoginError: false,
+    isIdFindError: false,
+    userFindId: "",
     userInfo: {
       userNo: 0,
       id: null,
@@ -30,11 +32,15 @@ const memberStore = {
     SET_IS_LOGIN_ERROR: (state, isLoginError) => {
       state.isLoginError = isLoginError;
     },
+    SET_IS_ID_FIND_ERROR: (state, isIdFindError) => {
+      state.isIdFindError = isIdFindError;
+    },
     SET_USER_INFO: (state, userInfo) => {
       state.isLogin = true;
-      console.log("로그인정보");
-      console.log(userInfo);
       state.userInfo = userInfo;
+    },
+    SET_USER_FIND_ID: (state, userFindId) => {
+      state.userFindId = userFindId;
     },
     SET_CHANGE_DATA: (state, changeData) => {
       state.userInfo.changeData = changeData;
@@ -46,8 +52,6 @@ const memberStore = {
         user,
         ({ data }) => {
           if (data.message === "success") {
-            console.log("data: ");
-            console.log(data.userInfo);
             commit("SET_IS_LOGIN", true);
             commit("SET_IS_LOGIN_ERROR", false);
             commit("SET_USER_INFO", data.userInfo);
@@ -86,6 +90,23 @@ const memberStore = {
             commit("SET_USER_INFO", null);
           } else {
             console.log("유저 정보 없음!!!!");
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    async userIdConfirm({ commit }, user) {
+      await findById(
+        user,
+        ({ data }) => {
+          if (data.message === "success") {
+            commit("SET_IS_ID_FIND_ERROR", false);
+            console.log(data.userInfo);
+            commit("SET_USER_FIND_ID", data.userInfo);
+          } else {
+            commit("SET_IS_ID_FIND_ERROR", true);
           }
         },
         (error) => {

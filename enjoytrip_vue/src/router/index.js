@@ -69,6 +69,13 @@ const routes = [
       },
 
       {
+        path: "findId",
+        name: "UserFindId",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/components/user/UserFindId"),
+      },
+      {
         path: "findPw",
         name: "UserFindPw",
         // beforeEnter: onlyAuthUser,
