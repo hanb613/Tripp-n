@@ -54,7 +54,7 @@
               style="margin-right: 5px"
               v-else
             ></b-icon>
-            <span class="font">좋아요</span>
+            <span class="font">{{likedUsers.length}}</span>
           </b-button>
         </b-card>
       </b-col>
