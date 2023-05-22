@@ -2,22 +2,6 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <!-- <b-form-group
-          id="userName-group"
-          label="작성자:"
-          label-for="userName"
-          description="작성자를 입력하세요."
-        >
-          <b-form-input
-            id="userName"
-            :disabled="isUserid"
-            v-model="article.userName"
-            type="text"
-            required
-            :placeholder="userInfo.name"
-          ></b-form-input>
-        </b-form-group> -->
-
         <b-form-group
           id="subject-group"
           label="제목:"
@@ -127,7 +111,7 @@ export default {
     },
     onReset(event) {
       event.preventDefault();
-      this.article.articleno = 0;
+      this.article.articleNo = 0;
       this.article.subject = "";
       this.article.content = "";
       this.moveList();
@@ -185,7 +169,9 @@ export default {
       );
     },
     moveList() {
-      this.$router.push({ name: "boardlist" });
+      this.$router.push({
+        name: this.isNotice ? "noticelist" : "boardlist",
+      });
     },
   },
 };
