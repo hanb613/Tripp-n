@@ -27,7 +27,7 @@
 	<resultMap type="boardLikeDto" id="boardLike">
 		<result column="like_no" property="likeNo" />
 		<result column="user_no" property="userNo" />
-		<result column="user_no" property="userNo" />
+		<result column="board_no" property="boardNo" />
 		<result column="like_time" property="likeTime" />
 	</resultMap>
 	
@@ -122,6 +122,12 @@
 		values
 		(#{userNo}, #{boardNo}, now())
 	</insert>
+	
+	<select id="getLikeCount" parameterType="int" resultType="int">
+		select count(board_no)
+		from board_like
+		where board_no = #{boardNo}
+	</select>
 
 </mapper>
 

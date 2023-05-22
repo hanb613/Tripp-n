@@ -24,6 +24,7 @@ public interface BoardService {
 	public List<BoardCommentDto> listComment(int boardNo) throws Exception;
 	/* 게시물 좋아요 */
 	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception;
+	public boolean likeBoard(BoardLikeDto boardLikeDto) throws Exception;
 	
 
 }

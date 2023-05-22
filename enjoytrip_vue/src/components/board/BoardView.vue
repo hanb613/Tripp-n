@@ -32,13 +32,36 @@
       <b-col>
         <b-card
           :header-html="`<span style='font-size:30px;'>
-          ${article.subject}</span><div><span style='font-size:17px;'>${article.userName}</span></div><div class='font'><span style='font-size:17px;'>[좋아요 : ${article.like}]</span><div>${article.createTime}</div>`"
+          ${article.subject}</span><div><span style='font-size:17px;'>${article.userName}</span></div><div class='font'><div>${article.createTime}</div>`"
           class="mb-2 font"
           border-variant="dark"
           no-body
         >
+          <!-- 본문 -->
           <b-card-body class="text-left font">
             <div v-html="message"></div>
+            <b-button
+              pill
+              class="me-2 float-right"
+              variant="primary"
+              id="likebtn"
+              @click="toggleLike"
+              v-if="userInfo"
+            >
+              <b-icon
+                icon="suit-heart-fill"
+                font-scale="1"
+                style="margin-right: 5px"
+                v-if="checkLiked()"
+              ></b-icon>
+              <b-icon
+                icon="suit-heart"
+                font-scale="1"
+                style="margin-right: 5px"
+                v-else
+              ></b-icon>
+              <span class="font">{{ likedUsers.length }}</span>
+            </b-button>
           </b-card-body>
         </b-card>
       </b-col>
@@ -57,7 +80,7 @@
 
 <script>
 // import moment from "moment";
-import { getArticle } from "@/api/board";
+import { getArticle, likeArticle } from "@/api/board";
 import CommentWrite from "@/components/board/comment/CommentWrite.vue";
 import CommentList from "@/components/board/comment/CommentList.vue";
 import { mapState } from "vuex";
@@ -116,6 +139,36 @@ export default {
     },
     moveList() {
       this.$router.push({ name: "boardlist" });
+    },
+    toggleLike(event) {
+      event.preventDefault();
+      //임시: 좋아요 등록/삭제 중 등록만 구현
+      if (this.checkLiked()) alert("이미 좋아요를 누른 게시글입니다.");
+      else {
+        let param = {
+          boardNo: this.article.boardNo,
+          userNo: this.userInfo.userNo,
+        };
+        console.log(param.boardNo + " is liked by " + param.userNo);
+        likeArticle(
+          param,
+          ({ data }) => {
+            let msg = "등록 처리시 문제가 발생했습니다.";
+            if (data === "success") {
+              msg = "좋아요 완료";
+            }
+            alert(msg);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    },
+    checkLiked() {
+      return this.likedUsers.some(
+        (item) => item.userNo === this.userInfo.userNo
+      );
     },
   },
 };

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.board.model.BoardDto;
+import com.ssafy.enjoytrip.board.model.BoardLikeDto;
 import com.ssafy.enjoytrip.board.model.BoardParameterDto;
 import com.ssafy.enjoytrip.board.service.BoardService;
 
@@ -108,4 +110,14 @@ public class BoardController {
 		System.out.println(boardService.listComment(boardNo));
 		return new ResponseEntity<List<BoardCommentDto>>(boardService.listComment(boardNo), HttpStatus.OK);
 	}
+	
+	/* 게시물 좋아요 */
+    @PostMapping("/like")
+    public ResponseEntity<String> likeBoard(@RequestBody BoardLikeDto boardLikeDto) throws Exception {
+		logger.info("likeBoard - 호출: "+boardLikeDto.getUserNo()+" liked "+ boardLikeDto.getBoardNo());
+		if (boardService.likeBoard(boardLikeDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+    }
 }

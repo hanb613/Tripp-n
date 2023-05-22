@@ -94,4 +94,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).getLikeList(boardNo);
 	}
+
+	@Override
+	public boolean likeBoard(BoardLikeDto boardLikeDto) throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).likeBoard(boardLikeDto);
+	}
 }
