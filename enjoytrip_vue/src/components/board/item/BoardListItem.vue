@@ -6,7 +6,6 @@
         subject
       }}</router-link>
     </b-th>
-    <b-td>{{ hit }}</b-td>
     <b-td>{{ userName }}</b-td>
     <b-td>{{ createtime | dateFormat }}</b-td>
   </b-tr>

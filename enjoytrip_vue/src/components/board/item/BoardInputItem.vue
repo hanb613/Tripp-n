@@ -64,6 +64,7 @@ import { writeArticle, modifyArticle, getArticle } from "@/api/board";
 import { mapState, mapGetters } from "vuex";
 
 const memberStore = "memberStore";
+const boardStore = "boardStore";
 
 export default {
   name: "BoardInputItem",
@@ -72,8 +73,8 @@ export default {
       article: {
         boardNo: "",
         userNo: "",
-        articleno: 0,
-        boardtype: 1,
+        articleNo: 0,
+        boardType: 0,
         userName: "",
         subject: "",
         content: "",
@@ -102,6 +103,7 @@ export default {
   computed: {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
     ...mapGetters(["checkUserInfo"]),
+    ...mapState(boardStore, ["isNotice"]),
   },
   methods: {
     onSubmit(event) {
@@ -136,7 +138,7 @@ export default {
         userNo: this.userInfo.userNo,
         userName: this.userInfo.name,
         articleNo: 1,
-        boardType: 1,
+        boardType: this.isNotice ? 1 : 2,
         subject: this.article.subject,
         content: this.article.content,
       };

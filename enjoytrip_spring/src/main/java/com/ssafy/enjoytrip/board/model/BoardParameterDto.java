@@ -21,6 +21,9 @@ public class BoardParameterDto {
 	@ApiModelProperty(value = "검색어")
 	private String word;
 	
+	//공지사항, 일반게시판 구분
+	private int boardType;
+	
 	public BoardParameterDto() {
 		pg = 1;
 		spp = 20;
@@ -67,5 +70,19 @@ public class BoardParameterDto {
 		this.word = word;
 	}
 
+	public int getBoardType() {
+		return boardType;
+	}
+
+	public void setBoardType(int boardType) {
+		this.boardType = boardType;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardParameterDto [pg=" + pg + ", spp=" + spp + ", start=" + start + ", key=" + key + ", word=" + word
+				+ ", boardType=" + boardType + "]";
+	}
+	
 }
 

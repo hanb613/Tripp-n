@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import AppMain from "@/views/AppMain";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -85,9 +86,71 @@ const routes = [
     ],
   },
   {
+    //공지사항
+    path: "/notice",
+    name: "notice",
+    component: () => import(/* webpackChunkName: "notice" */ "@/views/AppBoard"),
+    beforeEnter: (to, from, next) => {
+      store.commit("boardStore/SET_IS_NOTICE", true);
+      next();
+    },
+    redirect: "/notice/list",
+    children: [
+      {
+        path: "list",
+        name: "noticelist",
+        component: () =>
+          import(
+            /* webpackChunkName: "notice" */ "@/components/board/BoardList"
+          ),
+      },
+      // {
+      //   path: "write",
+      //   name: "boardwrite",
+      //   // beforeEnter: onlyAuthUser,
+      //   component: () =>
+      //     import(
+      //       /* webpackChunkName: "board" */ "@/components/board/BoardWrite"
+      //     ),
+      // },
+      // {
+      //   path: "view/:boardNo",
+      //   name: "boardview",
+      //   // beforeEnter: onlyAuthUser,
+      //   component: () =>
+      //     import(
+      //       /* webpackChunkName: "board" */ "@/components/board/BoardView"
+      //     ),
+      // },
+      // {
+      //   path: "modify",
+      //   name: "boardmodify",
+      //   // beforeEnter: onlyAuthUser,
+      //   component: () =>
+      //     import(
+      //       /* webpackChunkName: "board" */ "@/components/board/BoardModify"
+      //     ),
+      // },
+      // {
+      //   path: "delete/:articleno",
+      //   name: "boarddelete",
+      //   // beforeEnter: onlyAuthUser,
+      //   component: () =>
+      //     import(
+      //       /* webpackChunkName: "board" */ "@/components/board/BoardDelete"
+      //     ),
+      // },
+    ],
+  },
+  {
+    //일반게시판
     path: "/board",
     name: "board",
     component: () => import(/* webpackChunkName: "board" */ "@/views/AppBoard"),
+    beforeEnter: (to, from, next) => {
+      store.commit("boardStore/SET_IS_NOTICE", false);
+      next();
+    },
     redirect: "/board/list",
     children: [
       {

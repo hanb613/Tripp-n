@@ -27,6 +27,7 @@ import { mapState } from "vuex";
 
 import { listArticle } from "@/api/board";
 const memberStore = "memberStore";
+const boardStore = "boardStore";
 
 export default {
   name: "BoardList",
@@ -50,30 +51,41 @@ export default {
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
+    ...mapState(boardStore, ["isNotice"]),
+  },
+  watch: {
+    isNotice() {
+      this.getBoardArticles();
+    },
   },
   created() {
-    let param = {
-      pg: 1,
-      spp: 20,
-      key: null,
-      word: null,
-    };
-    listArticle(
-      param,
-      ({ data }) => {
-        // console.log(data);
-        // 글정보 articles에 좋아요수 likeCnts를 합친다
-        this.likeCnts = data.likedList;
-        this.articles = data.articleList.map((article, index) => {
-          return { ...article, like: this.likeCnts[index] };
-        });
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.getBoardArticles();
   },
   methods: {
+    getBoardArticles() {
+      let param = {
+        pg: 1,
+        spp: 20,
+        key: null,
+        word: null,
+        //공지사항 구분
+        boardType: this.isNotice ? 1 : 2,
+      };
+      listArticle(
+        param,
+        ({ data }) => {
+          // console.log(data);
+          // 글정보 articles에 좋아요수 likeCnts를 합친다
+          this.likeCnts = data.likedList;
+          this.articles = data.articleList.map((article, index) => {
+            return { ...article, like: this.likeCnts[index] };
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
     moveWrite() {
       if (this.userInfo !== null) {
         this.$router.push({ name: "boardwrite" });

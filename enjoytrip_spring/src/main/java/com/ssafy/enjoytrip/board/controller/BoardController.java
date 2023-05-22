@@ -55,7 +55,7 @@ public class BoardController {
 	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
 	@GetMapping
 	public ResponseEntity<Map<String, Object>> listArticle(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true) BoardParameterDto boardParameterDto) throws Exception {
-		logger.info("listArticle - 호출");
+		logger.info("listArticle - 호출("+ boardParameterDto.getBoardType() +")");
 		Map<String, Object> resultMap = boardService.listArticle(boardParameterDto);
 
 		System.out.println(resultMap.get("articleList"));

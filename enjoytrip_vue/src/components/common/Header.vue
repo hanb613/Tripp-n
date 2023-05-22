@@ -16,7 +16,7 @@
             <b-icon icon="map" font-scale="2" class="m-1"></b-icon>
             관광지 조회
           </router-link>
-          <router-link :to="{ name: 'board' }" class="m-2 link">
+          <router-link :to="{ name: 'notice' }" class="m-2 link">
             <b-icon icon="megaphone" font-scale="2" class="m-1"></b-icon>
             공지사항
           </router-link>
