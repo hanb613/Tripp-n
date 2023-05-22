@@ -123,12 +123,13 @@ public class UserController {
 		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping("/info")
+	@PostMapping("/info")
 	public ResponseEntity<Map<String, Object>> findById(@RequestBody UserDto userDto) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		try {
 			UserDto findUser = userService.findById(userDto);
+			System.out.println(findUser);
 			if (findUser != null) {
 				resultMap.put("message", "success");
 				resultMap.put("userInfo", findUser);

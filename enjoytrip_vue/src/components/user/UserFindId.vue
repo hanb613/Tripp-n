@@ -10,9 +10,7 @@
       <b-col cols="8">
         <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
           <b-form class="text-left">
-            <b-alert show variant="danger" v-if="isIdFindError"
-              >아이디 또는 이메일을 확인하세요.</b-alert
-            >
+            
             <b-form-group label="이름:" label-for="name">
               <b-form-input
                 id="name"
@@ -30,15 +28,28 @@
                 placeholder="이메일 입력...."
                 @keyup.enter="confirm"
               ></b-form-input> </b-form-group
-            ><br />
+            >
+            <b-alert show variant="danger" v-if="isIdFindError"
+              >아이디 또는 이메일을 확인하세요.</b-alert
+            >
+            <b-alert show variant="primary" v-if='!isIdFindError && userFindId!==""'
+              >회원님의 ID : <span style="text-decoration: underline;"><b>{{ this.userFindId }}</b></span></b-alert
+            >
+            <br />
             <div style="display: flex; justify-content: center">
+              <b-button
+                type="button"
+                variant="success"
+                class="m-1"
+                @click="movePage"
+                >이전</b-button
+              > 
               <b-button
                 type="button"
                 variant="primary"
                 class="m-1"
                 @click="confirm"
-                >확인</b-button
-              >
+                >확인</b-button >
             </div>
           </b-form>
         </b-card>
@@ -64,20 +75,31 @@ export default {
       },
     };
   },
-  created: {},
+  created() {
+    this.$store.commit(`${memberStore}/SET_USER_FIND_ID`, "")
+    this.$store.commit(`${memberStore}/SET_IS_ID_FIND_ERROR`, false)
+  },
   computed: {
-    ...mapState(memberStore, ["isIdFindError"]),
+    ...mapState(memberStore, ["isIdFindError","userFindId"]),
   },
   methods: {
     ...mapActions(memberStore, ["userIdConfirm"]),
 
     async confirm() {
-      await this.userConfirm(this.user);
-      if (this.isIdFindLogin) {
-        this.$router.push({ name: "UserLogin" });
-      }
+      await this.userIdConfirm(this.user);
+      console.log(this.userFindId)
+      console.log(this.isIdFindError)
+      if (this.isIdFindError) {
+        this.$store.commit(`${memberStore}/SET_USER_FIND_ID`, "");
+        this.$store.commit(`${memberStore}/SET_IS_ID_FIND_ERROR`, true);
+      } 
     },
+    movePage() {
+    this.$router.push({ name: "UserLogin" });
+  }
   },
+
+  
 };
 </script>
 

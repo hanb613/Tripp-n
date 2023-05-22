@@ -103,8 +103,7 @@ const memberStore = {
         ({ data }) => {
           if (data.message === "success") {
             commit("SET_IS_ID_FIND_ERROR", false);
-            console.log(data.userInfo);
-            commit("SET_USER_FIND_ID", data.userInfo);
+            commit("SET_USER_FIND_ID", data.userInfo.id);
           } else {
             commit("SET_IS_ID_FIND_ERROR", true);
           }
