@@ -24,7 +24,7 @@
             <b-icon icon="clipboard" font-scale="2" class="m-1"></b-icon>
             게시판
           </router-link>
-          <router-link :to="{ name: 'house' }" class="m-2 link">
+          <router-link :to="{ name: 'UserLike' }" class="m-2 link">
             <b-icon icon="bookmark-star" font-scale="2" class="m-1"></b-icon>
             관심 목록
           </router-link>
@@ -71,7 +71,7 @@
     </div>
   </header>
 </template>
-  
+
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 
@@ -100,7 +100,7 @@ export default {
   },
 };
 </script>
-  
+
 <style>
 .navbar .nav-item {
   list-style: none;

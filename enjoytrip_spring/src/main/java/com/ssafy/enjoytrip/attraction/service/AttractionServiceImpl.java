@@ -48,5 +48,8 @@ public class AttractionServiceImpl implements AttractionService{
 		return sqlSession.getMapper(AttractionMapper.class).likeAttraction(attrLikeDto);
 	}
 	
-	
+	@Override
+	public List<AttractionDto> getLikeAttrList(int userNo) throws Exception {
+		return sqlSession.getMapper(AttractionMapper.class).getLikeAttrList(userNo);
+	}
 }

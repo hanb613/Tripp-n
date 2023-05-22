@@ -41,7 +41,14 @@
             ></b-icon>
             <span class="font">목록</span>
           </b-button>
-          <b-button pill class="me-2 float-right" variant="primary" id="likebtn" @click="toggleLike" v-if="userInfo">
+          <b-button
+            pill
+            class="me-2 float-right"
+            variant="primary"
+            id="likebtn"
+            @click="toggleLike"
+            v-if="userInfo"
+          >
             <b-icon
               icon="suit-heart-fill"
               font-scale="1"
@@ -54,7 +61,7 @@
               style="margin-right: 5px"
               v-else
             ></b-icon>
-            <span class="font">{{likedUsers.length}}</span>
+            <span class="font">{{ likedUsers.length }}</span>
           </b-button>
         </b-card>
       </b-col>
@@ -78,7 +85,7 @@ export default {
       likedUsers: [],
     };
   },
-  computed:{
+  computed: {
     ...mapState(memberStore, ["userInfo"]),
     ...mapState(attractionStore, ["attrs"]),
   },
@@ -98,18 +105,18 @@ export default {
   },
   methods: {
     moveList() {
-      this.$router.push({ name: "AttractionSearch" });
+      this.$router.go(-1);
     },
-    toggleLike(event){
+    toggleLike(event) {
       event.preventDefault();
       //임시: 좋아요 등록/삭제 중 등록만 구현
-      if(this.checkLiked())alert("이미 좋아요를 누른 관광지입니다.");
-      else{
+      if (this.checkLiked()) alert("이미 좋아요를 누른 관광지입니다.");
+      else {
         let param = {
           contentNo: this.attraction.contentNo,
           userNo: this.userInfo.userNo,
-        }
-        console.log(param.contentNo+" is liked by "+ param.userNo);
+        };
+        console.log(param.contentNo + " is liked by " + param.userNo);
         likeAttraction(
           param,
           ({ data }) => {
@@ -126,8 +133,10 @@ export default {
         );
       }
     },
-    checkLiked(){
-      return this.likedUsers.some(item => item.userNo === this.userInfo.userNo);
+    checkLiked() {
+      return this.likedUsers.some(
+        (item) => item.userNo === this.userInfo.userNo
+      );
     },
   },
 };

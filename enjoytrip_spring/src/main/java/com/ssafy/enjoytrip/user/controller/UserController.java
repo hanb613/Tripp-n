@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ssafy.enjoytrip.attraction.service.AttractionService;
 import com.ssafy.enjoytrip.user.model.UserDto;
 import com.ssafy.enjoytrip.user.service.UserService;
-
-import io.swagger.annotations.ApiParam;
 
 @Controller
 @RequestMapping("/user")
@@ -31,10 +29,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	public UserController(UserService userService) {
-		super();
-		this.userService = userService;
-	}
+	@Autowired
+	private AttractionService attractionService;
+	
 	
 	@GetMapping("/join")
 	public String join() {
@@ -162,6 +159,22 @@ public class UserController {
 			}
 		} catch (Exception e) {
 			logger.error("아이디 찾기 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@GetMapping("/like/{userNo}")
+	public ResponseEntity<?> logout(@PathVariable("userNo") int userNo) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			resultMap.put("message", "success");
+			resultMap.put("likeInfo", attractionService.getLikeAttrList(userNo));
+			status = HttpStatus.ACCEPTED;
+		} catch (Exception e) {
+			logger.error("로그아웃 실패 : {}", e);
 			resultMap.put("message", e.getMessage());
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}

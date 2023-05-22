@@ -24,4 +24,3 @@ function likeAttraction(params, success, fail) {
 }
 
 export { sidoList, gugunList, attrList, getAttraction, likeAttraction };
-

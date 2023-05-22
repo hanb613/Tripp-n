@@ -83,13 +83,23 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "user" */ "@/components/user/UserFindPw"),
       },
+      {
+        path: "like",
+        name: "UserLike",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(
+            /* webpackChunkName: "user" */ "@/components/user/UserLikeList"
+          ),
+      },
     ],
   },
   {
     //공지사항
     path: "/notice",
     name: "notice",
-    component: () => import(/* webpackChunkName: "notice" */ "@/views/AppBoard"),
+    component: () =>
+      import(/* webpackChunkName: "notice" */ "@/views/AppBoard"),
     beforeEnter: (to, from, next) => {
       store.commit("boardStore/SET_IS_NOTICE", true);
       next();

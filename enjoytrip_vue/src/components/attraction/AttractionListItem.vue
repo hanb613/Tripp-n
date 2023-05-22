@@ -22,11 +22,18 @@
               v-if="!attr.firstImage"
             />
             <img :src="attr.firstImage" alt="사진" class="img-fluid" v-else />
-            <h4 class="title text-dark" style="font-family: 'Noto Sans KR', sans-serif;">{{ attr.title }}</h4>
+            <h4
+              class="title text-dark"
+              style="font-family: 'Noto Sans KR', sans-serif"
+            >
+              {{ attr.title }}
+            </h4>
             <div class="d-flex align-items-center">
               <div class="post-meta">
-                <p class="post-author-list">[주소]<br>{{ attr.addr1 }}</p>
-                <p class="post-author-list">[우편번호]<br>{{ attr.zipcode }}</p>
+                <p class="post-author-list">[주소]<br />{{ attr.addr1 }}</p>
+                <p class="post-author-list">
+                  [우편번호]<br />{{ attr.zipcode }}
+                </p>
               </div>
             </div>
           </div>
@@ -64,7 +71,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 .mouse-over-bgcolor {
   background-color: lightblue;
@@ -72,18 +79,19 @@ export default {
 a {
   text-decoration-line: none;
 }
-.articleItem{
-  margin:30px 5px 10px 5px;
+.articleItem {
+  margin: 30px 5px 10px 5px;
 }
-.img-fluid{
+.img-fluid {
   margin-bottom: 20px;
 }
 
-#container{
-  font-family: 'Noto Sans KR', sans-serif;
+#container {
+  font-family: "Noto Sans KR", sans-serif;
+  margin-top: 10px;
 }
 
-.post-meta{
-  margin-top:10px;
+.post-meta {
+  margin-top: 10px;
 }
 </style>

@@ -27,12 +27,18 @@ async function logout(userid, success, fail) {
 
 // 해당 유저 아이디 찾기
 async function findById(param, success, fail) {
-  await api.post(`/user/findID`, JSON.stringify(param)).then(success).catch(fail);
+  await api
+    .post(`/user/findID`, JSON.stringify(param))
+    .then(success)
+    .catch(fail);
 }
 
 // 해당 유저 아이디 찾기
 async function findByPw(param, success, fail) {
-  await api.post(`/user/findPW`, JSON.stringify(param)).then(success).catch(fail);
+  await api
+    .post(`/user/findPW`, JSON.stringify(param))
+    .then(success)
+    .catch(fail);
 }
 
 // 회원탈퇴
@@ -40,4 +46,18 @@ function removeUser(userNo, success, fail) {
   api.put(`/user/${userNo}`).then(success).catch(fail);
 }
 
-export { register, login, logout, modify, removeUser, findById, findByPw };
+// 관심목록 리스트
+function likeList(userNo, success, fail) {
+  api.get(`/user/like/${userNo}`).then(success).catch(fail);
+}
+
+export {
+  register,
+  login,
+  logout,
+  modify,
+  removeUser,
+  findById,
+  findByPw,
+  likeList,
+};

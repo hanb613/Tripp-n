@@ -57,4 +57,11 @@
 		values (#{contentNo}, #{userNo}, now())
 	</insert>
     
+    <select id="getLikeAttrList" parameterType="int" resultMap="attraction">
+		select a.content_no, a.content_type_id, a.title, a.addr1, a.addr2, a.zipcode, a.first_image, a.loc_no
+		from favorite_place f join attraction_info a
+		using (content_no)
+		where f.user_no = #{userNo}
+		order by f.favorite_no
+	</select>
 </mapper>
