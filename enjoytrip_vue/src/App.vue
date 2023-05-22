@@ -10,7 +10,7 @@
 import HeaderView from "./components/common/Header.vue";
 import FooterView from "./components/common/Footer.vue";
 
-import { mapActions, mapState } from "vuex";
+import {  mapState } from "vuex";
 
 const memberStore = "memberStore";
 
@@ -29,16 +29,18 @@ export default {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
   },
   created() {
-    mapActions(memberStore, ["userLogout"]);
+    this.$store.commit(`${memberStore}/SET_IS_LOGIN`, false);
+    this.$store.commit(`${memberStore}/SET_USER_INFO`, null);
+    // mapActions(memberStore, ["userLogout"]);
   },
-  methods: {
-    initializeLogin() {
-      this.userLogout();
-    },
-  },
-  mounted() {
-    this.initializeLogin();
-  },
+  // methods: {
+  //   initializeLogin() {
+  //     this.userLogout();
+  //   },
+  // },
+  // mounted() {
+  //   this.initializeLogin();
+  // },
 };
 </script>
 
