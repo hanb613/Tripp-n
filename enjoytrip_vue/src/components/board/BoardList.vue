@@ -112,9 +112,7 @@ export default {
     },
     checkAuthority() {
       //공지사항 작성/수정/삭제는 admin만 가능
-      return (
-        this.userInfo && (this.userInfo.name === "admin" || !this.isNotice)
-      );
+      return this.userInfo && (this.userInfo.id === "admin" || !this.isNotice);
     },
   },
 };
