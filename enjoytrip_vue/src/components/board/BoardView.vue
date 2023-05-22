@@ -158,6 +158,7 @@ export default {
               msg = "좋아요 완료";
             }
             alert(msg);
+            this.$router.go(0);
           },
           (error) => {
             console.log(error);
