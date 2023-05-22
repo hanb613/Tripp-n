@@ -29,9 +29,15 @@ export default {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
   },
   created() {
-    this.$store.commit(`${memberStore}/SET_IS_LOGIN`, false);
-    this.$store.commit(`${memberStore}/SET_USER_INFO`, null);
-    // mapActions(memberStore, ["userLogout"]);
+    const isLogin = sessionStorage.getItem("isLogin");
+    const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    if (isLogin && userInfo) {
+      this.$store.commit(`${memberStore}/SET_IS_LOGIN`, isLogin === "true");
+      this.$store.commit(`${memberStore}/SET_USER_INFO`, userInfo);
+    } else {
+      this.$store.commit(`${memberStore}/SET_IS_LOGIN`, false);
+      this.$store.commit(`${memberStore}/SET_USER_INFO`, null);
+    }
   },
   // methods: {
   //   initializeLogin() {

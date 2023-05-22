@@ -70,6 +70,8 @@ const memberStore = {
             commit("SET_IS_LOGIN", true);
             commit("SET_IS_LOGIN_ERROR", false);
             commit("SET_USER_INFO", data.userInfo);
+            sessionStorage.setItem("isLogin", "true");
+            sessionStorage.setItem("userInfo", JSON.stringify(data.userInfo));
           } else {
             commit("SET_IS_LOGIN", false);
             commit("SET_IS_LOGIN_ERROR", true);
