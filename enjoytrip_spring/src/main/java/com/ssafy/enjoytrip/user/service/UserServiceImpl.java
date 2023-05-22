@@ -70,4 +70,11 @@ public class UserServiceImpl implements UserService {
 			return null;
 		return sqlSession.getMapper(UserMapper.class).findById(userDto);
 	}
+	
+	@Override
+	public UserDto findByPw(UserDto userDto) throws Exception {
+		if (userDto.getId() == null || userDto.getName() == null || userDto.getEmail() == null)
+			return null;
+		return sqlSession.getMapper(UserMapper.class).findByPw(userDto);
+	}
 }

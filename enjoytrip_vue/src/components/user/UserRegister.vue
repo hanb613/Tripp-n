@@ -84,12 +84,14 @@
                 :options="options"
               ></b-form-select>
             </b-form-group>
-            <b-button type="submit" variant="success" class="m-1"
-              >회원가입</b-button
-            >
-            <b-button type="reset" variant="primary" class="m-1"
-              >초기화</b-button
-            >
+            <div style="display: flex; justify-content: center">
+              <b-button type="submit" variant="success" class="m-1"
+                >회원가입</b-button
+              >
+              <b-button type="reset" variant="primary" class="m-1"
+                >초기화</b-button
+              >
+            </div>
           </b-form>
         </b-card>
       </b-col>

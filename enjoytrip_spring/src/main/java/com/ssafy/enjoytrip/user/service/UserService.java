@@ -13,5 +13,6 @@ public interface UserService {
 	public boolean modifyUser(UserDto userDto) throws Exception;
 	public boolean deleteUser(int userNo) throws Exception;
 	public UserDto findById(UserDto userDto) throws Exception;
+	public UserDto findByPw(UserDto userDto) throws Exception;
 	
 }

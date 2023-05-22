@@ -123,14 +123,36 @@ public class UserController {
 		return new ResponseEntity<String>("fail", HttpStatus.NO_CONTENT);
 	}
 	
-	@PostMapping("/info")
+	@PostMapping("/findID")
 	public ResponseEntity<Map<String, Object>> findById(@RequestBody UserDto userDto) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		try {
 			UserDto findUser = userService.findById(userDto);
-			System.out.println(findUser);
 			if (findUser != null) {
+				resultMap.put("message", "success");
+				resultMap.put("userInfo", findUser);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				resultMap.put("message", "fail");
+				status = HttpStatus.ACCEPTED;
+			}
+		} catch (Exception e) {
+			logger.error("아이디 찾기 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@PostMapping("/findPW")
+	public ResponseEntity<Map<String, Object>> findByPw(@RequestBody UserDto userDto) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = null;
+		try {
+			UserDto findUser = userService.findByPw(userDto);
+			if (findUser != null) {
+				System.out.println(findUser);
 				resultMap.put("message", "success");
 				resultMap.put("userInfo", findUser);
 				status = HttpStatus.ACCEPTED;

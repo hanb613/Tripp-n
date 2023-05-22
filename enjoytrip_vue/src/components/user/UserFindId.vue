@@ -87,8 +87,6 @@ export default {
 
     async confirm() {
       await this.userIdConfirm(this.user);
-      console.log(this.userFindId)
-      console.log(this.isIdFindError)
       if (this.isIdFindError) {
         this.$store.commit(`${memberStore}/SET_USER_FIND_ID`, "");
         this.$store.commit(`${memberStore}/SET_IS_ID_FIND_ERROR`, true);
@@ -98,8 +96,6 @@ export default {
     this.$router.push({ name: "UserLogin" });
   }
   },
-
-  
 };
 </script>
 

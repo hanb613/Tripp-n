@@ -46,20 +46,23 @@
                 >비밀번호 찾기</span
               > </span
             ><br /><br />
-            <b-button
-              type="button"
-              variant="primary"
-              class="m-1"
-              @click="confirm"
-              >로그인</b-button
-            >
-            <b-button
-              type="button"
-              variant="success"
-              class="m-1"
-              @click="movePage('register')"
-              >회원가입</b-button
-            >
+
+            <div style="display: flex; justify-content: center">
+              <b-button
+                type="button"
+                variant="primary"
+                class="m-1"
+                @click="confirm"
+                >로그인</b-button
+              >
+              <b-button
+                type="button"
+                variant="success"
+                class="m-1"
+                @click="movePage('register')"
+                >회원가입</b-button
+              >
+            </div>
           </b-form>
         </b-card>
       </b-col>
@@ -83,7 +86,9 @@ export default {
       },
     };
   },
-  created: {},
+  created() {
+      this.$store.commit(`${memberStore}/SET_IS_LOGIN_ERROR`, false)
+  },
   computed: {
     ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
   },

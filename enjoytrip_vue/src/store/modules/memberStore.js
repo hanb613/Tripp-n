@@ -1,12 +1,21 @@
-import { login, logout, modify, findById } from "@/api/member.js";
+import { login, logout, modify, findById, findByPw } from "@/api/member.js";
 
 const memberStore = {
   namespaced: true,
   state: {
+    // 로그인
     isLogin: false,
     isLoginError: false,
+
+    // 아이디 찾기
     isIdFindError: false,
     userFindId: "",
+
+    // 비밀번호 찾기
+    isPwFindError: false,
+    userFindPw: "",
+
+    // 회원정보
     userInfo: {
       userNo: 0,
       id: null,
@@ -35,12 +44,18 @@ const memberStore = {
     SET_IS_ID_FIND_ERROR: (state, isIdFindError) => {
       state.isIdFindError = isIdFindError;
     },
+    SET_IS_PW_FIND_ERROR: (state, isPwFindError) => {
+      state.isPwFindError = isPwFindError;
+    },
     SET_USER_INFO: (state, userInfo) => {
       state.isLogin = true;
       state.userInfo = userInfo;
     },
     SET_USER_FIND_ID: (state, userFindId) => {
       state.userFindId = userFindId;
+    },
+    SET_USER_FIND_PW: (state, userFindPw) => {
+      state.userFindPw = userFindPw;
     },
     SET_CHANGE_DATA: (state, changeData) => {
       state.userInfo.changeData = changeData;
@@ -106,6 +121,22 @@ const memberStore = {
             commit("SET_USER_FIND_ID", data.userInfo.id);
           } else {
             commit("SET_IS_ID_FIND_ERROR", true);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    async userPwConfirm({ commit }, user) {
+      await findByPw(
+        user,
+        ({ data }) => {
+          if (data.message === "success") {
+            commit("SET_IS_PW_FIND_ERROR", false);
+            commit("SET_USER_FIND_PW", data.userInfo.password);
+          } else {
+            commit("SET_IS_PW_FIND_ERROR", true);
           }
         },
         (error) => {
