@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       articles: [],
+      likeCnts: [],
       fields: [
         { key: "boardNo", label: "글번호", tdClass: "tdClass", thClass: "th" },
         { key: "subject", label: "제목", tdClass: "tdSubject" },
@@ -60,8 +61,12 @@ export default {
     listArticle(
       param,
       ({ data }) => {
-        console.log(data);
-        this.articles = data;
+        // console.log(data);
+        // 글정보 articles에 좋아요수 likeCnts를 합친다
+        this.likeCnts = data.likedList;
+        this.articles = data.articleList.map((article, index) => {
+          return { ...article, like: this.likeCnts[index] };
+        });
       },
       (error) => {
         console.log(error);

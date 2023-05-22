@@ -1,5 +1,6 @@
 package com.ssafy.enjoytrip.board.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import com.ssafy.enjoytrip.util.PageNavigation;
 
 public interface BoardService {
 	public boolean writeArticle(BoardDto boardDto) throws Exception;
-	public List<BoardDto> listArticle(BoardParameterDto boardParameterDto) throws Exception;
+	public Map<String, Object> listArticle(BoardParameterDto boardParameterDto) throws Exception;
 	public PageNavigation makePageNavigation(BoardParameterDto boardParameterDto) throws Exception;
 	
 	public BoardDto getArticle(int boardNo) throws Exception;
@@ -25,6 +26,6 @@ public interface BoardService {
 	/* 게시물 좋아요 */
 	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception;
 	public boolean likeBoard(BoardLikeDto boardLikeDto) throws Exception;
-	
+	int getLikeCount(int boardNo) throws Exception;
 
 }

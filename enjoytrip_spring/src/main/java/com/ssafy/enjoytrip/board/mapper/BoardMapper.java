@@ -36,7 +36,7 @@ public interface BoardMapper {
 	
 //	// 게시물 좋아요
 	public List<BoardLikeDto> getLikeList(int boardNo) throws SQLException;
-//	int getLikeCount(int boardNo) throws SQLException;
+	int getLikeCount(int boardNo) throws SQLException;
 //	void updateLike(int boardNo) throws SQLException;
 	public boolean likeBoard(BoardLikeDto boardLikeDto) throws SQLException;
 }

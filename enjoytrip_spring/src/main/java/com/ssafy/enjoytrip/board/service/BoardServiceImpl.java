@@ -1,6 +1,9 @@
 package com.ssafy.enjoytrip.board.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +32,22 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> listArticle(BoardParameterDto boardParameterDto) throws Exception {
+	public Map<String, Object> listArticle(BoardParameterDto boardParameterDto) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
 		int start = boardParameterDto.getPg() == 0 ? 0 : (boardParameterDto.getPg() - 1) * boardParameterDto.getSpp();
 		boardParameterDto.setStart(start);
-		return sqlSession.getMapper(BoardMapper.class).listArticle(boardParameterDto);
+		
+		List<BoardDto>articleList = sqlSession.getMapper(BoardMapper.class).listArticle(boardParameterDto);
+		List<Integer>likedList = new ArrayList<Integer>();
+		for(BoardDto i:articleList) {
+			int boardNo = i.getBoardNo();
+			likedList.add(sqlSession.getMapper(BoardMapper.class).getLikeCount(boardNo));
+		}
+		resultMap.put("articleList", articleList);
+		resultMap.put("likedList", likedList);
+		
+		// return sqlSession.getMapper(BoardMapper.class).listArticle(boardParameterDto);
+		return resultMap;
 	}
 
 	@Override
@@ -98,5 +113,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean likeBoard(BoardLikeDto boardLikeDto) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).likeBoard(boardLikeDto);
+	}
+
+	@Override
+	public int getLikeCount(int boardNo) throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).getLikeCount(boardNo);
 	}
 }
