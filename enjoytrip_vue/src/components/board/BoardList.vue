@@ -2,7 +2,10 @@
   <b-container class="bv-example-row mt-3">
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()"
+        <b-button
+          variant="outline-primary"
+          v-if="checkAuthority()"
+          @click="moveWrite()"
           >글쓰기</b-button
         >
       </b-col>
@@ -88,7 +91,9 @@ export default {
     },
     moveWrite() {
       if (this.userInfo !== null) {
-        this.$router.push({ name: "boardwrite" });
+        this.$router.push({
+          name: this.isNotice ? "noticewrite" : "boardwrite",
+        });
       } else {
         alert("로그인 후 이용해주세요!");
         this.$router.push({ name: "UserLogin" });
@@ -104,6 +109,12 @@ export default {
         alert("로그인 후 이용해주세요!");
         this.$router.push({ name: "UserLogin" });
       }
+    },
+    checkAuthority() {
+      //공지사항 작성/수정/삭제는 admin만 가능
+      return (
+        this.userInfo && (this.userInfo.name === "admin" || !this.isNotice)
+      );
     },
   },
 };

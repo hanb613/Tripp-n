@@ -104,15 +104,15 @@ const routes = [
             /* webpackChunkName: "notice" */ "@/components/board/BoardList"
           ),
       },
-      // {
-      //   path: "write",
-      //   name: "boardwrite",
-      //   // beforeEnter: onlyAuthUser,
-      //   component: () =>
-      //     import(
-      //       /* webpackChunkName: "board" */ "@/components/board/BoardWrite"
-      //     ),
-      // },
+      {
+        path: "write",
+        name: "noticewrite",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(
+            /* webpackChunkName: "board" */ "@/components/board/BoardWrite"
+          ),
+      },
       // {
       //   path: "view/:boardNo",
       //   name: "boardview",
