@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header-view></header-view>
-    <aside id="weather">
+    <aside id="weather" v-if="showAside">
       <weather-view></weather-view>
     </aside>
     <router-view></router-view>
@@ -32,6 +32,10 @@ export default {
   },
   computed: {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
+    showAside(){
+      const currentPath = this.$route.path;
+      return currentPath !== '/';
+    }
   },
   created() {
     const isLogin = sessionStorage.getItem("isLogin");
