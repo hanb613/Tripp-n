@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     updateLocNo() {
-      let locNo = this.sidoNo * 1000 + this.gugunNo;
+      let locNo = this.sidoNo.sidoNo * 1000 + this.gugunNo;
       this.$emit("update-loc-no", locNo);
     },
     ...mapActions(attractionStore, ["getSido", "getGugun", "getAttrList"]),
@@ -58,7 +58,7 @@ export default {
       this.CLEAR_CONTENTS_LIST();
       this.gugunNo = 0;
       this.contentTypeId = 0;
-      if (this.sidoNo) this.getGugun(this.sidoNo);
+      if (this.sidoNo.sidoNo) this.getGugun(this.sidoNo.sidoNo);
     },
   },
 };

@@ -35,16 +35,25 @@
       </b-col>
       <b-col>right</b-col>
     </b-row>
+    <b-row>
+      <weather-view></weather-view>
+
+    </b-row>
   </b-container>
 </template>
 
 <script>
+import WeatherView from '@/components/common/weather.vue'
+
 export default {
   name: "AppMain",
   data() {
     return {
       msg: null,
     };
+  },
+  components: {
+    WeatherView
   },
   mounted() {
     if (this.msg !== null) {

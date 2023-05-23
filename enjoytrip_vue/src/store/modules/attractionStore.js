@@ -13,7 +13,7 @@ const attractionStore = {
   mutations: {
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sidoNo) => {
-        state.sidos.push({ value: sidoNo.sidoNo, text: sidoNo.sidoName });
+        state.sidos.push({ value: sidoNo, text: sidoNo.sidoName });
       });
     },
     SET_GUGUN_LIST(state, guguns) {

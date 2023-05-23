@@ -77,12 +77,12 @@ export default {
       this.CLEAR_CONTENTS_LIST();
       this.gugunNo = 0;
       this.contentTypeId = 0;
-      if (this.sidoNo) this.getGugun(this.sidoNo);
+      if (this.sidoNo.sidoNo) this.getGugun(this.sidoNo.sidoNo);
     },
     searchAttr() {
       console.log(this.sidoNo, this.gugunNo, this.contentTypeId);
       //if (this.sidoNo && this.gugunNo && this.contentTypeId)
-      this.getAttrList([this.sidoNo, this.gugunNo, this.contentTypeId]);
+      this.getAttrList([this.sidoNo.sidoNo, this.gugunNo, this.contentTypeId]);
     },
   },
 };
