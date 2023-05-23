@@ -3,16 +3,23 @@
     <b-row>
       <b-col>
         <b-table :items="comments" :fields="fields" class="font">
-          <!-- <template #cell(subject)="data">
-            <router-link
-              :to="{
-                name: 'boardview',
-                params: { boardNo: data.item.boardNo },
-              }"
-            >
-              {{ data.item.subject }}
-            </router-link>
-          </template> -->
+          <template #cell(userName)="data">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>{{ data.item.userName }}</div>
+              <div v-if="data.item.userNo === userInfo.userNo">
+                <b-button
+                  variant="outline-danger"
+                  size="sm"
+                  @click="deleteItem(data.item)"
+                >
+                  삭제
+                </b-button>
+              </div>
+            </div>
+          </template>
+          <template #cell(content)="data">
+            {{ data.item.content }}
+          </template>
         </b-table>
       </b-col>
     </b-row>
@@ -20,7 +27,10 @@
 </template>
 
 <script>
-import { listComment } from "@/api/comment";
+import { listComment, deleteComment } from "@/api/comment";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "CommentList",
@@ -47,10 +57,36 @@ export default {
       }
     );
   },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
+  methods: {
+    deleteItem(data) {
+      let param = data.commentNo;
+
+      console.log("삭제할 data", param);
+      deleteComment(
+        param,
+        ({ data }) => {
+          let msg = "삭제 처리시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "삭제가 완료되었습니다.";
+          }
+          alert(msg);
+          this.$router.go(0);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+  },
 };
 </script>
 
 <style scope>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
 .tdClass {
   width: 50px;
   text-align: center;
@@ -62,8 +98,6 @@ export default {
 .th {
   text-align: center;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 .font {
   font-family: "Noto Sans KR", sans-serif;

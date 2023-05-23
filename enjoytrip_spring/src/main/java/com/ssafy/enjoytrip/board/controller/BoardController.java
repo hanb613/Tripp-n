@@ -115,6 +115,15 @@ public class BoardController {
 		return new ResponseEntity<List<BoardCommentDto>>(boardService.listComment(boardNo), HttpStatus.OK);
 	}
 	
+	@DeleteMapping("/comment/{commentNo}")
+	public ResponseEntity<String> deleteComment(@PathVariable("commentNo") @ApiParam(value = "삭제할 댓글의  댓글 번호.", required = true) int commentNo) throws Exception {
+		logger.info("deleteComment - 호출");
+		if (boardService.deleteComment(commentNo)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
 	/* 게시물 좋아요 */
     @PostMapping("/like")
     public ResponseEntity<String> likeBoard(@RequestBody BoardLikeDto boardLikeDto) throws Exception {

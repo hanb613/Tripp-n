@@ -23,6 +23,8 @@ public interface BoardService {
 	/* 게시물 댓글 */
 	public boolean writeComment(BoardCommentDto boardCommentDto) throws Exception;
 	public List<BoardCommentDto> listComment(int boardNo) throws Exception;
+	public boolean deleteComment(int commentNo) throws Exception;
+	
 	/* 게시물 좋아요 */
 	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception;
 	public boolean likeBoard(BoardLikeDto boardLikeDto) throws Exception;

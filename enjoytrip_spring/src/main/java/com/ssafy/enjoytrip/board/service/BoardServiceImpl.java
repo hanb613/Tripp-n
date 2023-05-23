@@ -72,11 +72,6 @@ public class BoardServiceImpl implements BoardService {
 	public BoardDto getArticle(int boardNo) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).getArticle(boardNo);
 	}
-	
-//	@Override
-//	public void updateHit(int boardNo) throws Exception {
-//		sqlSession.getMapper(BoardMapper.class).updateHit(boardNo);
-//	}
 
 	@Override
 	@Transactional
@@ -87,7 +82,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	@Transactional
 	public boolean deleteArticle(int boardNo) throws Exception {
-		sqlSession.getMapper(BoardMapper.class).deleteComment(boardNo);
 		return sqlSession.getMapper(BoardMapper.class).deleteArticle(boardNo) == 1;
 	}
 	
@@ -105,6 +99,13 @@ public class BoardServiceImpl implements BoardService {
 		return sqlSession.getMapper(BoardMapper.class).listComment(boardNo);
 	}
 
+	@Override
+	@Transactional
+	public boolean deleteComment(int commentNo) throws Exception {
+		return sqlSession.getMapper(BoardMapper.class).deleteComment(commentNo) == 1;
+	}
+	
+	/* 게시물 좋아요 */
 	@Override
 	public List<BoardLikeDto> getLikeList(int boardNo) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).getLikeList(boardNo);

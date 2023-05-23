@@ -28,7 +28,7 @@ public interface BoardMapper {
 //	void registerFile(BoardDto boardDto) throws Exception;
 
 //	// 게시물 댓글
-	void deleteComment(int commentNo) throws SQLException;
+	int deleteComment(int commentNo) throws SQLException;
 	int writeComment(BoardCommentDto boardCommentDto) throws SQLException;
 	List<BoardCommentDto> listComment(int boardNo) throws SQLException;
 //	void modifyComment(BoardDto boardDto) throws SQLException;

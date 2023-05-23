@@ -62,6 +62,7 @@ public class AttractionServiceImpl implements AttractionService{
 	@Override
 	public List<Map<String, Object>> getRecentLike() throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).getRecentLike();
+	}
 	
 	@Override
 	public boolean writeComment(AttractionCommentDto attractionCommentDto) throws Exception {
