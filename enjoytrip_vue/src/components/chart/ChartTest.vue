@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-card title="차트" class="mb-2">
+    <b-card title="BEST 관광지" class="mb-2">
       <Bar :data="chartData" />
     </b-card>
   </b-container>
