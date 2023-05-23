@@ -103,4 +103,13 @@ public class AttractionController {
     	System.out.println(result);
     	return result;
     }
+    
+    //Carousel용 최근 좋아요
+    @GetMapping("/recent")
+    public List<Map<String, Object>> getRecentLike() throws Exception{
+    	logger.info("recent - 호출");
+    	List<Map<String, Object>> result = attractionService.getRecentLike();
+    	System.out.println(result);
+    	return result;
+    }
 }

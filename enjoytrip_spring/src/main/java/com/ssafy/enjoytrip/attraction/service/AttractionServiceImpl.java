@@ -58,4 +58,9 @@ public class AttractionServiceImpl implements AttractionService{
 	public List<Map<String, Object>> getLikeCountBySido() throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).getLikeCountBySido();
 	}
+
+	@Override
+	public List<Map<String, Object>> getRecentLike() throws Exception {
+		return sqlSession.getMapper(AttractionMapper.class).getRecentLike();
+	}
 }

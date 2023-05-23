@@ -1,46 +1,14 @@
 <template>
-  <b-container class="bv-example-row">
-    <br>
-    <b-row>
-      <b-col>
-        <div>
-          <!-- v-model="slide" -->
-          <b-carousel
-            id="carousel-1"
-            :interval="4000"
-            controls
-            indicators
-            background="#ababab"
-            img-width="1024"
-            img-height="480"
-            style="text-shadow: 1px 1px 2px #333"
-            ><!-- Text slides with image -->
-            <b-carousel-slide
-              caption="Here"
-              text="description"
-              img-src="https://picsum.photos/1024/480/?image=52"
-            ></b-carousel-slide>
-            <b-carousel-slide
-              caption="Here"
-              text="description"
-              img-src="https://picsum.photos/1024/480/?image=54"
-            ></b-carousel-slide>
-            <b-carousel-slide
-              caption="Here"
-              text="description"
-              img-src="https://picsum.photos/1024/480/?image=58"
-            ></b-carousel-slide>
-          </b-carousel>
-        </div>
-      </b-col>
-    </b-row>
-    <br>
-  </b-container>
+<attraction-carousel/>
 </template>
 
 <script>
+import AttractionCarousel from '@/components/attraction/AttractionCarousel.vue';
 export default {
   name: "AppMain",
+  components:{
+    AttractionCarousel,
+  },
   data() {
     return {
       msg: null,
@@ -67,7 +35,4 @@ export default {
   width:53.3333vw;
 }
 
-#carousel-1{
-  width:53.3333vw;
-}
 </style>

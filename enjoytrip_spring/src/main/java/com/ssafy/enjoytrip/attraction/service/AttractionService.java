@@ -17,4 +17,5 @@ public interface AttractionService {
 	boolean likeAttraction(AttractionLikeDto attrLikeDto) throws Exception;
 	List<AttractionDto> getLikeAttrList(int userNo) throws Exception;
 	List<Map<String, Object>> getLikeCountBySido() throws Exception;
+	List<Map<String, Object>> getRecentLike() throws Exception;
 }

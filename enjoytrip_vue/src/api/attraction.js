@@ -27,4 +27,8 @@ function getLikeCountBySido(success, fail) {
   api.get(`/attraction/chart`).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, attrList, getAttraction, likeAttraction, getLikeCountBySido };
+function getRecentLike(success, fail) {
+  api.get(`/attraction/recent`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, attrList, getAttraction, likeAttraction, getLikeCountBySido, getRecentLike };

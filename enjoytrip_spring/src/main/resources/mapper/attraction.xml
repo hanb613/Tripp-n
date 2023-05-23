@@ -73,4 +73,14 @@
 		group by s.sido_name
 		order by count(f.favorite_no) desc
 	</select>
+
+	<select id="getRecentLike" resultType="map" >
+		select att.content_no 'contentNo', att.title 'title', att.addr1 'addr', att.first_image 'imgsrc'
+		from favorite_place fav, attraction_info att, sido s
+		where fav.content_no = att.content_no
+		and floor(att.loc_no/1000) = s.sido_no
+		order by fav.registration_date desc
+		limit 5
+	</select>
+	
 </mapper>
