@@ -94,4 +94,13 @@ public class AttractionController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
+    
+    //차트
+    @GetMapping("/chart")
+    public List<Map<String, Object>> getLikeCountBySido() throws Exception {
+    	logger.info("chart - 호출");
+    	List<Map<String, Object>> result = attractionService.getLikeCountBySido();
+    	System.out.println(result);
+    	return result;
+    }
 }

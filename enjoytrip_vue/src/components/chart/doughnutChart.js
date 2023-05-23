@@ -1,10 +1,10 @@
-import { Doughnut } from 'vue-chartjs';
+import { Bar } from 'vue-chartjs'
+
 export default {
-    mixins: [Doughnut],
-    name: "DoughnutChart",
-    props: ["chartData", "options"],
+    extends: Bar,
+    props: ['data', 'options'],
     mounted() {
-        console.log("drawing chart");
-        this.renderChart(this.chartData, this.options);
+        console.log("drawing chart...");
+        this.renderChart(this.data, this.options)
     }
-};
+}

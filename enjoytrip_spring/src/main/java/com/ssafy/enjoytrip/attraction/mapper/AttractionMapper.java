@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.attraction.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,4 +19,5 @@ public interface AttractionMapper {
 	List<AttractionLikeDto> getLikeList(int contentNo) throws SQLException;
 	boolean likeAttraction(AttractionLikeDto attrLikeDto) throws SQLException;
 	List<AttractionDto> getLikeAttrList(int userNo) throws SQLException;
+	List<Map<String, Object>> getLikeCountBySido() throws SQLException;
 }

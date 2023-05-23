@@ -23,4 +23,8 @@ function likeAttraction(params, success, fail) {
   api.post(`/attraction/like`, params).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, attrList, getAttraction, likeAttraction };
+function getLikeCountBySido(success, fail) {
+  api.get(`/attraction/chart`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, attrList, getAttraction, likeAttraction, getLikeCountBySido };

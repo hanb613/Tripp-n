@@ -1,6 +1,7 @@
 package com.ssafy.enjoytrip.attraction.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class AttractionServiceImpl implements AttractionService{
 	@Override
 	public List<AttractionDto> getLikeAttrList(int userNo) throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).getLikeAttrList(userNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> getLikeCountBySido() throws Exception {
+		return sqlSession.getMapper(AttractionMapper.class).getLikeCountBySido();
 	}
 }

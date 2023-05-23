@@ -64,4 +64,13 @@
 		where f.user_no = #{userNo}
 		order by f.favorite_no
 	</select>
+
+	<select id="getLikeCountBySido" resultType="map">
+		select s.sido_name 'name', count(f.favorite_no) 'likeCnt' from
+		favorite_place f, attraction_info attr, sido s
+		where f.content_no = attr.content_no
+		and floor(attr.loc_no/1000) = s.sido_no
+		group by s.sido_name
+		order by count(f.favorite_no) desc
+	</select>
 </mapper>
