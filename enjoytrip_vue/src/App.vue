@@ -4,7 +4,7 @@
     <aside id="weather">
       <weather-view></weather-view>
     </aside>
-      <router-view></router-view>
+    <router-view></router-view>
     <footer-view></footer-view>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 import HeaderView from "./components/common/Header.vue";
 import FooterView from "./components/common/Footer.vue";
-import WeatherView from "./components/common/weather.vue"
+import WeatherView from "./components/common/weather.vue";
 
 import { mapState } from "vuex";
 
@@ -54,13 +54,12 @@ export default {
   position: relative;
   /* padding-bottom: 160px; */
 }
-#weather{
-  position:fixed;
+#weather {
+  position: fixed;
   /* right: 0; */
-  margin-top:30px;
+  margin-top: 30px;
   /* margin-right:250px; */
   /* margin-right:13.0208vw; */
   margin-left: 75vw;
-
 }
 </style>
