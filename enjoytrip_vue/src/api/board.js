@@ -27,4 +27,11 @@ function likeArticle(params, success, fail) {
   api.post(`/board/like`, params).then(success).catch(fail);
 }
 
-export { listArticle, writeArticle, getArticle, modifyArticle, deleteArticle, likeArticle };
+export {
+  listArticle,
+  writeArticle,
+  getArticle,
+  modifyArticle,
+  deleteArticle,
+  likeArticle,
+};

@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col><b-alert show variant="primary">삭제처리중...</b-alert></b-col>
     </b-row>
@@ -22,7 +22,7 @@ export default {
         }
         alert(msg);
         // 현재 route를 /list로 변경.
-        this.$router.push({ name: "boardlist" });
+        this.$router.go(-1);
       },
       (error) => {
         console.log(error);
@@ -32,4 +32,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.bv-example-row.container {
+  width: 57.8125vw;
+}
+</style>

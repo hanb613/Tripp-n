@@ -75,13 +75,12 @@ export default {
       getArticle(
         param,
         ({ data }) => {
-          this.article = data;
+          this.article = data.article;
         },
         (error) => {
           console.log(error);
         }
       );
-      this.isUserid = true;
     }
   },
   computed: {
@@ -148,10 +147,7 @@ export default {
         subject: this.article.subject,
         content: this.article.content,
       };
-      console.log("로그인", this.article.userNo);
-      console.log("로그인", this.userInfo.userNo);
 
-      // if(this.userInfo.userNo === )
       modifyArticle(
         param,
         ({ data }) => {
@@ -169,9 +165,11 @@ export default {
       );
     },
     moveList() {
-      this.$router.push({
-        name: this.isNotice ? "noticelist" : "boardlist",
-      });
+      console.log(this.isNotice);
+      this.$router.go(-1);
+      // this.$router.push({
+      //   name: this.isNotice ? "noticelist" : "boardlist",
+      // });
     },
   },
 };

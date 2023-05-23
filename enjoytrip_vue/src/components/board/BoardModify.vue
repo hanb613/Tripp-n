@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <board-input-item type="modify" />
   </b-container>
 </template>
@@ -15,4 +15,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.bv-example-row.container {
+  width: 57.8125vw;
+}
+</style>

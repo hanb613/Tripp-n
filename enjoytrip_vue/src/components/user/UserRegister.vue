@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>회원가입</h3></b-alert>
@@ -99,8 +99,8 @@
     </b-row>
   </b-container>
 </template>
-  
-  <script>
+
+<script>
 import LocationSelectItem from "@/components/user/item/LocationSelectItem.vue";
 import { register } from "@/api/member";
 import { mapState } from "vuex";
@@ -157,11 +157,11 @@ export default {
         age: this.user.age,
         gender: this.user.gender,
       };
-      
+
       let msg = "회원 정보를 정확히 입력해주세요! 😭";
       register(
         param,
-        ({ data }) => {    
+        ({ data }) => {
           if (data === "success") {
             msg = "회원 등록 완료! 😍";
           }
@@ -191,6 +191,9 @@ export default {
   },
 };
 </script>
-  
-  <style></style>
-  
+
+<style scoped>
+.bv-example-row.container {
+  width: 57.8125vw;
+}
+</style>

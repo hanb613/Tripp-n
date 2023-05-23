@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>로그인</h3></b-alert>
@@ -87,7 +87,7 @@ export default {
     };
   },
   created() {
-      this.$store.commit(`${memberStore}/SET_IS_LOGIN_ERROR`, false)
+    this.$store.commit(`${memberStore}/SET_IS_LOGIN_ERROR`, false);
   },
   computed: {
     ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
@@ -116,4 +116,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bv-example-row.container {
+  width: 57.8125vw;
+}
+</style>

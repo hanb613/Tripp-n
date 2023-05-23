@@ -2,7 +2,10 @@
   <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
-        <b-table :items="comments" :fields="fields" class="font">
+        <b-alert show variant="primary" v-if="comments.length === 0"
+          >작성된 댓글이 없습니다.</b-alert
+        >
+        <b-table v-else :items="comments" :fields="fields" class="font">
           <template #cell(userName)="data">
             <div class="d-flex justify-content-between align-items-center">
               <div>{{ data.item.userName }}</div>

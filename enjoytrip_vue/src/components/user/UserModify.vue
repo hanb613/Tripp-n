@@ -174,8 +174,6 @@ export default {
 
       await this.modifyUser(param);
 
-      console.log(this.userInfo);
-
       if (this.userInfo.changeData === true) {
         alert("회원 정보 수정 완료! 😍");
 

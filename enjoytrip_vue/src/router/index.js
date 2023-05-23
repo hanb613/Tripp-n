@@ -123,33 +123,33 @@ const routes = [
             /* webpackChunkName: "board" */ "@/components/board/BoardWrite"
           ),
       },
-      // {
-      //   path: "view/:boardNo",
-      //   name: "boardview",
-      //   // beforeEnter: onlyAuthUser,
-      //   component: () =>
-      //     import(
-      //       /* webpackChunkName: "board" */ "@/components/board/BoardView"
-      //     ),
-      // },
-      // {
-      //   path: "modify",
-      //   name: "boardmodify",
-      //   // beforeEnter: onlyAuthUser,
-      //   component: () =>
-      //     import(
-      //       /* webpackChunkName: "board" */ "@/components/board/BoardModify"
-      //     ),
-      // },
-      // {
-      //   path: "delete/:articleno",
-      //   name: "boarddelete",
-      //   // beforeEnter: onlyAuthUser,
-      //   component: () =>
-      //     import(
-      //       /* webpackChunkName: "board" */ "@/components/board/BoardDelete"
-      //     ),
-      // },
+      {
+        path: "view/:boardNo",
+        name: "noticeview",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(
+            /* webpackChunkName: "board" */ "@/components/board/BoardView"
+          ),
+      },
+      {
+        path: "modify",
+        name: "noticemodify",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(
+            /* webpackChunkName: "board" */ "@/components/board/BoardModify"
+          ),
+      },
+      {
+        path: "delete/:articleno",
+        name: "noticedelete",
+        // beforeEnter: onlyAuthUser,
+        component: () =>
+          import(
+            /* webpackChunkName: "board" */ "@/components/board/BoardDelete"
+          ),
+      },
     ],
   },
   {
@@ -213,7 +213,8 @@ const routes = [
     //차트
     path: "/chart",
     name: "chart",
-    component: () => import(/* webpackChunkName: "chart" */ "@/components/chart/ChartTest"),
+    component: () =>
+      import(/* webpackChunkName: "chart" */ "@/components/chart/ChartTest"),
   },
 ];
 
