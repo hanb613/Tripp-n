@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row class="mb-1">
       <b-col id="container">
         <b-card
@@ -66,6 +66,12 @@
         </b-card>
       </b-col>
     </b-row>
+
+    <b-row class="ml-1" style="margin-top: 50px">
+      <h4><b-icon icon="list"></b-icon> <span class="font">댓글</span></h4>
+      <comment-write :contentNo="this.attraction.contentNo"></comment-write>
+      <comment-list :contentNo="this.attraction.contentNo"></comment-list>
+    </b-row>
   </b-container>
 </template>
 
@@ -73,12 +79,18 @@
 import { getAttraction, likeAttraction } from "@/api/attraction";
 import { mapState } from "vuex";
 
+import CommentList from "./comment/CommentList.vue";
+import CommentWrite from "./comment/CommentWrite.vue";
+
 const memberStore = "memberStore";
 const attractionStore = "attractionStore";
 
 export default {
   name: "AttractionDetail",
-  components: {},
+  components: {
+    CommentList,
+    CommentWrite,
+  },
   data() {
     return {
       attraction: {},
@@ -152,6 +164,9 @@ export default {
   align-content: center;
 }
 
+.bv-example-row.container {
+  width: 57.8125vw;
+}
 .font {
   font-family: "Noto Sans KR", sans-serif;
 }

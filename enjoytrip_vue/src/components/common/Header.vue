@@ -12,21 +12,25 @@
       </a>
       <b-nav id="navbar" class="navbar">
         <b-nav-item href="#">
-          <b-nav-item-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
+          <b-nav-item-dropdown
+            variant="link"
+            toggle-class="text-decoration-none"
+            no-caret
+          >
             <template #button-content>
               <b-icon icon="map" font-scale="2" class="m-1"></b-icon>
               관광지 조회
             </template>
-          <b-dropdown-item>
-            <router-link :to="{ name: 'attraction' }" class="link">
-              관광지 찾기
-            </router-link>
-          </b-dropdown-item>
-          <b-dropdown-item>
-            <router-link :to="{ name: 'chart' }" class="link">
-              좋아요 순위
-            </router-link>
-          </b-dropdown-item>
+            <b-dropdown-item>
+              <router-link :to="{ name: 'attraction' }" class="link">
+                관광지 찾기
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <router-link :to="{ name: 'chart' }" class="link">
+                BEST 관광지
+              </router-link>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
           <router-link :to="{ name: 'notice' }" class="m-2 link">
             <b-icon icon="megaphone" font-scale="2" class="m-1"></b-icon>
@@ -116,12 +120,11 @@ export default {
 </script>
 
 <style>
-.header{
+.header {
   /* padding-left:250px;
   padding-right:250px; */
-  padding-left:13.0208vw;
-  padding-right:13.0208vw;
-
+  padding-left: 13.0208vw;
+  padding-right: 13.0208vw;
 }
 
 .navbar .nav-item {

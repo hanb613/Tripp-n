@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>회원 정보 수정</h3></b-alert>
@@ -193,4 +193,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bv-example-row.container {
+  width: 57.8125vw;
+}
+</style>

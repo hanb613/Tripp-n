@@ -1,9 +1,9 @@
 package com.ssafy.enjoytrip.attraction.service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 
@@ -18,4 +18,7 @@ public interface AttractionService {
 	List<AttractionDto> getLikeAttrList(int userNo) throws Exception;
 	List<Map<String, Object>> getLikeCountBySido() throws Exception;
 	List<Map<String, Object>> getRecentLike() throws Exception;
+	/* 댓글 */
+	public boolean writeComment(AttractionCommentDto attractionCommentDto) throws Exception;
+	public List<AttractionCommentDto> listComment(int contentNo) throws Exception;
 }

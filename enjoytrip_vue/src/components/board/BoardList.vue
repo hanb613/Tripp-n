@@ -132,10 +132,10 @@ export default {
 }
 
 .bv-example-row.container {
-    width: 57.8125vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  width: 57.8125vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 </style>

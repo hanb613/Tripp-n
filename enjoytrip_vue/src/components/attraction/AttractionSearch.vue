@@ -14,7 +14,7 @@
       </b-row>
     </b-container>
     <!-- 결과 없을때 -->
-    <b-container v-else class="bv-example-row mt-3">
+    <b-container v-else class="bv-example-row mt-3 ml-1">
       <b-row>
         <b-col><b-alert show>관광지 목록이 없습니다.</b-alert></b-col>
       </b-row>
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.bv-example-row.container{
-  width:57.8125vw;
+.bv-example-row.container {
+  width: 57.8125vw;
 }
 </style>

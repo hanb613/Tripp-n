@@ -2,25 +2,14 @@
   <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
-        <b-table :items="comments" :fields="fields" class="font">
-          <!-- <template #cell(subject)="data">
-            <router-link
-              :to="{
-                name: 'boardview',
-                params: { boardNo: data.item.boardNo },
-              }"
-            >
-              {{ data.item.subject }}
-            </router-link>
-          </template> -->
-        </b-table>
+        <b-table :items="comments" :fields="fields" class="font"> </b-table>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import { listComment } from "@/api/comment";
+import { listAttrComment } from "@/api/comment";
 
 export default {
   name: "CommentList",
@@ -34,9 +23,9 @@ export default {
     };
   },
   created() {
-    let param = this.$route.params.boardNo;
+    let param = this.$route.params.contentNo;
 
-    listComment(
+    listAttrComment(
       param,
       ({ data }) => {
         console.log(data);

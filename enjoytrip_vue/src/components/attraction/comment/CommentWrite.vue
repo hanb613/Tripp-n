@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { writeComment } from "@/api/comment";
+import { writeAttrComment } from "@/api/comment";
 import { mapState, mapGetters } from "vuex";
 
 const memberStore = "memberStore";
@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       comment: {
-        boardNo: "",
+        contentNo: "",
         userNo: "",
         content: "",
       },
@@ -75,16 +75,17 @@ export default {
         let err = true;
         let param = {
           //로그인유저의 정보
-          boardNo: this.$route.params.boardNo,
+          contentNo: this.$route.params.contentNo,
           userNo: this.userInfo.userNo,
           content: this.comment.content,
         };
 
+        console.log(param);
         !this.comment.content && ((msg = "내용을 입력해주세요"), (err = false));
 
         if (!err) alert(msg);
         else {
-          writeComment(
+          writeAttrComment(
             param,
             ({ data }) => {
               msg = "다시 써주세요! 😢";
@@ -117,4 +118,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

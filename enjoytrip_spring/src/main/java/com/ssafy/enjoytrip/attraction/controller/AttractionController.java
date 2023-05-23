@@ -1,17 +1,9 @@
 package com.ssafy.enjoytrip.attraction.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
-import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 import com.ssafy.enjoytrip.attraction.service.AttractionService;
-import com.ssafy.enjoytrip.board.model.BoardDto;
+import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.location.model.LocationDto;
 import com.ssafy.enjoytrip.location.service.LocationService;
-
-import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attraction")
@@ -112,4 +103,20 @@ public class AttractionController {
     	System.out.println(result);
     	return result;
     }
+
+    @PostMapping("/comment")
+	public ResponseEntity<String> writeComment(@RequestBody AttractionCommentDto attractionCommentDto) throws Exception {
+		logger.info("writeComment - 호출");
+		if (attractionService.writeComment(attractionCommentDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("/comment/{contentNo}")
+	public ResponseEntity<List<AttractionCommentDto>> listComment(@PathVariable("contentNo") int contentNo) throws Exception {
+		logger.info("listComment - 호출");
+		System.out.println(attractionService.listComment(contentNo));
+		return new ResponseEntity<List<AttractionCommentDto>>(attractionService.listComment(contentNo), HttpStatus.OK);
+	}
 }
