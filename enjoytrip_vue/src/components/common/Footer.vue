@@ -1,11 +1,11 @@
 <template>
   <footer id="footer" class="footer">
     <div class="container">
-      <div class="credits">
-        © Copyright All Rights Reserved
-      </div>
+      <div class="credits">© Copyright All Rights Reserved</div>
       <div class="copyright">
-        Developer Yeong-seo Yoo, Kyeong-hee Shin<br>
+        <router-link :to="{ name: 'doughnut-chart' }" class="link">
+          Developer Yeong-seo Yoo, Kyeong-hee Shin<br />
+        </router-link>
       </div>
     </div>
   </footer>
@@ -25,8 +25,8 @@ export default {
   height: 9vw;
   margin-top: 30px;
 }
-.container{
-  width:100%;
+.container {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

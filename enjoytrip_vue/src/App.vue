@@ -10,7 +10,7 @@
 import HeaderView from "./components/common/Header.vue";
 import FooterView from "./components/common/Footer.vue";
 
-import {  mapState } from "vuex";
+import { mapState } from "vuex";
 
 const memberStore = "memberStore";
 
