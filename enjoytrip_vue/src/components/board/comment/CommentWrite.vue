@@ -1,44 +1,41 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row class="mb-1">
       <b-col style="text-align: left">
         <b-form>
           <b-form-group id="content-group" label="내용:" label-for="content">
-            <b-form-textarea
-              id="content"
-              v-model="comment.content"
-              placeholder="댓글 입력..."
-              rows="2"
-              max-rows="15"
-            ></b-form-textarea>
+            <b-row>
+              <b-col cols="11">
+                <b-form-textarea
+                  id="content"
+                  v-model="comment.content"
+                  placeholder="댓글 입력..."
+                  rows="2"
+                  max-rows="15"
+                ></b-form-textarea>
+              </b-col>
+              <b-col
+                cols="1"
+                class="d-flex align-items-center justify-content-center"
+              >
+                <b-button
+                  variant="outline-primary"
+                  size="xl"
+                  type="submit"
+                  @click="registComment"
+                  class="mr-2 d-flex align-items-center justify-content-center"
+                  style="height: 100%"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 100%; text-align: center"
+                  >
+                    완료
+                  </span>
+                </b-button>
+              </b-col>
+            </b-row>
           </b-form-group>
-          <b-col class="text-right">
-            <b-button
-              variant="outline-primary"
-              size="sm"
-              type="submit"
-              @click="registComment"
-              class="mr-2"
-              >완료</b-button
-            >
-            <b-button
-              variant="outline-info"
-              size="sm"
-              type="submit"
-              v-show="false"
-              @click="modifyComment"
-              class="mr-2"
-              >수정</b-button
-            >
-            <b-button
-              variant="outline-danger"
-              type="submit"
-              size="sm"
-              v-show="false"
-              @click="deleteComment"
-              >삭제</b-button
-            >
-          </b-col>
         </b-form>
       </b-col>
     </b-row>

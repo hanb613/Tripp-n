@@ -1,7 +1,6 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row class="mb-1">
-      <!-- <b-col class="text-right" v-if="userInfo.userName === article.userName"> -->
       <b-col class="text-right font">
         <b-button
           variant="outline-primary"
@@ -66,15 +65,11 @@
         </b-card>
       </b-col>
     </b-row>
-    <br /><br />
-    <!-- <b-row>
-      <b-col>
-        <b-alert show><h4>댓글</h4></b-alert>
-      </b-col>
-    </b-row> -->
-    <h4><b-icon icon="list"></b-icon> <span class="font">댓글</span></h4>
-    <comment-write :boardNo="this.article.boardNo"></comment-write>
-    <comment-list :boardNo="this.article.boardNo"></comment-list>
+    <b-row class="ml-1" style="margin-top: 50px">
+      <h4><b-icon icon="list"></b-icon> <span class="font">댓글</span></h4>
+      <comment-write :boardNo="this.article.boardNo"></comment-write>
+      <comment-list :boardNo="this.article.boardNo"></comment-list>
+    </b-row>
   </b-container>
 </template>
 
@@ -138,7 +133,7 @@ export default {
       }
     },
     moveList() {
-      this.$router.push({ name: "boardlist" });
+      this.$router.go(-1);
     },
     toggleLike(event) {
       event.preventDefault();
@@ -177,6 +172,10 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.bv-example-row.container {
+  width: 57.8125vw;
+}
 
 .font {
   font-family: "Noto Sans KR", sans-serif;

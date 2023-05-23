@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
         <b-table :items="comments" :fields="fields" class="font">
