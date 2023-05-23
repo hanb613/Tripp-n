@@ -27,10 +27,15 @@ function writeAttrComment(comment, success, fail) {
     .catch(fail);
 }
 
+function deleteAttrComment(commentNo, success, fail) {
+  api.delete(`/attraction/comment/${commentNo}`).then(success).catch(fail);
+}
+
 export {
   listComment,
   writeComment,
+  deleteComment,
   listAttrComment,
   writeAttrComment,
-  deleteComment,
+  deleteAttrComment,
 };

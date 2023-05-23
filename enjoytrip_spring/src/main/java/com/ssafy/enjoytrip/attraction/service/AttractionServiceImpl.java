@@ -11,6 +11,7 @@ import com.ssafy.enjoytrip.attraction.mapper.AttractionMapper;
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
+import com.ssafy.enjoytrip.board.mapper.BoardMapper;
 
 @Service
 public class AttractionServiceImpl implements AttractionService{
@@ -75,5 +76,10 @@ public class AttractionServiceImpl implements AttractionService{
 	@Override
 	public List<AttractionCommentDto> listComment(int contentNo) throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).listComment(contentNo);
+	}
+	
+	@Override
+	public boolean deleteComment(int commentNo) throws Exception {
+		return sqlSession.getMapper(AttractionMapper.class).deleteComment(commentNo) == 1;
 	}
 }

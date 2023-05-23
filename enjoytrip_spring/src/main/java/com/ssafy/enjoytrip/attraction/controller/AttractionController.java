@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,8 @@ import com.ssafy.enjoytrip.attraction.service.AttractionService;
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.location.model.LocationDto;
 import com.ssafy.enjoytrip.location.service.LocationService;
+
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attraction")
@@ -118,5 +121,14 @@ public class AttractionController {
 		logger.info("listComment - 호출");
 		System.out.println(attractionService.listComment(contentNo));
 		return new ResponseEntity<List<AttractionCommentDto>>(attractionService.listComment(contentNo), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/comment/{commentNo}")
+	public ResponseEntity<String> deleteComment(@PathVariable("commentNo") int commentNo) throws Exception {
+		logger.info("deleteComment - 호출");
+		if (attractionService.deleteComment(commentNo)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 }

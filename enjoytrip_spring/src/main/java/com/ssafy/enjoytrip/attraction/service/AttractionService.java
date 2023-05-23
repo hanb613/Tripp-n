@@ -18,7 +18,9 @@ public interface AttractionService {
 	List<AttractionDto> getLikeAttrList(int userNo) throws Exception;
 	List<Map<String, Object>> getLikeCountBySido() throws Exception;
 	List<Map<String, Object>> getRecentLike() throws Exception;
+	
 	/* 댓글 */
 	public boolean writeComment(AttractionCommentDto attractionCommentDto) throws Exception;
 	public List<AttractionCommentDto> listComment(int contentNo) throws Exception;
+	public boolean deleteComment(int commentNo) throws Exception;
 }

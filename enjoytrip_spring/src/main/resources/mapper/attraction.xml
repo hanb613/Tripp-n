@@ -98,10 +98,16 @@
 	</insert>
 	
 	<select id="listComment" parameterType="int" resultMap="attractionComment">
-		SELECT u.name, b.content
+		SELECT u.name, b.content, b.user_no, b.comment_no
 		from attraction_comment b join user u
 		using (user_no)
 		where content_no = #{contentNo}
 		order by b.comment_no desc
 	</select>
+	
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from attraction_comment
+		where comment_no = #{commentNo}
+	</delete>
 </mapper>

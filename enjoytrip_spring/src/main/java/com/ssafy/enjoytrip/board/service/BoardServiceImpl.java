@@ -100,7 +100,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	@Transactional
 	public boolean deleteComment(int commentNo) throws Exception {
 		return sqlSession.getMapper(BoardMapper.class).deleteComment(commentNo) == 1;
 	}
