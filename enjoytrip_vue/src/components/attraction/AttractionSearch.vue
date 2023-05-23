@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <attraction-search-item></attraction-search-item>
     <attraction-map :attrList="attrs"></attraction-map>
 
@@ -51,4 +51,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bv-example-row.container{
+  width:57.8125vw;
+}
+</style>

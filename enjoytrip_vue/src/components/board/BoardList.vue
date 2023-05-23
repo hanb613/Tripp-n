@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3 ml-1">
     <b-row class="mb-1">
       <b-col class="text-right">
         <b-button
@@ -129,5 +129,13 @@ export default {
 }
 .th {
   text-align: center;
+}
+
+.bv-example-row.container {
+    width: 57.8125vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 </style>

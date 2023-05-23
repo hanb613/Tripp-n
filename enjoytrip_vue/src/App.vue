@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <header-view></header-view>
-    <router-view></router-view>
+    <aside id="weather">
+      <weather-view></weather-view>
+    </aside>
+      <router-view></router-view>
     <footer-view></footer-view>
   </div>
 </template>
@@ -9,6 +12,7 @@
 <script>
 import HeaderView from "./components/common/Header.vue";
 import FooterView from "./components/common/Footer.vue";
+import WeatherView from "./components/common/weather.vue"
 
 import { mapState } from "vuex";
 
@@ -18,6 +22,7 @@ export default {
   name: "App",
   components: {
     HeaderView,
+    WeatherView,
     FooterView,
   },
   data() {
@@ -39,14 +44,6 @@ export default {
       this.$store.commit(`${memberStore}/SET_USER_INFO`, null);
     }
   },
-  // methods: {
-  //   initializeLogin() {
-  //     this.userLogout();
-  //   },
-  // },
-  // mounted() {
-  //   this.initializeLogin();
-  // },
 };
 </script>
 
@@ -54,7 +51,16 @@ export default {
 #app {
   /* min-height: calc(100%-9vw); */
   min-height: 100vh;
-  position: absolute;
+  position: relative;
   /* padding-bottom: 160px; */
+}
+#weather{
+  position:fixed;
+  /* right: 0; */
+  margin-top:30px;
+  /* margin-right:250px; */
+  /* margin-right:13.0208vw; */
+  margin-left: 75vw;
+
 }
 </style>

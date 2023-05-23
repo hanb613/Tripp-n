@@ -1,7 +1,7 @@
 <template>
   <header id="header" class="header d-flex align-items-center">
     <div
-      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+      class="container-fluid container-l d-flex align-items-center justify-content-between"
     >
       <a href="/" class="d-flex align-items-center">
         <img
@@ -24,10 +24,6 @@
             <b-icon icon="clipboard" font-scale="2" class="m-1"></b-icon>
             게시판
           </router-link>
-          <router-link :to="{ name: 'UserLike' }" class="m-2 link">
-            <b-icon icon="bookmark-star" font-scale="2" class="m-1"></b-icon>
-            관심 목록
-          </router-link>
         </b-nav-item>
       </b-nav>
       <!-- after login -->
@@ -39,6 +35,9 @@
             class="m-md-2"
             variant="outline-light"
           >
+            <b-dropdown-item class="link" @click="movePageLike">
+              관심목록
+            </b-dropdown-item>
             <b-dropdown-item class="link" @click="movePage">
               마이페이지
             </b-dropdown-item>
@@ -97,11 +96,22 @@ export default {
     movePage() {
       this.$router.push({ name: "UserMyPage" });
     },
+    movePageLike() {
+      this.$router.push({ name: "UserLike" });
+    },
   },
 };
 </script>
 
 <style>
+.header{
+  /* padding-left:250px;
+  padding-right:250px; */
+  padding-left:13.0208vw;
+  padding-right:13.0208vw;
+
+}
+
 .navbar .nav-item {
   list-style: none;
 }

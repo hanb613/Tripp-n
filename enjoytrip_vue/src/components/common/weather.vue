@@ -1,15 +1,17 @@
 <template>
-<div id="app" v-bind:style="{ backgroundImage: 'url(' + weather.img + ')' }">
+<div id="app">
 
       <main>
+
         <div class="search-box">
+            <div class="title"><b-icon icon="sun" font-scale="1" class="mr-2"></b-icon>날씨</div>
             <b-row class="mt-4 mb-4 text-center">
                 <b-col class="sm-3">
-                <b-form-select
-                    v-model="sidoNo"
-                    :options="sidos"
-                    @change="changeCity"
-                ></b-form-select>
+                    <b-form-select class="select"
+                        v-model="sidoNo"
+                        :options="sidos"
+                        @change="changeCity"
+                    ></b-form-select>
                 </b-col>
             </b-row>
         </div>
@@ -52,7 +54,6 @@
         ...mapState(attractionStore, ["sidos"]),
     },
     created() {
-          this.weather.img = '/weather/main.jpg';
         this.CLEAR_SIDO_LIST();
         this.getSido();
     },
@@ -91,11 +92,10 @@
         setResults (results) {
             this.weather = results;
             this.weatherNo = this.weather.weather[0].id;
-            
+
             const weather = this.findWeather(this.weatherNo);
             if (weather) {
                 this.weather.description = weather[this.weatherNo].description;
-                this.weather.img = weather[this.weatherNo].img;
             }
         },
         findWeather (code) {
@@ -104,57 +104,58 @@
         dateBuilder () {
             let d = new Date();
             let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-            let days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+            let days = ["일", "월", "화", "수", "목", "금", "토"];
             let day = days[d.getDay()];
             let date = d.getDate();
             let month = months[d.getMonth()];
             let year = d.getFullYear();
-            return `${year}년 ${month}월 ${date}일 ${day}`;
+            return `${year}.${month}.${date} (${day})`;
         }
     }
   }
   </script>
   
   <style scoped>
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+ 
   * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  body {
-    font-family: 'montserrat', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
   }
 
   #app {
-    width:30vw;
-    margin-top:50px;
-    background-size: cover;
-    background-position: bottom;
+    /* width:200px; */
+    width:10.4167vw;
     transition: 0.4s;
+    border-radius: 5%;
   }
   main {
-
-    min-height: 70vh;
+    /* min-height: 300px; */
+    min-height: 15.6250vw;
     padding: 25px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
-  }
+    border-radius: 5%;  
+
+    }
   .search-box {
     width: 100%;
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
   }
   .search-box .search-bar {
     display: block;
     width: 100%;
-    padding: 15px;
-    
     color: #313131;
     font-size: 20px;
     appearance: none;
     border:none;
     outline: none;
     background: none;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 0px 16px 0px 16px;
     transition: 0.4s;
@@ -165,16 +166,15 @@
     border-radius: 16px 0px 16px 0px;
   }
   .location-box .location {
-    color: #FFF;
-    font-size: 32px;
+    color: black;
+    font-size: 22px;
     font-weight: 500;
     text-align: center;
-    text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
   }
   .location-box .date {
-    color: #FFF;
-    font-size: 20px;
-    font-weight: 300;
+    color: black;
+    font-size: 15px;
+    font-weight: 200;
     font-style: italic;
     text-align: center;
   }
@@ -183,21 +183,24 @@
   }
   .weather-box .temp {
     display: inline-block;
-    padding: 10px 25px;
-    color: #FFF;
-    font-size: 102px;
-    font-weight: 900;
-    text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+    padding: 10px 5px;
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    text-shadow: 3px 2px rgba(0, 0, 0, 0.25);
     background-color:rgba(255, 255, 255, 0.25);
     border-radius: 16px;
-    margin: 30px 0px;
-    box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+    margin: 10px 0px;
   }
   .weather-box .weather {
-    color: #FFF;
-    font-size: 48px;
-    font-weight: 700;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
     font-style: italic;
-    text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .title{
+    font-size:25px;
+    font-weight: 500;
   }
   </style>

@@ -1,9 +1,9 @@
 <template>
   <b-container class="bv-example-row">
-    <b-row> <h2>Welcome</h2></b-row>
+    <br>
     <b-row>
-      <b-col
-        ><div>
+      <b-col>
+        <div>
           <!-- v-model="slide" -->
           <b-carousel
             id="carousel-1"
@@ -33,27 +33,18 @@
           </b-carousel>
         </div>
       </b-col>
-      <b-col>right</b-col>
     </b-row>
-    <b-row>
-      <weather-view></weather-view>
-
-    </b-row>
+    <br>
   </b-container>
 </template>
 
 <script>
-import WeatherView from '@/components/common/weather.vue'
-
 export default {
   name: "AppMain",
   data() {
     return {
       msg: null,
     };
-  },
-  components: {
-    WeatherView
   },
   mounted() {
     if (this.msg !== null) {
@@ -69,4 +60,14 @@ export default {
 @import "../assets/vendor/glightbox/css/glightbox.min.css";
 @import "../assets/vendor/swiper/swiper-bundle.min.css";
 @import "../assets/css/main.css";
+
+.bv-example-row.container{
+  /* margin-left:250px; */
+  margin-left:13.0208vw;
+  width:53.3333vw;
+}
+
+#carousel-1{
+  width:53.3333vw;
+}
 </style>
