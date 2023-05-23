@@ -6,16 +6,25 @@
     :img-src="sampleImage"
     img-alt="Card Image"
     text-variant="white"
-    title="Welcome"
-    sub-title="Subtitle"
+    style="text-shadow: 2px 2px 5px #0f0f0f"
   >
-    <b-card-text>
-      Some quick example text to build on the card and make up the bulk of the card's content.
+    <b-card-text data-aos="fade-up" data-aos-duration="2000">
+      <br/><br/>
+      <h1>Welcome to Tripp'n</h1>
+      <span>
+        Pin your favorite place and share
+      </span>
     </b-card-text>
   </b-card>
   </b-row>
-  <b-row data-aos="fade-up"><attraction-carousel/> </b-row>
-  <b-row data-aos="fade-up"><chart-test/></b-row>
+  <b-row data-aos="fade-left" data-aos-duration="2000">
+    <h1>최근 사람들이 좋아한 관광지는?</h1>
+  </b-row>
+  <b-row data-aos="fade-up" data-aos-duration="2000"><attraction-carousel/> </b-row>
+    <b-row data-aos="fade-left" data-aos-duration="2000" data-aos-delay="2000">
+    <h1>가장 인기있는 지역은?</h1>
+  </b-row>
+  <b-row data-aos="fade-up" data-aos-duration="2000"><chart-test/></b-row>
 </b-container>
 </template>
 
