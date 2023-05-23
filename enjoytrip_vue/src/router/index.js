@@ -212,7 +212,7 @@ const routes = [
   {
     //차트
     path: "/chart",
-    name: "doughnut-chart",
+    name: "chart",
     component: () => import(/* webpackChunkName: "chart" */ "@/components/chart/ChartTest"),
   },
 ];
