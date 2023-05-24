@@ -4,12 +4,12 @@
       <div id="background-div">
         <b-card-text data-aos="fade-up" data-aos-duration="2000">
           <br /><br />
-          <div class="font" style="text-shadow: 3px 3px 5px #000010">
+          <div class="font" style="text-shadow: 3px 3px 6px #000010">
             <h1 style="font-family: 'Noto Sans KR', sans-serif">
               Welcome to Tripp'n
             </h1>
             <span style="font-family: 'Noto Sans KR', sans-serif">
-              Pin your favorite place and share
+              Pin &#38; share your favorite places
             </span>
           </div>
         </b-card-text>
