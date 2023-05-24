@@ -41,6 +41,7 @@ const attractionStore = {
       state.contents = [{ value: 0, text: "관광지 유형" }];
     },
     CLEAR_ATTR_LIST(state) {
+      console.log("관광지 목록 clear");
       state.attrs = [];
       state.attr = null;
     },
