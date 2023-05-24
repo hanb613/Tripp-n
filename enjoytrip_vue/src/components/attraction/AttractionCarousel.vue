@@ -16,7 +16,7 @@
   >
       <template v-slot:img>
           <router-link :to="{ name: 'AttractionDetail', params: { contentNo: slide.contentNo } }">
-              <img :src="slide.imgsrc" class="w-100" height="720">
+              <img :src="slide.imgsrc" class="w-100" height="450">
           </router-link>
       </template>
   </b-carousel-slide>
@@ -47,8 +47,8 @@ export default {
 </script>
 
 <style>
-#carousel-1{
-  width:53.3333vw;
+#carousel-fade{
+  width:50vw;
   /* height: 480px; */
 }
 </style>

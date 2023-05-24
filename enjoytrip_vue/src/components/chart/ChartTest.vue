@@ -1,6 +1,8 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <b-card title="BEST 관광지" class="mb-2">
+
+  <b-container class="bv-example-row mt-3 ">
+    <b-card class="mb-2">
+      <b-card-title class="title">BEST 여행 지역</b-card-title>
       <Bar :data="chartData" />
     </b-card>
   </b-container>
@@ -20,7 +22,7 @@ import { Bar } from "vue-chartjs";
 import { getLikeCountBySido } from "@/api/attraction.js";
 
 import { mapActions, mapMutations, mapState } from "vuex";
-// const attractionStore = "attractionStore";
+
 const chartStore = "chartStore";
 
 ChartJS.register(
@@ -58,7 +60,6 @@ export default {
     ...mapState(chartStore, ["items"]),
   },
   created() {
-    // this.chartData = this.fetchData();
     this.chartData = {
       labels: ["A", "S", "D", "F"],
       datasets: [
@@ -71,44 +72,10 @@ export default {
         },
       ],
     };
-    // this.CLEAR_ITEMS();
-    console.log("cleared");
     this.getItems();
     this.chartData.labels = this.items.map((item) => item.name);
     this.chartData.datasets[0].data = this.items.map((item) => item.likeCnt);
   },
-  mounted() {
-    // this.chartData = {
-    //   labels: ["Aa", "Ss", "Dd", "Ff"],
-    //   datasets: [
-    //     {
-    //       label: "value",
-    //       data: [10, 50, 40, 30],
-    //       backgroundColor: "rgba(54, 162, 235, 0.2)",
-    //       borderColor: "rgba(54, 162, 235, 1)",
-    //       borderWidth: 4,
-    //     },
-    //   ],
-    // };
-    // this.getItems();
-    // console.log("items: ");
-    // console.log(this.items);
-    // this.chartData.labels = this.items.map((item) => item.name);
-    // this.chartData.datasets[0].data = this.items.map((item) => item.likeCnt);
-    console.log(this.chartData.labels);
-  },
-  //   async mounted() {
-  //     this.loaded = false;
-  //     try {
-  //       const cdata = await this.makeData();
-  //       this.chartData = cdata;
-  //       this.loaded = true;
-  //       console.log("mounted: ");
-  //       console.log(cdata);
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   },
   methods: {
     ...mapActions(chartStore, ["getItems"]),
     ...mapMutations(chartStore, ["CLEAR_ITEMS"]),
@@ -129,7 +96,6 @@ export default {
               borderWidth: 1,
             },
           ];
-          console.log(param.labels);
         },
         (error) => {
           console.log(error);
@@ -141,3 +107,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.title{
+  font-size:20px;
+}
+</style>
