@@ -194,4 +194,7 @@ export default {
 .img {
   width: 60%;
 }
+.card {
+  min-width: 40vw;
+}
 </style>

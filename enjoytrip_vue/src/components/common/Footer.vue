@@ -3,9 +3,7 @@
     <div class="container">
       <div class="credits">© Copyright All Rights Reserved</div>
       <div class="copyright">
-        <!-- <router-link :to="{ name: 'doughnut-chart' }" class="link"> -->
-          Developer Yeong-seo Yoo, Kyeong-hee Shin<br />
-        <!-- </router-link> -->
+        Developer Yeong-seo Yoo, Kyeong-hee Shin<br />
       </div>
     </div>
   </footer>
