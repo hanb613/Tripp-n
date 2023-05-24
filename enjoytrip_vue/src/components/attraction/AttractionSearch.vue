@@ -58,7 +58,7 @@ export default {
 .bv-example-row.container {
   width: 57.8125vw;
 }
-.list-container {
+.itemrow {
   display: flex;
   flex-wrap: wrap;
 }

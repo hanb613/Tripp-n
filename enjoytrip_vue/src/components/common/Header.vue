@@ -6,7 +6,7 @@
       <a href="/" class="d-flex align-items-center">
         <img
           src="@/assets/trippin-logo-shadow.png"
-          alt=""
+          alt="Tripp'n"
           style="height: 70px"
         />
       </a>
@@ -125,6 +125,8 @@ export default {
   padding-right:250px; */
   padding-left: 13.0208vw;
   padding-right: 13.0208vw;
+  /* 후보: #3e7e56 teal #358346 #58ac85 */
+  background-color: teal;
 }
 
 .navbar .nav-item {
