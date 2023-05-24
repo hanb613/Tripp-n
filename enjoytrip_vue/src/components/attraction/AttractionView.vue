@@ -28,6 +28,8 @@
               {{ attraction.overview }}</span
             >
           </b-card-text>
+          <!-- 좋아요 했을때만 업로드할수있게 나중에 v-if="checkLiked()" 넣을거임 -->
+          <file-upload-item />
           <b-button
             pill
             class="float-right"
@@ -81,6 +83,7 @@ import { mapState } from "vuex";
 
 import CommentList from "./comment/CommentList.vue";
 import CommentWrite from "./comment/CommentWrite.vue";
+import FileUploadItem from "../common/FileUploadItem.vue";
 
 const memberStore = "memberStore";
 const attractionStore = "attractionStore";
@@ -90,6 +93,7 @@ export default {
   components: {
     CommentList,
     CommentWrite,
+    FileUploadItem,
   },
   data() {
     return {
