@@ -1,9 +1,9 @@
 <template>
   <b-col
     cols="3"
-    @mouseover="colorChange(true)"
-    @mouseout="colorChange(false)"
-    :class="{ 'mouse-over-bgcolor': isColor }"
+    @mouseover="cardSizeChange(true)"
+    @mouseout="cardSizeChange(false)"
+    :class="{ 'card-large': isLargeSize }"
     id="container"
   >
     <router-link
@@ -20,11 +20,11 @@
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 20rem"
+            style="max-width: 20rem;"
             class="mb-2"
             text-variant="dark"
           >
-            <b-card-text>
+            <b-card-text style="font-size:14px">
               {{ attr.addr1 }}
             </b-card-text>
           </b-card>
@@ -43,7 +43,7 @@ export default {
   name: "AttractionListItem",
   data() {
     return {
-      isColor: false,
+      isLargeSize: false,
     };
   },
   props: {
@@ -59,8 +59,8 @@ export default {
     selectAttr() {
       this.detailAttr(this.attr);
     },
-    colorChange(flag) {
-      this.isColor = flag;
+    cardSizeChange(flag) {
+      this.isLargeSize = flag;
     },
   },
 };
@@ -69,9 +69,11 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-.mouse-over-bgcolor {
-  background-color: cadetblue;
+.card-large {
+  transform: scale(1.05);
+  transition: transform 0.45s ease;
 }
+
 a {
   text-decoration-line: none;
 }
@@ -87,5 +89,10 @@ a {
 #container {
   font-family: "Noto Sans KR", sans-serif;
   margin-top: 10px;
+}
+
+.card-title{
+  font-size: 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
