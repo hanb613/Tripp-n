@@ -70,11 +70,12 @@
       </b-col>
       <b-col>
         <!-- 갤러리영역 -->
-        <b-img 
+        <b-img
           v-for="(file, index) in files"
           :key="index"
-          thumbnail fluid 
-          :src="file.saveFile" 
+          thumbnail
+          fluid
+          :src="file.saveFile"
           alt="Uploaded image"
           class="images"
         >
@@ -179,7 +180,7 @@ export default {
     },
     checkLiked() {
       return this.likedUsers.some((item) => {
-        if (item.userNo === this.userInfo.userNo) {
+        if (this.userInfo !== null && item.userNo === this.userInfo.userNo) {
           this.$store.commit(`${attractionStore}/SET_LIKE_NO`, item.favoriteNo);
           return true;
         }
@@ -233,7 +234,7 @@ export default {
 .card {
   min-width: 40vw;
 }
-.images{
+.images {
   margin-top: 10px;
 }
 </style>
