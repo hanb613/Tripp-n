@@ -29,7 +29,9 @@
             >
           </b-card-text>
           <!-- 좋아요 했을때만 업로드할수있게 나중에 v-if="checkLiked()" 넣을거임 -->
-          <file-upload-item />
+          <div v-if="checkLiked()">
+            <file-upload-item />
+          </div>
           <b-button
             pill
             class="float-right"

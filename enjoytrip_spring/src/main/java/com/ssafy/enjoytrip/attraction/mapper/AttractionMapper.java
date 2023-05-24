@@ -30,4 +30,5 @@ public interface AttractionMapper {
 	int deleteComment(int commentNo) throws SQLException;
 	//파일
 	List<FileInfoAttractionDto> getFiles(int contentNo) throws SQLException;
+	int setSaveFile(FileInfoAttractionDto fileInfoAttractionDto) throws SQLException;
 }

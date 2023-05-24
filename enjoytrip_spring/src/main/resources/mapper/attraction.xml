@@ -121,4 +121,9 @@
 	<select id="getFiles" resultMap="attractionFile">
 		select * from file_info_favorite
 	</select>
+	
+	<insert id="setSaveFile" parameterType="fileInfoAttractionDto">
+		insert into file_info_favorite (favorite_no, save_folder, original_file, save_file)
+		values (#{favoriteNo}, #{saveFolder}, #{originalFile}, #{saveFile})
+	</insert>
 </mapper>

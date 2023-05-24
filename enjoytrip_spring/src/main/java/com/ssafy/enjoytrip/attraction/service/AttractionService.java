@@ -3,6 +3,8 @@ package com.ssafy.enjoytrip.attraction.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
@@ -27,4 +29,6 @@ public interface AttractionService {
 	
 	//파일
 	List<FileInfoAttractionDto> getFiles(int contentNo) throws Exception;
+	boolean setSaveFile(FileInfoAttractionDto fileInfoAttractionDto) throws Exception;
+	
 }

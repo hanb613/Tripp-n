@@ -31,4 +31,24 @@ function getRecentLike(success, fail) {
   api.get(`/attraction/recent`).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, attrList, getAttraction, likeAttraction, getLikeCountBySido, getRecentLike };
+function uploadFile(params, success, fail) {
+  api
+    .post(`/attraction/uploadFile`, params, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+export {
+  sidoList,
+  gugunList,
+  attrList,
+  getAttraction,
+  likeAttraction,
+  getLikeCountBySido,
+  getRecentLike,
+  uploadFile,
+};

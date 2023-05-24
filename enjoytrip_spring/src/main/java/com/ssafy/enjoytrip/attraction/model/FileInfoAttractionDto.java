@@ -7,6 +7,7 @@ public class FileInfoAttractionDto {
 	private String saveFolder;
 	private String originalFile;
 	private String saveFile;
+	
 	public int getFileNo() {
 		return fileNo;
 	}

@@ -12,7 +12,6 @@ import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 import com.ssafy.enjoytrip.attraction.model.FileInfoAttractionDto;
-import com.ssafy.enjoytrip.board.mapper.BoardMapper;
 
 @Service
 public class AttractionServiceImpl implements AttractionService{
@@ -88,4 +87,14 @@ public class AttractionServiceImpl implements AttractionService{
 	public List<FileInfoAttractionDto> getFiles(int contentNo) throws Exception {
 		return sqlSession.getMapper(AttractionMapper.class).getFiles(contentNo);
 	}
+
+	@Override
+	public boolean setSaveFile(FileInfoAttractionDto fileInfoAttractionDto) throws Exception {
+		if(fileInfoAttractionDto.getSaveFile() == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(AttractionMapper.class).setSaveFile(fileInfoAttractionDto) == 1;
+	}
+	
+	
 }

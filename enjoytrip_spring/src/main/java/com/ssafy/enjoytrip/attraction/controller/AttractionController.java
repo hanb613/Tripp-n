@@ -1,13 +1,20 @@
 package com.ssafy.enjoytrip.attraction.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +24,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
 import com.ssafy.enjoytrip.attraction.model.FileInfoAttractionDto;
 import com.ssafy.enjoytrip.attraction.service.AttractionService;
-import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.location.model.LocationDto;
 import com.ssafy.enjoytrip.location.service.LocationService;
-
-import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attraction")
@@ -37,6 +42,12 @@ public class AttractionController {
 	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
 	
+	@Value("${file.path}")
+	private String uploadPath;
+
+	@Value("${file.imgPath}")
+	private String uploadImgPath;
+
 	@Autowired
 	private LocationService locationService;
 	
@@ -135,4 +146,38 @@ public class AttractionController {
 	}
 	
 	//파일업로드
+	@PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<String> uploadFile(FileInfoAttractionDto fileInfoAttractionDto, @RequestParam("file") MultipartFile files, @RequestParam("likeNo") int likeNo) throws Exception {
+		logger.debug("uploadFile : {}", fileInfoAttractionDto);
+		
+//		FileUpload 관련 설정.
+		logger.debug("MultipartFile.isEmpty : {}", files);
+		
+		String today = new SimpleDateFormat("yyMMdd").format(new Date());
+		String saveFolder = uploadPath + File.separator + today;
+		logger.debug("저장 폴더 : {}", saveFolder);
+		File folder = new File(saveFolder);
+		if (!folder.exists())
+			folder.mkdirs();
+
+		FileInfoAttractionDto fileInfoDto = new FileInfoAttractionDto();
+		String originalFileName = files.getOriginalFilename();
+		if (!originalFileName.isEmpty()) {
+			String saveFileName = UUID.randomUUID().toString()
+					+ originalFileName.substring(originalFileName.lastIndexOf('.'));
+			fileInfoDto.setFavoriteNo(likeNo);
+			fileInfoDto.setSaveFolder(today);
+			fileInfoDto.setOriginalFile(originalFileName);
+			fileInfoDto.setSaveFile(saveFileName);
+			logger.debug("원본 파일 이름 : {}, 실제 저장 파일 이름 : {}", files.getOriginalFilename(), saveFileName);
+			files.transferTo(new File(folder, saveFileName));
+			
+			
+			attractionService.setSaveFile(fileInfoDto);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+
 }

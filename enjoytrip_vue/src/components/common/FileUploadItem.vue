@@ -18,6 +18,11 @@
 </template>
 
 <script>
+import { uploadFile } from "@/api/attraction";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
+
 export default {
   name: "FileUploadItem",
   components: {},
@@ -27,9 +32,32 @@ export default {
     };
   },
   created() {},
+  computed: {
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
   methods: {
     submit() {
-      console.log("file을 올립니다");
+      if (this.file) {
+        // 파일이 선택되었을 때만 업로드 수행
+        const formData = new FormData();
+        formData.append("likeNo", 7);
+        formData.append("file", this.file);
+
+        uploadFile(
+          formData,
+          ({ data }) => {
+            let msg = "등록 처리시 문제가 발생했습니다.";
+            if (data === "success") {
+              msg = "등록이 완료되었습니다.";
+            }
+            alert(msg);
+            this.$router.go(0);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     },
   },
 };
