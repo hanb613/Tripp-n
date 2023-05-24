@@ -1,9 +1,9 @@
 <template>
   <b-col
     cols="3"
-    @mouseover="colorChange(true)"
-    @mouseout="colorChange(false)"
-    :class="{ 'mouse-over-bgcolor': isColor }"
+    @mouseover="cardSizeChange(true)"
+    @mouseout="cardSizeChange(false)"
+    :class="{ 'card-large': isLargeSize }"
     id="container"
   >
     <router-link
@@ -43,7 +43,7 @@ export default {
   name: "AttractionListItem",
   data() {
     return {
-      isColor: false,
+      isLargeSize: false,
     };
   },
   props: {
@@ -59,8 +59,8 @@ export default {
     selectAttr() {
       this.detailAttr(this.attr);
     },
-    colorChange(flag) {
-      this.isColor = flag;
+    cardSizeChange(flag) {
+      this.isLargeSize = flag;
     },
   },
 };
@@ -69,9 +69,11 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-.mouse-over-bgcolor {
-  background-color: cadetblue;
+.card-large {
+  transform: scale(1.05);
+  transition: transform 0.45s ease;
 }
+
 a {
   text-decoration-line: none;
 }
