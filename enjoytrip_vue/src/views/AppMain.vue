@@ -17,11 +17,21 @@
             </span>
         </div>
       </b-card-text>
+
+      <b-row class="scroll-row" data-aos="fade-down" v-show="showArrow">
+        <b-col class="scroll-col">
+          <a href="#dataContent" class="scroll">
+            <span class="scrollA"></span>
+            <span class="scrollA"></span>
+            <span class="scrollA"></span>
+          </a>
+        </b-col>
+      </b-row>
     </b-card>
   </b-row>
-  <b-row  style="height:100px;"></b-row>
-  <b-row data-aos="fade-left" data-aos-duration="2000" class="ml-3">
 
+  <b-row style="height:100px;"></b-row>
+  <b-row data-aos-duration="2000" class="ml-3" id="dataContent">
     <b-col data-aos="fade-up" data-aos-duration="2000" class="mt-5 ml-1"> 
       <h2 style="margin:0; font-family: 'Jua', sans-serif;">최근 사람들의 관심 관광지</h2>
       <attraction-carousel/> 
@@ -51,6 +61,7 @@ export default {
     return {
       msg: null,
       sampleImage: "/countryside2.jpg",
+      showArrow: true,
     };
   },
   created(){
@@ -60,6 +71,27 @@ export default {
     if (this.msg !== null) {
       alert(this.msg);
     }
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll); // 컴포넌트 제거 전에 이벤트 리스너 제거
+  },
+  methods: {
+    handleScroll() {
+      const rowElement = document.querySelector(".text-center");
+      const arrowElement = document.querySelector(".scroll");
+
+      if (rowElement && arrowElement) {
+        const rowRect = rowElement.getBoundingClientRect();
+        const arrowRect = arrowElement.getBoundingClientRect();
+
+        if (arrowRect.top <= rowRect.bottom && arrowRect.bottom >= rowRect.top) {
+        this.showArrow = true; // 화살표 표시
+      } else {
+        this.showArrow = false; // 화살표 숨김
+      }
+      }
+    },
   },
 };
 </script>
@@ -79,7 +111,6 @@ export default {
 }
 
 .bv-example-row.container{
-  /* margin-left:250px; */
   margin-left:13.0208vw;
   width:53.3333vw;
 }
@@ -97,5 +128,77 @@ export default {
 .temp{
   height:200px;
 }
+</style>
 
+<style scope>
+.scroll{
+  position:relative;
+  bottom:0;
+  
+}
+
+.scroll-row {
+  position: fixed;
+  bottom: 120px; /* 원하는 위치로 조정 가능 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* 다른 요소 위에 위치하도록 설정 */
+}
+
+.scroll-col {
+  text-align: center;
+}
+
+.scrollA {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -12px;
+  border-left: 4px solid white;
+  border-bottom: 4px solid white;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb 2s infinite;
+  animation: sdb 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+@-webkit-keyframes sdb {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sdb {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 </style>
