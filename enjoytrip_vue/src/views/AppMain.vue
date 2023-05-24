@@ -1,55 +1,61 @@
 <template>
-<b-container fluid>
-  <b-row class="text-center">
-    <div id="background-div">
-      <b-card-text data-aos="fade-up" data-aos-duration="2000">
-        <br/><br/>
-          <div class="font">
-            <h1 style="font-family: 'Noto Sans KR', sans-serif">Welcome to Tripp'n</h1>
+  <b-container fluid>
+    <b-row class="text-center">
+      <div id="background-div">
+        <b-card-text data-aos="fade-up" data-aos-duration="2000">
+          <br /><br />
+          <div class="font" style="text-shadow: 3px 3px 5px #000010">
+            <h1 style="font-family: 'Noto Sans KR', sans-serif">
+              Welcome to Tripp'n
+            </h1>
             <span style="font-family: 'Noto Sans KR', sans-serif">
               Pin your favorite place and share
             </span>
-        </div>
-      </b-card-text>
+          </div>
+        </b-card-text>
 
-      <b-row class="scroll-row" data-aos="fade-down" v-show="showArrow">
-        <b-col class="scroll-col">
-          <a href="#dataContent" class="scroll">
-            <span class="scrollA"></span>
-            <span class="scrollA"></span>
-            <span class="scrollA"></span>
-          </a>
-        </b-col>
-      </b-row>
-    </div>
-  </b-row>
+        <b-row class="scroll-row" data-aos="fade-down" v-show="showArrow">
+          <b-col class="scroll-col">
+            <a href="#dataContent" class="scroll">
+              <span class="scrollA"></span>
+              <span class="scrollA"></span>
+              <span class="scrollA"></span>
+            </a>
+          </b-col>
+        </b-row>
+      </div>
+    </b-row>
 
-  <b-row style="height:100px;"></b-row>
-  <b-row data-aos-duration="2000" class="ml-3" id="dataContent">
-    <b-col data-aos="fade-up" data-aos-duration="2000" class="mt-5 ml-1"> 
-      <h2 style="margin:0; font-family: 'Jua', sans-serif;">최근 사람들의 관심 관광지</h2>
-      <attraction-carousel/> 
-    </b-col>
-    
-    <b-col data-aos="fade-up" data-aos-duration="2000" class="mt-5 ml-1"> 
-      <h2 style="font-family: 'Jua', sans-serif">사람들이 많이 가는 관광지</h2>
-      <chart-test style="width:40vw; height:450px; margin:0; "/>
-    </b-col>
-  </b-row>
-  <b-row class="temp"></b-row>
-</b-container>
+    <b-row style="height: 100px"></b-row>
+    <b-row data-aos-duration="2000" class="ml-3" id="dataContent">
+      <b-col data-aos="fade-up" data-aos-duration="2000" class="mt-5 ml-1">
+        <h2 style="margin: 0; font-family: 'Jua', sans-serif">
+          최근 사람들의 관심 관광지
+        </h2>
+        <attraction-carousel />
+      </b-col>
+
+      <b-col data-aos="fade-up" data-aos-duration="2000" class="mt-5 ml-1">
+        <h2 style="font-family: 'Jua', sans-serif">
+          사람들이 많이 가는 관광지
+        </h2>
+        <chart-test style="width: 40vw; height: 450px; margin: 0" />
+      </b-col>
+    </b-row>
+    <b-row class="temp"></b-row>
+  </b-container>
 </template>
 
 <script>
-import AttractionCarousel from '@/components/attraction/AttractionCarousel.vue';
-import ChartTest from '@/components/chart/ChartTest.vue';
-import AOS from 'aos';
+import AttractionCarousel from "@/components/attraction/AttractionCarousel.vue";
+import ChartTest from "@/components/chart/ChartTest.vue";
+import AOS from "aos";
 import "aos/dist/aos.css";
 export default {
   name: "AppMain",
-  components:{
+  components: {
     AttractionCarousel,
-    ChartTest
+    ChartTest,
   },
   data() {
     return {
@@ -58,7 +64,7 @@ export default {
       showArrow: true,
     };
   },
-  created(){
+  created() {
     AOS.init();
   },
   mounted() {
@@ -79,11 +85,14 @@ export default {
         const rowRect = rowElement.getBoundingClientRect();
         const arrowRect = arrowElement.getBoundingClientRect();
 
-        if (arrowRect.top <= rowRect.bottom && arrowRect.bottom >= rowRect.top) {
-        this.showArrow = true; // 화살표 표시
-      } else {
-        this.showArrow = false; // 화살표 숨김
-      }
+        if (
+          arrowRect.top <= rowRect.bottom &&
+          arrowRect.bottom >= rowRect.top
+        ) {
+          this.showArrow = true; // 화살표 표시
+        } else {
+          this.showArrow = false; // 화살표 숨김
+        }
       }
     },
   },
@@ -98,11 +107,10 @@ export default {
 @import "../assets/css/main.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hahmlet:wght@600&family=Jua&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hahmlet:wght@600&family=Jua&display=swap");
 </style>
 
 <style scope>
-
 body {
   overflow-x: hidden;
 }
@@ -116,39 +124,36 @@ body {
   padding-top: 10vh;
 }
 
-.text-center{
-  
-  border:0;
-
+.text-center {
+  border: 0;
 }
 
 .font {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-.bv-example-row.container{
-  margin-left:13.0208vw;
-  width:53.3333vw;
+.bv-example-row.container {
+  margin-left: 13.0208vw;
+  width: 53.3333vw;
 }
 
-.card{
-  margin-top:50px
+.card {
+  margin-top: 50px;
 }
-.carousel-item{
-  margin-top:30px;
+.carousel-item {
+  margin-top: 30px;
 }
-.chart.container{
-  padding:0;
-}
-
-.temp{
-  height:200px;
+.chart.container {
+  padding: 0;
 }
 
-.scroll{
-  position:relative;
-  bottom:0;
-  
+.temp {
+  height: 200px;
+}
+
+.scroll {
+  position: relative;
+  bottom: 0;
 }
 
 .scroll-row {
@@ -185,13 +190,13 @@ a span:nth-of-type(1) {
 }
 a span:nth-of-type(2) {
   top: 16px;
-  -webkit-animation-delay: .15s;
-  animation-delay: .15s;
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
 }
 a span:nth-of-type(3) {
   top: 32px;
-  -webkit-animation-delay: .3s;
-  animation-delay: .3s;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 @-webkit-keyframes sdb {
   0% {
