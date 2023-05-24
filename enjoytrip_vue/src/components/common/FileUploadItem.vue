@@ -22,6 +22,7 @@ import { uploadFile } from "@/api/attraction";
 import { mapState } from "vuex";
 
 const memberStore = "memberStore";
+const attractionStore = "attractionStore";
 
 export default {
   name: "FileUploadItem",
@@ -31,16 +32,20 @@ export default {
       file: null,
     };
   },
-  created() {},
+  created() {
+    this.likeNo = this.$route.params.likeNo;
+    console.log(this.$route);
+  },
   computed: {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
+    ...mapState(attractionStore, ["likeNo"]),
   },
   methods: {
     submit() {
       if (this.file) {
         // 파일이 선택되었을 때만 업로드 수행
         const formData = new FormData();
-        formData.append("likeNo", 7);
+        formData.append("likeNo", this.likeNo);
         formData.append("file", this.file);
 
         uploadFile(

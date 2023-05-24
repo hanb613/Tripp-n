@@ -28,7 +28,6 @@
               {{ attraction.overview }}</span
             >
           </b-card-text>
-          <!-- 좋아요 했을때만 업로드할수있게 나중에 v-if="checkLiked()" 넣을거임 -->
           <div v-if="checkLiked()">
             <file-upload-item />
           </div>
@@ -161,7 +160,7 @@ export default {
           contentNo: this.attraction.contentNo,
           userNo: this.userInfo.userNo,
         };
-        console.log(param.contentNo + " is liked by " + param.userNo);
+
         likeAttraction(
           param,
           ({ data }) => {
@@ -179,9 +178,13 @@ export default {
       }
     },
     checkLiked() {
-      return this.likedUsers.some(
-        (item) => item.userNo === this.userInfo.userNo
-      );
+      return this.likedUsers.some((item) => {
+        if (item.userNo === this.userInfo.userNo) {
+          this.$store.commit(`${attractionStore}/SET_LIKE_NO`, item.favoriteNo);
+          return true;
+        }
+        return false;
+      });
     },
     contentTypeName() {
       switch (this.attraction.contentTypeId) {

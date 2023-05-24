@@ -8,6 +8,7 @@ const attractionStore = {
     contents: [{ value: 0, text: "관광지 유형" }],
     attrs: [],
     attr: null,
+    likeNo: 0,
   },
   getters: {},
   mutations: {
@@ -29,6 +30,9 @@ const attractionStore = {
     },
     SET_DETAIL_ATTR(state, attr) {
       state.attr = attr;
+    },
+    SET_LIKE_NO(state, likeNo) {
+      state.likeNo = likeNo;
     },
 
     CLEAR_SIDO_LIST(state) {
@@ -59,7 +63,8 @@ const attractionStore = {
     },
     getGugun({ commit }, sidoNo) {
       const params = { sidoNo: sidoNo };
-      if (sidoNo !== 0) { // 특정 지역을 선택했으면 
+      if (sidoNo !== 0) {
+        // 특정 지역을 선택했으면
         gugunList(
           params,
           ({ data }) => {
