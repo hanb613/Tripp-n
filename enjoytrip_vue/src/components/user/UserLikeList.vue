@@ -1,67 +1,32 @@
 <template>
   <b-container class="bv-example-row mt-3 ml-1">
-    <h3 style="font-family: 'Noto Sans KR', sans-serif"><b-icon icon="bookmark-star"></b-icon> 관심 목록</h3>
+    <h3 style="font-family: 'Noto Sans KR', sans-serif">
+      <b-icon icon="bookmark-star"></b-icon> 관심 목록
+    </h3>
     <br />
     <b-alert show variant="primary" v-if="this.attrs.length === 0"
       >관심 목록이 없습니다.</b-alert
     >
-
-    <b-row class="mb-1" v-if="this.attrs.length !== 0" id="container">
-      <b-col
-        v-for="attr in attrs"
-        :key="attr.contentNo"
-        cols="3"
-        @mouseover="colorChange(attr.contentNo, true)"
-        @mouseout="colorChange(attr.contentNo, false)"
-        :class="{ 'mouse-over-bgcolor': isColor[attr.contentNo] }"
-      >
-        <div>
-          <router-link
-            :to="{
-              name: 'AttractionDetail',
-              params: { contentNo: attr.contentNo },
-            }"
-          >
-            <article>
-              <div class="post-img">
-                <img
-                  src="@/assets/img/noimg.jpg"
-                  alt="noimg"
-                  class="img-fluid"
-                  v-if="!attr.firstImage"
-                />
-                <img
-                  :src="attr.firstImage"
-                  alt="사진"
-                  class="img-fluid"
-                  v-else
-                />
-                <h4
-                  class="title text-dark"
-                  style="font-family: 'Noto Sans KR', sans-serif"
-                >
-                  {{ attr.title }}
-                </h4>
-                <div class="d-flex align-items-center">
-                  <div class="post-meta">
-                    <p class="post-author-list">[주소]<br />{{ attr.addr1 }}</p>
-                    <p class="post-author-list">
-                      [우편번호]<br />{{ attr.zipcode }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </router-link>
-        </div>
-      </b-col>
-    </b-row>
+    <!-- Attraction List -->
+    <b-container
+      v-if="attrs && attrs.length != 0"
+      class="bv-example-row-flex-cols"
+    >
+      <b-row offset="1" class="itemrow">
+        <attraction-list-item
+          v-for="(attr, index) in attrs"
+          :key="index"
+          :attr="attr"
+        />
+      </b-row>
+    </b-container>
   </b-container>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { likeList } from "@/api/member";
+import AttractionListItem from "@/components/attraction/AttractionListItem.vue";
 const memberStore = "memberStore";
 
 export default {
@@ -71,6 +36,9 @@ export default {
       isColor: {},
       attrs: [],
     };
+  },
+  components: {
+    AttractionListItem,
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
@@ -118,8 +86,8 @@ a {
 #container {
   font-family: "Noto Sans KR", sans-serif;
 }
-.bv-example-row.container{
-  width:57.8125vw;
+.bv-example-row.container {
+  width: 57.8125vw;
 }
 
 .post-meta {

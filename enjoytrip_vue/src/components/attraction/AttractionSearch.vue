@@ -4,8 +4,11 @@
     <attraction-map :attrList="attrs"></attraction-map>
 
     <!-- Attraction List -->
-    <b-container v-if="attrs && attrs.length != 0" class="bv-example-row" fluid>
-      <b-row offset="1">
+    <b-container
+      v-if="attrs && attrs.length != 0"
+      class="bv-example-row-flex-cols"
+    >
+      <b-row offset="1" class="itemrow">
         <attraction-list-item
           v-for="(attr, index) in attrs"
           :key="index"
@@ -54,5 +57,9 @@ export default {
 <style scoped>
 .bv-example-row.container {
   width: 57.8125vw;
+}
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

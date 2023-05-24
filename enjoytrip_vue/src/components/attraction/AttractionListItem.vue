@@ -12,33 +12,24 @@
         params: { contentNo: attr.contentNo },
       }"
     >
-      <div>
-        <article class="articleItem">
-          <div class="post-img">
-            <img
-              src="@/assets/img/noimg.jpg"
-              alt="noimg"
-              class="img-fluid"
-              v-if="!attr.firstImage"
-            />
-            <img :src="attr.firstImage" alt="사진" class="img-fluid" v-else />
-            <h4
-              class="title text-dark"
-              style="font-family: 'Noto Sans KR', sans-serif"
-            >
-              {{ attr.title }}
-            </h4>
-            <div class="d-flex align-items-center">
-              <div class="post-meta">
-                <p class="post-author-list">[주소]<br />{{ attr.addr1 }}</p>
-                <p class="post-author-list">
-                  [우편번호]<br />{{ attr.zipcode }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
+      <article class="articleItem">
+        <div>
+          <b-card
+            :title="attr.title"
+            :img-src="imgSrc"
+            img-alt="Image"
+            img-top
+            tag="article"
+            style="max-width: 20rem"
+            class="mb-2"
+            text-variant="dark"
+          >
+            <b-card-text>
+              {{ attr.addr1 }}
+            </b-card-text>
+          </b-card>
+        </div>
+      </article>
     </router-link>
   </b-col>
 </template>
@@ -58,6 +49,11 @@ export default {
   props: {
     attr: Object,
   },
+  computed: {
+    imgSrc() {
+      return this.attr.firstImage || "/noimg.png";
+    },
+  },
   methods: {
     ...mapActions(attractionStore, ["attrs", "detailAttr"]),
     selectAttr() {
@@ -74,24 +70,22 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 .mouse-over-bgcolor {
-  background-color: lightblue;
+  background-color: cadetblue;
 }
 a {
   text-decoration-line: none;
 }
+
 .articleItem {
-  margin: 30px 5px 10px 5px;
+  margin: 10px 1% 1% 1%;
 }
-.img-fluid {
-  margin-bottom: 20px;
+
+.card-img-top {
+  max-height: 50%;
 }
 
 #container {
   font-family: "Noto Sans KR", sans-serif;
-  margin-top: 10px;
-}
-
-.post-meta {
   margin-top: 10px;
 }
 </style>
