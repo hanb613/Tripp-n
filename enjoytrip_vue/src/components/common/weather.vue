@@ -24,7 +24,7 @@
           </div>
   
           <div class="weather-box">
-            <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
+            <div class="temp2">{{ Math.round(weather.main.temp) }}°c</div>
             <div class="weather">{{ this.weather.description }}</div>
           </div>
         </div>
@@ -182,7 +182,7 @@
   .weather-box {
     text-align: center;
   }
-  .weather-box .temp {
+  .weather-box .temp2 {
     display: inline-block;
     padding: 10px 5px;
     color: black;

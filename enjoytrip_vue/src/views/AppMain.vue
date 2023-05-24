@@ -105,6 +105,9 @@ export default {
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hahmlet:wght@600&family=Jua&display=swap');
+</style>
+
+<style scope>
 
 .font {
   font-family: "Noto Sans KR", sans-serif;
@@ -128,9 +131,7 @@ export default {
 .temp{
   height:200px;
 }
-</style>
 
-<style scope>
 .scroll{
   position:relative;
   bottom:0;
