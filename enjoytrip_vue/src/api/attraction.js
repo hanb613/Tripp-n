@@ -31,6 +31,10 @@ function getRecentLike(success, fail) {
   api.get(`/attraction/recent`).then(success).catch(fail);
 }
 
+function getFiles(success, fail){
+  api.get(`attraction/getFiles`).then(success).catch(fail);
+}
+
 function uploadFile(params, success, fail) {
   api
     .post(`/attraction/uploadFile`, params, {
@@ -51,4 +55,5 @@ export {
   getLikeCountBySido,
   getRecentLike,
   uploadFile,
+  getFiles,
 };

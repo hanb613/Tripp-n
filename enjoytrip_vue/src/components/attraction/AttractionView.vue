@@ -69,6 +69,31 @@
           </b-button>
         </b-card>
       </b-col>
+      <b-col>
+        <!-- 갤러리영역 -->
+        <b-img 
+          v-for="(file, index) in files"
+          :key="index"
+          thumbnail fluid 
+          :src="file.saveFile" 
+          alt="Uploaded image"
+          class="images"
+        >
+        </b-img>
+        <!-- <b-card
+          v-for="(file, index) in files"
+          :key="index"
+          :title="file.originalFile"
+          :img-src="file.saveFile"
+          img-alt="Uploaded image"
+          img-top
+          tag="article"
+          style="max-width: 10vw"
+          class="mb-2"
+          text-variant="dark"
+        >
+        </b-card> -->
+      </b-col>
     </b-row>
 
     <b-row class="ml-1" style="margin-top: 50px">
@@ -101,6 +126,7 @@ export default {
     return {
       attraction: {},
       likedUsers: [],
+      files: [],
     };
   },
   computed: {
@@ -115,6 +141,7 @@ export default {
         console.log(data);
         this.attraction = data.attraction;
         this.likedUsers = data.likedUsers;
+        this.files = data.files;
       },
       (error) => {
         console.log(error);
@@ -202,5 +229,8 @@ export default {
 }
 .card {
   min-width: 40vw;
+}
+.images{
+  margin-top: 10px;
 }
 </style>
