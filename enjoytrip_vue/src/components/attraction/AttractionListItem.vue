@@ -95,4 +95,13 @@ a {
   font-size: 20px;
   font-family: "Noto Sans KR", sans-serif;
 }
+
+
+.card-img-top{
+  height:160px;
+  object-fit:cover;
+}
+.card-body{
+  min-height:140px;
+}
 </style>

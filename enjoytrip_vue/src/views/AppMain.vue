@@ -1,13 +1,7 @@
 <template>
 <b-container fluid>
   <b-row class="text-center">
-    <b-card class="background"
-      overlay
-      :img-src="sampleImage"
-      img-alt="Card Image"
-      text-variant="white"
-      style="text-shadow: 2px 2px 5px #0f0f0f; padding:0; margin:0;" 
-    >
+    <div id="background-div">
       <b-card-text data-aos="fade-up" data-aos-duration="2000">
         <br/><br/>
           <div class="font">
@@ -27,7 +21,7 @@
           </a>
         </b-col>
       </b-row>
-    </b-card>
+    </div>
   </b-row>
 
   <b-row style="height:100px;"></b-row>
@@ -108,6 +102,25 @@ export default {
 </style>
 
 <style scope>
+
+body {
+  overflow-x: hidden;
+}
+
+#background-div {
+  /* background: ; */
+  width: 100vw;
+  height: calc(100vh - 90px);
+  background: url("../assets/img/countryside2.jpg");
+  color: white;
+  padding-top: 10vh;
+}
+
+.text-center{
+  
+  border:0;
+
+}
 
 .font {
   font-family: "Noto Sans KR", sans-serif;
