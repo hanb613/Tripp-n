@@ -1,7 +1,7 @@
 <template>
   <b-container class="bv-example-row mt-3 ml-1">
     <b-row class="mb-1">
-      <b-col id="container">
+      <b-col>
         <b-card
           :img-src="attraction.firstImage"
           class="mb-2 img"
@@ -13,8 +13,8 @@
             </h2>
             <br />
             <span class="font"
-              ><b>우편번호</b><br />
-              {{ attraction.zipcode }}</span
+              ><b>유형</b><br />
+              {{ contentTypeName() }}</span
             ><br /><br />
             <span class="font"><b>주소</b><br />{{ attraction.addr1 }}</span
             ><br /><br />
@@ -149,6 +149,26 @@ export default {
       return this.likedUsers.some(
         (item) => item.userNo === this.userInfo.userNo
       );
+    },
+    contentTypeName() {
+      switch (this.attraction.contentTypeId) {
+        case 12:
+          return "관광지";
+        case 14:
+          return "문화시설";
+        case 15:
+          return "축제공연행사";
+        case 25:
+          return "여행코스";
+        case 28:
+          return "레포츠";
+        case 32:
+          return "숙박";
+        case 38:
+          return "쇼핑";
+        case 39:
+          return "음식점";
+      }
     },
   },
 };
