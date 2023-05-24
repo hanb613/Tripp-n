@@ -20,7 +20,6 @@
         <option value="12">관광지</option>
         <option value="14">문화시설</option>
         <option value="15">축제공연행사</option>
-        <option value="25">여행코스</option>
         <option value="28">레포츠</option>
         <option value="32">숙박</option>
         <option value="38">쇼핑</option>
