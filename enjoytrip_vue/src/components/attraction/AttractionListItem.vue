@@ -20,11 +20,11 @@
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 20rem"
+            style="max-width: 20rem;"
             class="mb-2"
             text-variant="dark"
           >
-            <b-card-text>
+            <b-card-text style="font-size:14px">
               {{ attr.addr1 }}
             </b-card-text>
           </b-card>
@@ -89,5 +89,10 @@ a {
 #container {
   font-family: "Noto Sans KR", sans-serif;
   margin-top: 10px;
+}
+
+.card-title{
+  font-size: 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
