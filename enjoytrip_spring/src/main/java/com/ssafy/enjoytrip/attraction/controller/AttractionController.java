@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
+import com.ssafy.enjoytrip.attraction.model.FileInfoAttractionDto;
 import com.ssafy.enjoytrip.attraction.service.AttractionService;
 import com.ssafy.enjoytrip.board.model.BoardCommentDto;
 import com.ssafy.enjoytrip.location.model.LocationDto;
@@ -75,6 +76,7 @@ public class AttractionController {
         
         resultMap.put("attraction", attractionService.getAttraction(contentNo));
         resultMap.put("likedUsers", attractionService.getLikeList(contentNo));
+        resultMap.put("files", attractionService.getFiles(contentNo));
         
         //return new ResponseEntity<AttractionDto>(attractionService.getAttraction(contentNo), HttpStatus.OK);
         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
@@ -131,4 +133,6 @@ public class AttractionController {
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
+	
+	//파일업로드
 }

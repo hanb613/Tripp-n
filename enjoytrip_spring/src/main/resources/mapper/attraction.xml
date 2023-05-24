@@ -15,7 +15,7 @@
 		<result column="loc_no" property="locNo" />
 	</resultMap>
 	
-		<resultMap type="attractionCommentDto" id="attractionComment">
+	<resultMap type="attractionCommentDto" id="attractionComment">
 		<result column="comment_no" property="commentNo" />
 		<result column="content_no" property="contentNo" />
 		<result column="content" property="content" />
@@ -29,6 +29,14 @@
 		<result column="content_no" property="contentNo" />
 		<result column="user_no" property="userNo" />
 		<result column="registration_date" property="registDate" />
+	</resultMap>
+	
+	<resultMap type="fileInfoAttractionDto" id="attractionFile">
+		<result column="file_no" property="fileNo" />
+		<result column="favorite_no" property="favoriteNo" />
+		<result column="save_folder" property="saveFolder" />
+		<result column="original_file" property="originalFile" />
+		<result column="save_file" property="saveFile" />
 	</resultMap>
 	
 	<select id="listAttr" resultMap="attraction">
@@ -105,9 +113,12 @@
 		order by b.comment_no desc
 	</select>
 	
-	
 	<delete id="deleteComment" parameterType="int">
 		delete from attraction_comment
 		where comment_no = #{commentNo}
 	</delete>
+	
+	<select id="getFiles" resultMap="attractionFile">
+		select * from file_info_favorite
+	</select>
 </mapper>

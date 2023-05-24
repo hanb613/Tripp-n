@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
+import com.ssafy.enjoytrip.attraction.model.FileInfoAttractionDto;
 
 @Mapper
 public interface AttractionMapper {
@@ -26,4 +27,7 @@ public interface AttractionMapper {
 	// 댓글
 	int writeComment(AttractionCommentDto attractionCommentDto) throws SQLException;
 	List<AttractionCommentDto> listComment(int contentNo) throws SQLException;
-	int deleteComment(int commentNo) throws SQLException;}
+	int deleteComment(int commentNo) throws SQLException;
+	//파일
+	List<FileInfoAttractionDto> getFiles(int contentNo) throws SQLException;
+}

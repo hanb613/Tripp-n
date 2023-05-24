@@ -6,6 +6,7 @@ import java.util.Map;
 import com.ssafy.enjoytrip.attraction.model.AttractionCommentDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionDto;
 import com.ssafy.enjoytrip.attraction.model.AttractionLikeDto;
+import com.ssafy.enjoytrip.attraction.model.FileInfoAttractionDto;
 
 public interface AttractionService {
 	
@@ -23,4 +24,7 @@ public interface AttractionService {
 	public boolean writeComment(AttractionCommentDto attractionCommentDto) throws Exception;
 	public List<AttractionCommentDto> listComment(int contentNo) throws Exception;
 	public boolean deleteComment(int commentNo) throws Exception;
+	
+	//파일
+	List<FileInfoAttractionDto> getFiles(int contentNo) throws Exception;
 }
