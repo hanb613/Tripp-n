@@ -2,7 +2,7 @@
   <b-container class="mt-4" v-if="userInfo">
     <b-row>
       <b-col>
-        <b-alert variant="secondary" show><h3>내정보</h3></b-alert>
+        <b-alert variant="secondary" show><h3 style="font-family: 'Noto Sans KR', sans-serif">내정보</h3></b-alert>
       </b-col>
     </b-row>
     <b-row>

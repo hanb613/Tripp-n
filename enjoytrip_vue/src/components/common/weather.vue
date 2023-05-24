@@ -1,10 +1,11 @@
 <template>
 <div id="app">
-
       <main>
-
         <div class="search-box">
-            <div class="title"><b-icon icon="sun" font-scale="1" class="mr-2"></b-icon>날씨</div>
+            <div class="title" style="font-family: 'Noto Sans KR', sans-serif">
+              <b-icon icon="sun" font-scale="1" class="mr-2"></b-icon>
+              날씨
+            </div>
             <b-row class="mt-4 mb-4 text-center">
                 <b-col class="sm-3">
                     <b-form-select class="select"

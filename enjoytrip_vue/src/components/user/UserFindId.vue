@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3 ml-1">
     <b-row>
       <b-col>
-        <b-alert variant="secondary" show><h3>아이디 찾기</h3></b-alert>
+        <b-alert variant="secondary" show><h3 style="font-family: 'Noto Sans KR', sans-serif">아이디 찾기</h3></b-alert>
       </b-col>
     </b-row>
     <b-row>

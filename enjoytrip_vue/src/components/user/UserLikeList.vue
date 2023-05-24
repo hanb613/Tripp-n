@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row mt-3 ml-1">
-    <h3><b-icon icon="bookmark-star"></b-icon> 관심 목록</h3>
+    <h3 style="font-family: 'Noto Sans KR', sans-serif"><b-icon icon="bookmark-star"></b-icon> 관심 목록</h3>
     <br />
     <b-alert show variant="primary" v-if="this.attrs.length === 0"
       >관심 목록이 없습니다.</b-alert
