@@ -158,8 +158,6 @@ export default {
           return "문화시설";
         case 15:
           return "축제공연행사";
-        case 25:
-          return "여행코스";
         case 28:
           return "레포츠";
         case 32:
@@ -168,6 +166,8 @@ export default {
           return "쇼핑";
         case 39:
           return "음식점";
+        default:
+          return "";
       }
     },
   },
