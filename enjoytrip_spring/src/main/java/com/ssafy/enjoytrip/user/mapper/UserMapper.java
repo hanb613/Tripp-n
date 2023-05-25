@@ -18,5 +18,4 @@ public interface UserMapper {
 	public UserDto findById(UserDto userDto) throws SQLException;
 	public UserDto findByPw(UserDto userDto) throws SQLException;
 	
-	//관리자기능-보류
 }

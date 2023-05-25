@@ -41,9 +41,6 @@ public class UserController {
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody UserDto userDto) throws Exception {
 		logger.info("join - 호출");
-		System.out.println(userDto);
-		//userDto.setEmail(userDto.getEmail() + "@" + domain);
-		//System.out.println(userDto);
 		
 		if (userService.joinUser(userDto)) {
 			return new ResponseEntity<String>("success", HttpStatus.OK);

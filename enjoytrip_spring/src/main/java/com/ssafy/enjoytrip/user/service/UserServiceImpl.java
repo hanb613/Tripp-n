@@ -16,25 +16,10 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Autowired
-	private UserMapper userMapper;
-	
-	public UserServiceImpl(UserMapper userMapper) {
-		super();
-		this.userMapper = userMapper;
-	}
-
-	@Override
-	public int idCheck(String userId) throws Exception {
-		return userMapper.idCheck(userId);
-	}
 
 	@Override
 	public boolean joinUser(UserDto userDto) throws Exception {
 		String email = userDto.getEmail();
-		// String domain = ;
-		//if(domain=="null") throw new Exception();
 		if(userDto.getId() == null || userDto.getName() == null || userDto.getPassword() == null || userDto.getAge()<0 ||  (userDto.getGender()!='F' && userDto.getGender()!='M')) {
 			throw new Exception();
 		}
@@ -51,8 +36,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean modifyUser(UserDto userDto) throws Exception {
 		String email = userDto.getEmail();
-		// String domain = ;
-		//if(domain=="null") throw new Exception();
 		if(userDto.getPassword() == null || userDto.getAge()<0 || (userDto.getGender()!='F' && userDto.getGender()!='M')) {
 			throw new Exception();
 		}
