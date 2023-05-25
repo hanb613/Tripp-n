@@ -118,8 +118,11 @@
 		where comment_no = #{commentNo}
 	</delete>
 	
-	<select id="getFiles" resultMap="attractionFile">
-		select * from file_info_favorite
+	<select id="getFiles" parameterType="int" resultMap="attractionFile">
+		select f.file_no, f.favorite_no, f.save_folder, f.original_file, f.save_file
+		from file_info_favorite f, favorite_place p
+		where f.favorite_no = p.favorite_no
+		and p.content_no = #{contentNo};
 	</select>
 	
 	<insert id="setSaveFile" parameterType="fileInfoAttractionDto">

@@ -31,7 +31,7 @@ function getRecentLike(success, fail) {
   api.get(`/attraction/recent`).then(success).catch(fail);
 }
 
-function getFiles(success, fail){
+function getFiles(success, fail) {
   api.get(`attraction/getFiles`).then(success).catch(fail);
 }
 
@@ -46,6 +46,14 @@ function uploadFile(params, success, fail) {
     .catch(fail);
 }
 
+function downloadFile(params, success, fail) {
+  api.get(`attraction/download/${params.saveFolder}/${params.originalFile}/${params.saveFile}`).then(success).catch(fail);
+}
+
+function showImage(params, success, fail) {
+  api.get(`attraction/showImage`, params).then(success).catch(fail);
+}
+
 export {
   sidoList,
   gugunList,
@@ -56,4 +64,6 @@ export {
   getRecentLike,
   uploadFile,
   getFiles,
+  downloadFile,
+  showImage,
 };

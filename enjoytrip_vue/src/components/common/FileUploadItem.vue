@@ -33,7 +33,7 @@ export default {
     };
   },
   created() {
-    this.likeNo = this.$route.params.likeNo;
+    // this.likeNo = this.$route.params.likeNo;
     console.log(this.$route);
   },
   computed: {

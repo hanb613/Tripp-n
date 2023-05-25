@@ -75,24 +75,11 @@
           :key="index"
           thumbnail
           fluid
-          :src="file.saveFile"
-          alt="Uploaded image"
+          :src="makeFileURL(file)"
+          :alt="file.saveFile"
           class="images"
         >
         </b-img>
-        <!-- <b-card
-          v-for="(file, index) in files"
-          :key="index"
-          :title="file.originalFile"
-          :img-src="file.saveFile"
-          img-alt="Uploaded image"
-          img-top
-          tag="article"
-          style="max-width: 10vw"
-          class="mb-2"
-          text-variant="dark"
-        >
-        </b-card> -->
       </b-col>
     </b-row>
 
@@ -105,7 +92,7 @@
 </template>
 
 <script>
-import { getAttraction, likeAttraction } from "@/api/attraction";
+import { getAttraction, likeAttraction, showImage } from "@/api/attraction";
 import { mapState } from "vuex";
 
 import CommentList from "./comment/CommentList.vue";
@@ -206,6 +193,27 @@ export default {
         default:
           return "";
       }
+    },
+    makeFileURL(file) {
+      //return `download/${file.saveFolder}/${file.originalFile}/${file.saveFile}`;
+      console.log("make: ");
+      console.log(file);
+      let url = "";
+      let params = {
+        saveFolder: file.saveFolder,
+        saveFile: file.saveFile,
+      };
+      showImage(
+        params,
+        ({ data }) => {
+          console.log(data.resource);
+          url = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      return url;
     },
   },
 };
