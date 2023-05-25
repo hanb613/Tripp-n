@@ -15,11 +15,6 @@ const routes = [
     path: "/attraction",
     name: "attraction",
     component: () => import("@/views/AppAttraction"),
-    //다른 라우트로 가면 attr 목록 초기화(돼야하는데 안됨)
-    beforeRouteLeave(to, from, next) {
-      store.commit("attractionStore/CLEAER_ATTR_LIST");
-      next();
-    },
     redirect: "/attraction/search",
     children: [
       {
