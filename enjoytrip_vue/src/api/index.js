@@ -11,6 +11,16 @@ function apiInstance() {
   return instance;
 }
 
+function apiImageInstance() {
+  const instance = axios.create({
+    baseURL: "http://localhost",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+  });
+  return instance;
+}
+
 // house deal API axios instance
 function attrInstance() {
   const instance = axios.create({
@@ -22,4 +32,4 @@ function attrInstance() {
   return instance;
 }
 
-export { apiInstance, attrInstance };
+export { apiInstance, attrInstance, apiImageInstance };

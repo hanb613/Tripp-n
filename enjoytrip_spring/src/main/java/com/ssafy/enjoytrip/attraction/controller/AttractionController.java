@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ContentDisposition;
@@ -162,8 +163,12 @@ public class AttractionController {
 //		FileUpload 관련 설정.
 		logger.debug("MultipartFile.isEmpty : {}", files);
 		
+		//resources에 저장하자
+	    String rootPath = System.getProperty("user.dir");
+	    String fileDir = rootPath + File.separator+"resources";
+	    
 		String today = new SimpleDateFormat("yyMMdd").format(new Date());
-		String saveFolder = uploadPath + File.separator + today;
+		String saveFolder = fileDir + File.separator + today;
 		logger.debug("저장 폴더 : {}", saveFolder);
 		File folder = new File(saveFolder);
 		if (!folder.exists())
@@ -209,5 +214,37 @@ public class AttractionController {
 			return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
 		}
 	}
-	
+	@GetMapping("/showImage")
+    public ResponseEntity<Resource> showImage(@RequestParam Map<String, String> param) {
+        // 사진이 저장된 폴더 경로 변수 선언
+        String imageRoot = "";
+        String saveFolder = param.get("saveFolder");
+        String saveFile = param.get("saveFile");
+        imageRoot = new File("").getAbsolutePath() + "/resources/"+saveFolder+"/"+saveFile;
+        System.out.println("showimage!!!!");
+        logger.info("보여줄 파일: " + imageRoot);
+        //localhost:8080/attraction/showImage?saveFolder=230525&saveFile=49e174a3-f227-4119-86b9-4b61dd9c3522.jpg
+        // Resorce를 사용해서 로컬 서버에 저장된 이미지 경로 및 파일 명을 지정
+        Resource resource = new FileSystemResource(imageRoot);
+
+        
+        // 로컬 서버에 저장된 이미지 파일이 없을 경우
+        if(!resource.exists()){
+            return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND); // 리턴 결과 반환 404
+        }
+
+     // 로컬 서버에 저장된 이미지가 있는 경우 로직 처리
+        HttpHeaders header = new HttpHeaders();
+        Path filePath = null;
+        try {
+            filePath = Paths.get(imageRoot);
+            // 인풋으로 들어온 파일명 .png / .jpg 에 맞게 헤더 타입 설정
+            header.add("Content-Type", Files.probeContentType(filePath));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        // 이미지 리턴 실시 [브라우저에서 get 주소 확인 가능]
+        return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
+    }
 }

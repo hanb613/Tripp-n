@@ -68,7 +68,7 @@
           </b-button>
         </b-card>
       </b-col>
-      <b-col>
+      <b-col class="gallery">
         <!-- 갤러리영역 -->
         <b-img
           v-for="(file, index) in files"
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { getAttraction, likeAttraction, showImage } from "@/api/attraction";
+import { getAttraction, likeAttraction } from "@/api/attraction";
 import { mapState } from "vuex";
 
 import CommentList from "./comment/CommentList.vue";
@@ -125,7 +125,7 @@ export default {
     getAttraction(
       param,
       ({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.attraction = data.attraction;
         this.likedUsers = data.likedUsers;
         this.files = data.files;
@@ -195,25 +195,13 @@ export default {
       }
     },
     makeFileURL(file) {
-      //return `download/${file.saveFolder}/${file.originalFile}/${file.saveFile}`;
-      console.log("make: ");
-      console.log(file);
-      let url = "";
-      let params = {
-        saveFolder: file.saveFolder,
-        saveFile: file.saveFile,
-      };
-      showImage(
-        params,
-        ({ data }) => {
-          console.log(data.resource);
-          url = data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      return url;
+      console.log("make: ", file);
+      //let url = "";
+      // let params = {
+      //   saveFolder: file.saveFolder,
+      //   saveFile: file.saveFile,
+      // };
+      return `http://127.0.0.1/attraction/showImage?saveFolder=${file.saveFolder}&saveFile=${file.saveFile}`;
     },
   },
 };
@@ -244,5 +232,8 @@ export default {
 }
 .images {
   margin-top: 10px;
+}
+.gallery {
+  margin-top: 50px;
 }
 </style>
