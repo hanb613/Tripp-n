@@ -6,8 +6,19 @@
 <br>  
 
 ##  ✨ 팀 정보
-- 유영서 - Front/BackEnd
-- 신경희  - Front/BackEnd
+<table>
+ <tr align="center">
+   <th colspan="2">Front/BackEnd</th>
+ </tr>
+ <tr align = "center">
+  <td>
+   신경희
+  </td>
+  <td>
+   유영서
+  </td>
+ </tr>
+</table>
 
 <br>  
 
