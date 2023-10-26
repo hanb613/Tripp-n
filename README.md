@@ -5,23 +5,6 @@
 
 <br>  
 
-##  ✨ 팀 정보
-<table>
- <tr align="center">
-   <th colspan="2">Front/BackEnd</th>
- </tr>
- <tr align = "center">
-  <td>
-   신경희
-  </td>
-  <td>
-   유영서
-  </td>
- </tr>
-</table>
-
-<br>  
-
 ## ⌚ 개발 기간
 `2023.05.18 ~ 2023.05.25`
 
@@ -70,3 +53,21 @@
   - 공지사항 작상 (Admin Only)
 - 지역별 날씨 조회
 - 여행 차트
+
+<br>
+
+
+##  ✨ 팀 정보
+<table>
+ <tr align="center">
+   <th colspan="2">Front/BackEnd</th>
+ </tr>
+ <tr align = "center">
+  <td>
+   신경희
+  </td>
+  <td>
+   유영서
+  </td>
+ </tr>
+</table>
